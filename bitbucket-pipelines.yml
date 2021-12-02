@@ -22,15 +22,6 @@ pipelines:
   custom: # Pipelines that can only be triggered manually
     staging:
       - step:
-          name: Installing & Running Tests
-          caches:
-            - node
-          script:
-            - rm -rf package-lock.json
-            - rm -rf node_modules
-            - npm install
-            - npm run test
-      - step:
           name: Build
           script:
             - npm install --production
@@ -59,15 +50,6 @@ pipelines:
                 AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
                 DISTRIBUTION_ID: $STAGING_DISTRIBUTION_ID
     production:
-      - step:
-          name: Installing & Running Tests
-          caches:
-            - node
-          script:
-            - rm -rf package-lock.json
-            - rm -rf node_modules
-            - npm install
-            - npm run test
       - step:
           name: Build
           script:
