@@ -19,7 +19,6 @@ pipelines:
             - rm -rf package-lock.json
             - rm -rf node_modules
             - npm install
-            - npm run test
   custom: # Pipelines that can only be triggered manually
     staging:
       - step:
