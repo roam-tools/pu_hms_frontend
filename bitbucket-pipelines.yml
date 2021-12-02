@@ -1,0 +1,19 @@
+image: node:10.15.3
+pipelines:
+  default:
+    - step:
+        name: Test App
+        caches:
+          - node
+        script:
+          - rm -rf package-lock.json
+          - rm -rf node_modules
+          - yarn install
+  branches:
+    master:
+      - step:
+          name: Create artifact
+          script:
+            - git archive --format=tar.gz master -o application.tar.gz
+          artifacts:
+            - application.tar.gz
