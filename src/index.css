@@ -40,8 +40,9 @@ body,html {
   outline: none;
   border: none;
   border: 1px solid #ccc;
-  padding: 20px;
+  padding: 20px 15px;
   font-size:18px;
+  background-color:#ffffff;
 }
 .input__label{
   position: absolute;

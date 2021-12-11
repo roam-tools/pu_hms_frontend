@@ -34,8 +34,8 @@ nav{
     text-decoration: none;
     color: #000;
     border: 3px solid #0000FF;
-    padding: 15px 25px;
-    border-radius:20px;
+    padding: 5px 25px;
+    border-radius:5px;
 }
 .brand-image{
     cursor: pointer;

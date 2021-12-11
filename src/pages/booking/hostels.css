@@ -1,0 +1,44 @@
+.hostel-list{
+    margin-top:20px;
+}
+.hostel-list .hostel-info{
+    padding:20px;
+    font-size:16px;
+    color:#ffffff;
+}
+.hostel-info h2{
+    margin: 0 0 15px;
+}
+.hostel-info i{
+    width: 25px;
+    margin-bottom: 10px;
+}
+.hostel-info .hostel-info-action{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.hostel-info .hostel-info-action span{
+    font-size: 20px;
+    font-weight:bolder;
+}
+.hostel-info .hostel-info-action a{
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: #F5B041;
+    outline: none;
+    border:none;
+    border-radius: 5px;
+    padding:11px;
+    color:#000000;
+    height:40px;
+}
+.hostel-list img{
+    width: 100%;
+    height: auto;
+}
+.hostel-list .hostel-img{
+    object-fit:cover;
+}

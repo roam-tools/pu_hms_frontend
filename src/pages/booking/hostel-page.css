@@ -1,0 +1,90 @@
+.hostel-page{
+    margin-top:30px;
+    margin-bottom:50px;
+    padding: 30px ;
+    border:1px solid #ccc;
+    border-radius: 15px;
+}
+.hostel-page h2{
+    margin: 0 0 15px 0;
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+.hostel-page .hostel-page-header{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.hostel-page .hostel-page-header img{
+    width: 70%;
+    height:auto;
+    margin-right:20px;
+}
+.imgHostel{
+    object-fit: contain
+}
+.hostel-page-info{
+    width: 30%;
+    height:auto;
+}
+.card-content-wrap{
+    color:#ffffff;
+    padding:20px;
+}
+.card-content-wrap p{
+    margin:0;
+    font-size: 14px;
+}
+.card-content-wrap p span{
+    font-size:24px;
+    font-weight: bolder;
+}
+.hostel-page-info i{
+    width:25px;
+    margin-bottom: 15px;
+}
+.hostel-content-wrapper-action{
+    width: 100%;
+    display:flex;
+    /* flex-direction: row;
+    justify-content: space-between; */
+}
+.hostel-content-wrapper-action span{
+    margin-right: auto;
+    margin-top: 13px;
+}
+.hostel-content-wrapper-action a{
+    text-decoration: none;
+    color:#000000;
+    background-color: #F5B041;
+    padding: 15px;
+    height:50px;
+}
+.hostel-hightlight{
+    margin: 0;
+    padding:10px;
+    color: #ffffff;
+    font-size:14px;
+}
+.highlights{
+    background-color: #ffffff;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.hostel-rooms{
+    margin-bottom:150px;
+}
+.rooms-available{
+    margin: 0;
+    text-align:center;
+    color: #c5c5c5;
+    border-bottom: 1px solid #ccc;
+}
+.rooms-wrap{
+    width: 100%;
+    margin-top: 20px;
+}

@@ -1,0 +1,38 @@
+.room-card{
+    width:calc(100% / 4);
+    height: auto;
+    font-size: 16px;
+    color:#ffffff;
+    padding: 30px;
+}
+.room-card-header{
+    margin: 0px 0 20px 0;
+    font-size:20px;
+    font-weight:bolder;
+}
+.room-description{
+    display:flex;
+    flex-direction: column;
+}
+.room-description span{
+    margin-bottom: 15px;
+}
+.room-card-footer{
+    height: 90px;
+    /* display:flex;
+    flex-direction: row; */
+}
+.room-card a{
+    text-decoration: none;
+    color: #000;
+    background-color: #F5B041;
+    height: 40px;
+    width:100%;
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
+}
+.start-price{
+    font-size: 24px;
+    margin: 0;
+}
