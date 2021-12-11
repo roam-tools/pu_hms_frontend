@@ -46,9 +46,10 @@
     bottom: 100px;
     text-decoration:none;
     color:#000;
-    font-size: 24px;
+    font-size: 16px;
+    font-weight: bolder;
     padding: 15px 20px;
-    background-color: #FFC300;
+    background-color: #F5B041 ;
     border-radius: 10px;
     animation-name: animate;
     animation-duration: 4s;
