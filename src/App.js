@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import Navbar from "./components/nav/Navbar";
+import Booking from './pages/booking/Booking';
 import Landing from './pages/landing/Landing';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} exact />
         <Route path="/signup" />
+        <Route path="/booking" element={<Booking />} />
       </Routes>
     </Router>
   );
