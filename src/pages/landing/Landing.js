@@ -14,7 +14,7 @@ const Landing = () => {
             round safe, serene, and hygienic environment for a sound mind.
           </p>
         </div>
-            <Link to="/hostels">Book Now</Link>
+            <Link to="/hostels">HOSTELS</Link>
       </div>
       <div className="landing">
         <img src={hero} alt="" className="hero-image" />

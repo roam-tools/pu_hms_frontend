@@ -16,7 +16,7 @@ const Navbar = () => {
                     <img src={logo} alt="logo" height="80" width="160" className="brand-image" onClick={goHome}/>
                     <div className="nav-actions">
                         <Link to="/signup">Sign Up</Link>
-                        <Link to="/sigin">Sign In</Link>
+                        <Link to="/signin">Sign In</Link>
                     </div>
                 </div>
             </div>

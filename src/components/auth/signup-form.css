@@ -1,0 +1,10 @@
+.signup{
+    width: 40%;
+    animation-name: animate;
+    animation-duration: 4s;
+}
+.signup-form__header{
+    text-align:center;
+    margin-bottom:20px;
+    font-size: 30px;
+}
