@@ -8,3 +8,10 @@
     margin-bottom:20px;
     font-size: 30px;
 }
+.user-info{
+    display: flex;
+    flex-direction:row
+}
+.user-info span{
+    padding: 0 10px;
+}

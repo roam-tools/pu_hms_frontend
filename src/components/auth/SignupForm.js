@@ -6,13 +6,16 @@ const SignupForm = (props) => {
         <form onSubmit={props.handleSubmit} className="signup">
             <div className="signup-form">
                 <h1 className="signup-form__header">Create a Pentecost University Hostel account</h1>
-                <div className="form__floating">
-                    <input type="text" name="firstName" className="input__control" onChange={props.handleInputChange} required/>
-                    <label htmlFor='firstName' className="input__label">First Name</label>
-                </div>
-                <div className="form__floating">
-                    <input type="text" name="lastName" className="input__control" onChange={props.handleInputChange} required/>
-                    <label htmlFor='lastName' className="input__label">Last Name</label>
+                <div className="user-info">
+                    <div className="form__floating">
+                        <input type="text" name="firstName" className="input__control" onChange={props.handleInputChange} required/>
+                        <label htmlFor='firstName' className="input__label">First Name</label>
+                    </div>
+                    <span></span>
+                    <div className="form__floating">
+                        <input type="text" name="lastName" className="input__control" onChange={props.handleInputChange} required/>
+                        <label htmlFor='lastName' className="input__label">Last Name</label>
+                    </div>
                 </div>
                 <div className="form__floating">
                     <input type="email" name="email" className="input__control" onChange={props.handleInputChange} required/>
@@ -28,7 +31,7 @@ const SignupForm = (props) => {
                 </div>
                 <br />
                 <button className="input__control bg-blue">Sign Up</button>
-                <p className="auth__question">Already have an account? <a href="http://">Sign in</a></p>
+                <p className="auth__question">Already have an account? <a href="/signin">Sign in</a></p>
             </div>
         </form>
     );

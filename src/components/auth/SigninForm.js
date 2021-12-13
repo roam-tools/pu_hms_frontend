@@ -16,7 +16,7 @@ const SigninForm = (props) => {
                 </div>
                 <br />
                 <button className="input__control bg-blue">Sign In</button>
-                <p className="auth__question">Don't have an account? <a href="http://">Sign up</a></p>
+                <p className="auth__question">Don't have an account? <a href="/signup">Sign up</a></p>
             </div>
         </form>
     );
