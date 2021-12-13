@@ -10,19 +10,12 @@ import {
   REGISTER,
 } from "redux-persist";
 import localStorage from "redux-persist/lib/storage";
-
-import user from "../features/user";
-import product from "../features/product";
-import category from "../features/category";
-import productState from "../features/productState";
-import cart from "../features/cart";
+import authentication from "../features/authentication";
+import hostel from "../features/hostel";
 
 const rootReducer = combineReducers({
-  user:user,
-  product:product,
-  category:category,
-  productState:productState,
-  cart:cart,
+  user:authentication,
+  hostel:hostel
 });
 
 const persistConfig = {

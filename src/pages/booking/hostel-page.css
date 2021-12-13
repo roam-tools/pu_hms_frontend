@@ -87,4 +87,9 @@
 .rooms-wrap{
     width: 100%;
     margin-top: 20px;
+    display: flex;
+    flex-direction:row;
+}
+.rooms-wrap .room-card {
+    margin-right: 10px;
 }

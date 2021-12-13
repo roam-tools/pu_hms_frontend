@@ -1,27 +1,38 @@
 import React, { useState } from 'react';
 import SigninForm from '../../components/auth/SigninForm';
 import './signin.css'
+import authenticationService from '../../services/AuthenticationService'
+import { useDispatch } from 'react-redux';
+import { login } from '../../features/authentication';
 
 const Signin = () => {
 
-    const [signupInfo,setSignupInfo] = useState({username:"",password:""})
+    const [signInInfo,setSignInInfo] = useState({studentId:"",password:""})
+    const dispatch = useDispatch()
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault()
-        console.log("Nice")
+        try {
+
+            const loggedIn = await authenticationService.signIn(signInInfo)
+            console.log(loggedIn)
+
+            // dispatch(login(loggedIn.data.data[0]))
+
+        } catch (error) {
+            console.log("GET ERROR ", error.response)
+        }
     }
 
     const handleInputChange = (e) => {
         let inputName = e.target.name;
         let inputValue = e.target.value;
-        setSignupInfo(prev=>{
+        setSignInInfo(prev=>{
             return {
                 ...prev,[inputName]:inputValue
             }
         })
     }
-
-    console.log(signupInfo)
 
     return (
         <div className="wrapper">

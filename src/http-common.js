@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL: "http://localhost:5000/api/v1",
+  baseURL: "http://3ab6-41-242-139-20.ngrok.io/api/v1",
 });
 
 const requestHandler = (request) => {
@@ -13,7 +13,7 @@ const responseHandler = (response) => {
 };
 
 const errorHandler = (error) => {
-  return Promise.reject(error);
+  return Promise.reject(error.response);
 };
 
 http.interceptors.request.use(
