@@ -1,17 +1,51 @@
-import React from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Card from "../../components/card/Card.js";
 import heroHostel from "../../assets/images/PUC Campus IMG_9174.JPG";
 import "./hostel-page.css";
 import { Link } from "react-router-dom";
-import Hostel from "../../components/hostel/Hostel";
 import RoomCard from "../../components/card/RoomCard.js";
+import { selectHostel } from "../../features/hostel.js";
+import { useSelector } from "react-redux";
+import hostelService from "../../services/HotelServices";
+import roomServices from "../../services/RoomServices.js";
 
 const HostelPage = () => {
+  const [hostelInfo, setHostelInfo] = useState({})
+  const [facilities,setFacilities] = useState([])
+  const [rooms,setRooms] = useState([])
+  const hostel = useSelector(selectHostel)
+
+  useEffect(() => {
+    console.log("GET HOSTEL IN HOSTEL PAGE", hostel.id)
+    const getHostel = async () => {
+      const oneHostel = await hostelService.getHostel(hostel.id)
+      const facilityList = oneHostel.data.data[0].facilities.split(',')
+      setFacilities(facilityList)
+      setHostelInfo(oneHostel.data.data[0])
+      console.log(oneHostel.data.data[0])
+      const rooms = await roomServices.getRooms(oneHostel.data.data[0].id)
+      console.log(rooms.data.data)
+      setRooms(rooms.data.data)
+    }
+    getHostel()
+  },[])
+
+  // useEffect(() => {
+  //   const getRooms = async () => {
+  //     try {
+
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   getRooms()
+  // },[])
+
   return (
     <div className="wrapper">
       <div className="container">
         <div className="hostel-page">
-          <h2>Hostel Name</h2>
+          <h2>{hostelInfo.name}</h2>
           <div className="hostel-page-header">
             <img src={heroHostel} alt="" className="imgHostel" />
             <div className="hostel-page-info">
@@ -20,14 +54,13 @@ const HostelPage = () => {
                   <p>
                     Price starts at:
                     <br />
-                    <span>GHS 1,500</span>
+                    <span>GHS {hostelInfo.startPrice}</span>
                     <br /> <small>per bed/semester</small>
                   </p>
                   <br />
-                  <i class="fa fa-user" aria-hidden="true"></i> Males
+                  <i className="fa fa-user" aria-hidden="true"></i> {hostelInfo.gender}
                   <br />
-                  <i class="fa fa-home" aria-hidden="true"></i> 50 rooms
-                  available
+                  <i className="fa fa-home" aria-hidden="true"></i> {hostelInfo.roomCount}
                   <br />
                   <br />
                   <div className="hostel-content-wrapper-action">
@@ -35,7 +68,7 @@ const HostelPage = () => {
                       <strong>Quick enquiry</strong>
                     </span>
                     <Link to="/hostel">
-                      <i className="fa fa-phone"></i>0500144870
+                      <i className="fa fa-phone"></i>{hostelInfo.telephone}
                     </Link>
                   </div>
                 </div>
@@ -44,24 +77,15 @@ const HostelPage = () => {
               <Card>
                 <h3 className="hostel-hightlight">Hostel Highlights</h3>
                 <div className="highlights">
-                  <span>
-                    <i className="fa fa-check"></i> Security cameras
-                  </span>
-                  <span>
-                    <i className="fa fa-check"></i> Car pack
-                  </span>
-                  <span>
-                    <i className="fa fa-check"></i> Basket ball court
-                  </span>
-                  <span>
-                    <i className="fa fa-check"></i> Basket ball court
-                  </span>
-                  <span>
-                    <i className="fa fa-check"></i> Basket ball court
-                  </span>
-                  <span>
-                    <i className="fa fa-check"></i> Basket ball court
-                  </span>
+                  {
+                    facilities.map((facility,index) =>{
+                      return (
+                        <span key={index}>
+                          <i className="fa fa-check"></i> {facility}
+                        </span>
+                      )
+                    })
+                  }
                 </div>
               </Card>
             </div>
@@ -70,7 +94,21 @@ const HostelPage = () => {
         <div className="hostel-rooms">
           <h1 className="rooms-available">ROOMS AVAILABLE</h1>
           <div className="rooms-wrap">
-              <RoomCard />
+              {
+                rooms?.map(room=>{
+                  return (
+                    <Fragment key={room.roomId}>
+                        <RoomCard 
+                        room_number={room.roomId}
+                        facilities = {room.facilities}
+                        gender = {room.gender}
+                        capacity = {room.capacity}
+                        price = {room.bedPrice}
+                        />
+                    </Fragment>
+                  )
+                })
+              }
           </div>
         </div>
       </div>

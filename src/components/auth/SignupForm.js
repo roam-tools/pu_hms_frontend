@@ -22,12 +22,12 @@ const SignupForm = (props) => {
                     <label htmlFor='email' className="input__label">E-mail</label>
                 </div>
                 <div className="form__floating">
-                    <input type="text" name="phoneNumber" className="input__control" onChange={props.handleInputChange} required/>
-                    <label htmlFor='phoneNumber' className="input__label">Phone</label>
+                    <input type="text" name="studentId" className="input__control" onChange={props.handleInputChange} required/>
+                    <label htmlFor='Username' className="input__label">Student Id</label>
                 </div>
                 <div className="form__floating">
-                    <input type="text" name="username" className="input__control" onChange={props.handleInputChange} required/>
-                    <label htmlFor='Username' className="input__label">Student Id</label>
+                    <input type="text" name="phone" className="input__control" onChange={props.handleInputChange} required/>
+                    <label htmlFor='phoneNumber' className="input__label">Phone</label>
                 </div>
                 <br />
                 <button className="input__control bg-blue">Sign Up</button>

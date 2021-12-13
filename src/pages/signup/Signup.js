@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom'
 import SignupForm from '../../components/auth/SignupForm';
 import './signup.css'
+import authenticationService from '../../services/AuthenticationService'
 
 const Signup = () => {
 
-    const [signupInfo,setSignupInfo] = useState({firstName:"",lastName:"",email:"",username:"",password:""})
+    const [signupInfo,setSignupInfo] = useState({firstName:"",lastName:"",studentId:"",email:"",password:"",phone:""})
+    const [signedUp, setSignedup] = useState(false);
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault()
-        console.log("Nice")
+        try{
+            const newSignUp = await authenticationService.signUp(signupInfo)
+            console.log(newSignUp)
+            setSignedup(!signedUp)
+
+        }catch(error){
+            console.log(error)
+        }
     }
 
     const handleInputChange = (e) => {
@@ -26,9 +36,20 @@ const Signup = () => {
     return (
         <div className="wrapper">
             <div className="container">
-                <div className="auth-wrapper">
+                {!signedUp&&<div className="auth-wrapper">
                     <SignupForm handleSubmit={handleSubmit} handleInputChange={handleInputChange} />
+                </div>}
+
+                {signedUp&&
+                <div className="success-message">
+                    <h2>Thank you for signing up!</h2>
+                    <p>
+                        Your account password has been sent to your email 
+                        {signupInfo.email}. Check and click <Link to="/signin"> here</Link> to sign in.
+                    </p>
                 </div>
+                }
+
             </div>
         </div>
     );

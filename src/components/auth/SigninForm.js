@@ -7,7 +7,7 @@ const SigninForm = (props) => {
             <div className="login-form">
                 <h1 className="login-form__header">Login into Pentecost University Hostel account</h1>
                 <div className="form__floating">
-                    <input type="text" name="username" className="input__control" onChange={props.handleInputChange} required/>
+                    <input type="text" name="studentId" className="input__control" onChange={props.handleInputChange} required/>
                     <label htmlFor='Username' className="input__label">Student Id</label>
                 </div>
                 <div className="form__floating">
