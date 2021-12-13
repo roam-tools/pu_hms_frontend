@@ -19,7 +19,7 @@ const HostelPage = () => {
     console.log("GET HOSTEL IN HOSTEL PAGE", hostel.id)
     const getHostel = async () => {
       const oneHostel = await hostelService.getHostel(hostel.id)
-      const facilityList = oneHostel.data.data[0].facilities.split(',')
+      const facilityList = oneHostel.data.data[0].length > 0 && oneHostel.data.data[0].facilities.split(',')
       setFacilities(facilityList)
       setHostelInfo(oneHostel.data.data[0])
       console.log(oneHostel.data.data[0])
@@ -78,7 +78,7 @@ const HostelPage = () => {
                 <h3 className="hostel-hightlight">Hostel Highlights</h3>
                 <div className="highlights">
                   {
-                    facilities.map((facility,index) =>{
+                    facilities.length > 0&&facilities.map((facility,index) =>{
                       return (
                         <span key={index}>
                           <i className="fa fa-check"></i> {facility}
