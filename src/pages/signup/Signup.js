@@ -13,7 +13,6 @@ const Signup = () => {
         e.preventDefault()
         try{
             const newSignUp = await authenticationService.signUp(signupInfo)
-            // console.log(newSignUp)
             setSignedup(!signedUp)
 
         }catch(error){
