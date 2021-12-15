@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import './navbar.css'
 import logo from '../../assets/images/The-University-Logo2.jpg'
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 // import { selectUser } from '../../features/authentication';
 
 const Navbar = () => {
