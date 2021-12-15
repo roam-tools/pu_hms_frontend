@@ -12,7 +12,7 @@ const Signup = () => {
     const handleSubmit = async (e) =>{
         e.preventDefault()
         try{
-            const newSignUp = await authenticationService.signUp(signupInfo)
+            await authenticationService.signUp(signupInfo)
             setSignedup(!signedUp)
 
         }catch(error){
