@@ -3,11 +3,11 @@ import {useNavigate} from 'react-router-dom'
 import './navbar.css'
 import logo from '../../assets/images/The-University-Logo2.jpg'
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../../features/authentication';
+import { useDispatch } from 'react-redux';
+// import { selectUser } from '../../features/authentication';
 
 const Navbar = () => {
-    const loggedIn = useSelector(selectUser)
+    // const loggedIn = useSelector(selectUser)
     const dispatch = useDispatch()
 
     const [showMenu,setShowMenu] = useState(false)
@@ -19,9 +19,9 @@ const Navbar = () => {
         navigate("/")
     }
 
-    const logout = () =>{
-        dispatch(logout)
-    }
+    // const logout = () =>{
+    //     dispatch(logout)
+    // }
     const toggleMenu = () =>{
         setShowMenu(!showMenu)
         setToggler(!toggler)
