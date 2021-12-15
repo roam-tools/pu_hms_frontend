@@ -18,6 +18,10 @@ pipelines:
           script:
             - rm -rf package-lock.json
             - rm -rf node_modules
+            - npm install
+
+  custom: # Pipelines that can only be triggered manually
+    staging:
       - step:
           name: Build
           script:
@@ -25,8 +29,6 @@ pipelines:
             - REACT_APP_ENVIRONMENT=staging npm run build
           artifacts:
             - build/**
-  custom: # Pipelines that can only be triggered manually
-    staging:
       - step:
           name: Deploy to S3
           deployment: staging
