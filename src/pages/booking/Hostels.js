@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import Hostel from "../../components/hostel/Hostel";
 import { createHostel } from "../../features/hostel";
 import hostelService from "../../services/HotelServices";
-import './hostels.css'
+import "./hostels.css";
 
 const Hostels = () => {
   const [hostels, setHostels] = useState([]);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getHostels = async () => {
@@ -24,29 +24,30 @@ const Hostels = () => {
   }, []);
 
   const getHostelId = (hostel) => {
-    //   console.log("GET HOSTEL LIST TO EXTRACT ID ",hostel);
-      dispatch(createHostel(hostel))
-  }
+    dispatch(createHostel(hostel));
+  };
 
   return (
     <div className="wrapper">
-        <div className="container">
-            <div className="hostel-list">
-                {hostels?.map(hostel=>{
-                    return  <Fragment key={hostel.id}>
-                            <Hostel
-                            key={hostel.id}
-                            name={hostel.name}
-                            location={hostel.location}
-                            beds={hostel.bedCount}
-                            rooms={hostel.roomCount}
-                            price_start={hostel.startPrice}
-                            getHostelId={()=>getHostelId(hostel)}
-                            />
-                            </Fragment>
-                })}
-            </div>
+      <div className="container">
+        <div className="hostel-list">
+          {hostels?.map((hostel) => {
+            return (
+              <Fragment key={hostel.id}>
+                <Hostel
+                  key={hostel.id}
+                  name={hostel.name}
+                  location={hostel.location}
+                  beds={hostel.bedCount}
+                  rooms={hostel.roomCount}
+                  price_start={hostel.startPrice}
+                  getHostelId={() => getHostelId(hostel)}
+                />
+              </Fragment>
+            );
+          })}
         </div>
+      </div>
     </div>
   );
 };

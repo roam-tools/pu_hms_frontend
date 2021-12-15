@@ -10,36 +10,27 @@ import hostelService from "../../services/HotelServices";
 import roomServices from "../../services/RoomServices.js";
 
 const HostelPage = () => {
-  const [hostelInfo, setHostelInfo] = useState({})
-  const [facilities,setFacilities] = useState([])
-  const [rooms,setRooms] = useState([])
-  const hostel = useSelector(selectHostel)
+  const [hostelInfo, setHostelInfo] = useState({});
+  const [facilities, setFacilities] = useState([]);
+  const [rooms, setRooms] = useState([]);
+  const hostel = useSelector(selectHostel);
 
   useEffect(() => {
-    console.log("GET HOSTEL IN HOSTEL PAGE", hostel.id)
+    console.log("GET HOSTEL IN HOSTEL PAGE", hostel.id);
     const getHostel = async () => {
-      const oneHostel = await hostelService.getHostel(hostel.id)
-      const facilityList = oneHostel.data.data[0].length > 0 && oneHostel.data.data[0].facilities.split(',')
-      setFacilities(facilityList)
-      setHostelInfo(oneHostel.data.data[0])
-      console.log(oneHostel.data.data[0])
-      const rooms = await roomServices.getRooms(oneHostel.data.data[0].id)
-      console.log(rooms.data.data)
-      setRooms(rooms.data.data)
-    }
-    getHostel()
-  },[])
-
-  // useEffect(() => {
-  //   const getRooms = async () => {
-  //     try {
-
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   getRooms()
-  // },[])
+      const oneHostel = await hostelService.getHostel(hostel.id);
+      const facilityList =
+        oneHostel.data.data[0].length > 0 &&
+        oneHostel.data.data[0].facilities.split(",");
+      setFacilities(facilityList);
+      setHostelInfo(oneHostel.data.data[0]);
+      console.log(oneHostel.data.data[0]);
+      const rooms = await roomServices.getRooms(oneHostel.data.data[0].id);
+      console.log(rooms.data.data);
+      setRooms(rooms.data.data);
+    };
+    getHostel();
+  }, []);
 
   return (
     <div className="wrapper">
@@ -58,9 +49,11 @@ const HostelPage = () => {
                     <br /> <small>per bed/semester</small>
                   </p>
                   <br />
-                  <i className="fa fa-user" aria-hidden="true"></i> {hostelInfo.gender}
+                  <i className="fa fa-user" aria-hidden="true"></i>{" "}
+                  {hostelInfo.gender}
                   <br />
-                  <i className="fa fa-home" aria-hidden="true"></i> {hostelInfo.roomCount}
+                  <i className="fa fa-home" aria-hidden="true"></i>{" "}
+                  {hostelInfo.roomCount}
                   <br />
                   <br />
                   <div className="hostel-content-wrapper-action">
@@ -68,7 +61,8 @@ const HostelPage = () => {
                       <strong>Quick enquiry</strong>
                     </span>
                     <Link to="/hostel">
-                      <i className="fa fa-phone"></i>{hostelInfo.telephone}
+                      <i className="fa fa-phone"></i>
+                      {hostelInfo.telephone}
                     </Link>
                   </div>
                 </div>
@@ -77,15 +71,14 @@ const HostelPage = () => {
               <Card>
                 <h3 className="hostel-hightlight">Hostel Highlights</h3>
                 <div className="highlights">
-                  {
-                    facilities.length > 0&&facilities.map((facility,index) =>{
+                  {facilities.length > 0 &&
+                    facilities.map((facility, index) => {
                       return (
                         <span key={index}>
                           <i className="fa fa-check"></i> {facility}
                         </span>
-                      )
-                    })
-                  }
+                      );
+                    })}
                 </div>
               </Card>
             </div>
@@ -94,23 +87,27 @@ const HostelPage = () => {
         <div className="hostel-rooms">
           <h1 className="rooms-available">ROOMS AVAILABLE</h1>
           <div className="rooms-wrap">
-              {
-                rooms?.map(room=>{
-                  return (
-                    <Fragment key={room.roomId}>
-                        <RoomCard 
-                        room_number={room.roomId}
-                        facilities = {room.facilities}
-                        gender = {room.gender}
-                        capacity = {room.capacity}
-                        price = {room.bedPrice}
-                        />
-                    </Fragment>
-                  )
-                })
-              }
+            {rooms?.map((room) => {
+              return (
+                <Fragment key={room.roomId}>
+                  <RoomCard
+                    room_number={room.roomId}
+                    facilities={room.facilities}
+                    gender={room.gender}
+                    capacity={room.capacity}
+                    price={room.bedPrice}
+                  />
+                </Fragment>
+              );
+            })}
           </div>
+        <div>
+          <br />
+        <h1 className="rooms-available">HOSTEL MANAGER</h1>
+
         </div>
+        </div>
+
       </div>
     </div>
   );
