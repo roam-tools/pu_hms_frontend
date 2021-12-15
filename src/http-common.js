@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL: "http://3ab6-41-242-139-20.ngrok.io/api/v1",
+  baseURL: "https://pu-hms-backend.herokuapp.com/api/v1",
 });
 
 const requestHandler = (request) => {

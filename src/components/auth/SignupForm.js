@@ -5,7 +5,7 @@ const SignupForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className="signup">
             <div className="signup-form">
-                <h1 className="signup-form__header">Create a Pentecost University Hostel account</h1>
+                <h1 className="signup-form__header">Create a Pentecost University College Hostel account</h1>
                 <div className="user-info">
                     <div className="form__floating">
                         <input type="text" name="firstName" className="input__control" onChange={props.handleInputChange} required/>
@@ -29,7 +29,6 @@ const SignupForm = (props) => {
                     <input type="text" name="phone" className="input__control" onChange={props.handleInputChange} required/>
                     <label htmlFor='phoneNumber' className="input__label">Phone</label>
                 </div>
-                <br />
                 <button className="input__control bg-blue">Sign Up</button>
                 <p className="auth__question">Already have an account? <a href="/signin">Sign in</a></p>
             </div>

@@ -22,6 +22,7 @@ body,html {
 .container{
   width: 80%;
   height: 100%;
+  margin-bottom: 50px;
 }
 .auth-wrapper{
   width:100%;
@@ -61,10 +62,32 @@ body,html {
   color: #ffffff;
 }
 
+.loader {
+  border: 16px solid #f3f3f3; 
+  border-top: 5px solid #3498db; 
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
 
-
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 @keyframes animate {
   0%   {opacity: 0; }
   100%  {opacity:1;}
+}
+
+@media (max-width: 767px) {
+  .container{
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
 }

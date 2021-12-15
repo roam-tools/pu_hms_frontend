@@ -49,8 +49,6 @@
 .hostel-content-wrapper-action{
     width: 100%;
     display:flex;
-    /* flex-direction: row;
-    justify-content: space-between; */
 }
 .hostel-content-wrapper-action span{
     margin-right: auto;
@@ -77,6 +75,7 @@
 }
 .hostel-rooms{
     margin-bottom:150px;
+    background-color: #ccc;
 }
 .rooms-available{
     margin: 0;
