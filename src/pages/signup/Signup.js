@@ -13,7 +13,7 @@ const Signup = () => {
         e.preventDefault()
         try{
             const newSignUp = await authenticationService.signUp(signupInfo)
-            console.log(newSignUp)
+            // console.log(newSignUp)
             setSignedup(!signedUp)
 
         }catch(error){
@@ -21,7 +21,7 @@ const Signup = () => {
         }
     }
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e) => { 
         let inputName = e.target.name;
         let inputValue = e.target.value;
         setSignupInfo(prev=>{
@@ -31,7 +31,7 @@ const Signup = () => {
         })
     }
 
-    console.log(signupInfo)
+    // console.log(signupInfo)
 
     return (
         <div className="wrapper">

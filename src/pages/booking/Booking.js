@@ -78,7 +78,7 @@ const Booking = () => {
                                         <Link to="">Book Now</Link>
                                     </div>
                                     <div className="featured-hostel-card">
-                                        <img src={hostelImage} alt="image" className="featured-hostel-card-image"/>
+                                        <img src={hostelImage} alt="hostelImage" className="featured-hostel-card-image"/>
                                     </div>
                                 </div>
                             )

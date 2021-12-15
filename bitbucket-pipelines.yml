@@ -8,7 +8,7 @@ pipelines:
         script:
           - rm -rf package-lock.json
           - rm -rf node_modules
-          - yarn install
+          - npm install
   branches:
     master:
       - step:

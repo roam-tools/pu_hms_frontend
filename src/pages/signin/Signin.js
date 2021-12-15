@@ -3,12 +3,12 @@ import SigninForm from '../../components/auth/SigninForm';
 import './signin.css'
 import authenticationService from '../../services/AuthenticationService'
 import { useDispatch } from 'react-redux';
-import { login } from '../../features/authentication';
+// import { login } from '../../features/authentication';
 
 const Signin = () => {
 
     const [signInInfo,setSignInInfo] = useState({studentId:"",password:""})
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     const handleSubmit = async (e) =>{
         e.preventDefault()

@@ -5,7 +5,7 @@ const HostelManager = (props) => {
   return (
     <div className="manager-profile">
       <div className="manager-info">
-        <img src="" alter="manager" className="manager-image" />
+        <img src="" alt="manager" className="manager-image" />
         <p className="profile-name">John Tanko</p>
       </div>
       <p className="profile">
