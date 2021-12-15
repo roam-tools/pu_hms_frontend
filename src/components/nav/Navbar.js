@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
     // const loggedIn = useSelector(selectUser)
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     const [showMenu,setShowMenu] = useState(false)
     const [toggler,setToggler] = useState(false)
