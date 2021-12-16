@@ -1,4 +1,4 @@
-image: node:10.15.3
+image: node:14.18.2
 pipelines:
   default:
     - step:
@@ -19,6 +19,7 @@ pipelines:
             - rm -rf package-lock.json
             - rm -rf node_modules
             - npm install
+
   custom: # Pipelines that can only be triggered manually
     staging:
       - step:
@@ -40,15 +41,15 @@ pipelines:
                 S3_BUCKET: $STAGING_BUCKET_NAME
                 ACL: "public-read"
                 LOCAL_PATH: "build"
-      - step:
-          name: Invalidate Cloudfront Cache
-          script:
-            - pipe: atlassian/aws-cloudfront-invalidate:0.1.1
-              variables:
-                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
-                DISTRIBUTION_ID: $STAGING_DISTRIBUTION_ID
+      # - step:
+      #     name: Invalidate Cloudfront Cache
+      #     script:
+      #       - pipe: atlassian/aws-cloudfront-invalidate:0.1.1
+      #         variables:
+      #           AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+      #           AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+      #           AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+      #           DISTRIBUTION_ID: $STAGING_DISTRIBUTION_ID
     production:
       - step:
           name: Build
