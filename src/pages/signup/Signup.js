@@ -44,7 +44,7 @@ const Signup = () => {
                     <h2>Thank you for signing up!</h2>
                     <p>
                         Your account password has been sent to your email 
-                        {signupInfo.email}. Check and click <Link to="/signin"> here</Link> to sign in.
+                        {signupInfo.email}. Check and click <Link to="/sign-in"> here</Link> to sign in.
                     </p>
                 </div>
                 }

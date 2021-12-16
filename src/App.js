@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import Landing from './pages/home/Landing';
 import Hostels from './pages/hostels/Hostels';
 import Booking from './pages/booking/Booking';
+import Profile from './pages/profile/Profile';
 
 
 
@@ -23,6 +24,8 @@ function App() {
         <Route path="/booking" element={<Booking />} />
         <Route path="/sign-up" element={<Signup />}/>
         <Route path="/sign-in" element={loggedIn ? <Navigate replace to="/" /> : <Signin />}/>
+        <Route path="/profile" element={<Profile />} />
+
       </Routes>
     </Router>
   );

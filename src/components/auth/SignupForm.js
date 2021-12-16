@@ -30,7 +30,7 @@ const SignupForm = (props) => {
                     <label htmlFor='phoneNumber' className="input__label">Phone</label>
                 </div>
                 <button className="input__control bg-blue">Sign Up</button>
-                <p className="auth__question">Already have an account? <a href="/signin">Sign in</a></p>
+                <p className="auth__question">Already have an account? <a href="/sign-in">Sign in</a></p>
             </div>
         </form>
     );
