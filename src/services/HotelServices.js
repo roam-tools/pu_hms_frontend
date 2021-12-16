@@ -8,14 +8,14 @@ const getHostel = async (id) =>{
     return await http.get(`/hostel/${id}`);
 }
 
-// const signIn = async (data) =>{
-//     return await http.post("/user/login",data);
-// }
+const getFeaturedHostels = async () =>{
+    return await http.get("/hostels/featured");
+}
 
 const hotelService = {
     getHostels,
     getHostel,
-    // signIn
+    getFeaturedHostels
 }
 
 export default hotelService
