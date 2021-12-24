@@ -1,7 +1,7 @@
 import http from '../http-common'
 
-const getHostels = async (data) =>{
-    return await http.get("/hostels",data);
+const getHostels = async () =>{
+    return await http.get("/hostels");
 }
 
 const getHostel = async (id) =>{

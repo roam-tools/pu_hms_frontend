@@ -38,10 +38,10 @@ const Navbar = () => {
                     <div className="nav-actions">
                         <div className={showMenu ? "active" : "inActive"} onClick={toggleMenu2}>
                         <Link to="/">Home</Link>
-                        <Link to="/featured/hostels">Hostels</Link>
+                        <Link to="hostels">Hostels</Link>
                         {!loggedIn?
                         <Fragment>
-                        <Link to="/sign-up">Sign Up</Link>
+                        <Link to="sign-up">Sign Up</Link>
                         <Link to="/sign-in" className = "logout">Login</Link>
                         </Fragment>:
                         <Fragment>

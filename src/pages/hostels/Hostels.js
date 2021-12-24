@@ -46,7 +46,7 @@ const Hostels = () => {
                         <div className="loader"></div>
                     </div>}
                         {hostels.length > 0 ? hostels?.map((hostel) => {
-                            let image = <img src={hostelImg} alt="hostel" className="hostel-img" />
+                            let image = <img src={hostel.image} alt="hostel" className="hostel-img" />
                             return (
                             <Fragment key={hostel.id}>
                                 <Hostel
