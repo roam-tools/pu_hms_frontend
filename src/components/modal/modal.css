@@ -1,6 +1,7 @@
 .modal-overlay {
     position: fixed;
-    padding-top: 100px;
+    padding-top: 50px;
+    padding-bottom:50px;
     left: 0;
     top: 0;
     width: 100%;
@@ -29,6 +30,44 @@
     text-align: center;
     padding: 30px 20px;
     ;
+}
+
+.input-modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #000080;
+    padding: 20px 15px;
+    color: #ffffff;
+}
+.input-modal-header .title{
+    font-size:20px;
+    padding-top: 5px;
+}
+.input-modal-header .close{
+    font-size: 30px;
+    cursor: pointer;
+}
+.input-modal-body{
+    padding:20px;
+}
+
+.input-modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+.input-modal-footer{
+    height:5px;
+    background-color: #000080;
 }
 
 @-webkit-keyframes animatetop {

@@ -4,7 +4,7 @@ import hostelService from "../../services/HotelServices";
 import Hostel from '../../components/hostel/Hostel';
 import './hostels.css'
 import { createHostel } from "../../features/hostel";
-import hostelImg from '../../assets/images/PUC Campus IMG_9174.JPG'
+// import hostelImg from '../../assets/images/PUC Campus IMG_9174.JPG'
 
 
 const Hostels = () => {
@@ -46,7 +46,7 @@ const Hostels = () => {
                         <div className="loader"></div>
                     </div>}
                         {hostels.length > 0 ? hostels?.map((hostel) => {
-                            let image = <img src={hostelImg} alt="hostel" className="hostel-img" />
+                            let image = <img src={hostel.image} alt="hostel" className="hostel-img" />
                             return (
                             <Fragment key={hostel.id}>
                                 <Hostel

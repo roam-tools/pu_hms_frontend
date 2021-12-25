@@ -41,7 +41,7 @@ body,html {
   outline: none;
   border: none;
   border: 1px solid #ccc;
-  padding: 20px 15px;
+  padding: 15px 15px;
   font-size:18px;
   background-color:#ffffff;
 }
@@ -65,7 +65,12 @@ body,html {
   padding: 10px 25px;
   margin: 15px 15px;
 }
-
+.loader__wrapper{
+  width:100%;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
 .loader {
   border: 15px solid #f3f3f3; 
   border-top: 15px solid #3498db; 
@@ -84,6 +89,28 @@ body,html {
 .modal-actions button{
   width: 100%;
   padding: 15px;
+}
+
+.div__row{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.row__column{
+  width: 49%;
+}
+fieldset{
+  margin:10px 0 15px 0;
+}
+.btn__control{
+  padding: 10px 50px;
+}
+.action__wrapper{
+  display:flex;
+  flex-direction:row;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 @keyframes spin {

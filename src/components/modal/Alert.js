@@ -1,5 +1,5 @@
 import React from 'react';
-import './alert.css'
+import './modal.css'
 
 const Alert = (props) => {
     return (
