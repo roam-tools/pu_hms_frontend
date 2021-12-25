@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-buttons/js/dataTables.buttons.js"
 import "datatables.net-buttons/js/buttons.colVis.js"
@@ -15,9 +15,9 @@ $.DataTable = require("datatables.net");
 
 class DataTableComp extends Component {
 
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
     console.log("Working now.....")

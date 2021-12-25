@@ -52,7 +52,7 @@ const Rooms = (props) => {
     const handleInputChange = (e) => {
         let val = e.target.value;
         let key = e.target.name
-        setNewRooms = (prev=>{
+        setNewRooms(prev=>{
             return{
                 ...prev,[key]:val
             }
