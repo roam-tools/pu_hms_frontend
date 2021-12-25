@@ -4,8 +4,8 @@ import Bookings from '../../pages/admin/booking/Bookings'
 import Students from '../../pages/admin/student/Students'
 const adminRoutes = [
   {
-    path: "/dashboard",
-    element: <div>add</div>,
+    path: "/",
+    element: <div>Dashboard coming soon</div>,
   },
   {
     path: "/hostels",
