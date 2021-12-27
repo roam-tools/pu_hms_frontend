@@ -6,13 +6,16 @@ import Columns from './columns'
 import PageHeader from '../../../components/header/PageHeader'
 import Modal from '../../../components/modal/modal'
 import roomServices from '../../../services/RoomServices'
+import hostelService from '../../../services/HotelServices'
 
 
 const Rooms = (props) => {
 
     const [showModal,setShowModal] = useState(false)
+    const [hostels,setHostels] = useState([])
     const [rooms,setRooms] = useState([])
-    const [newRooms,setNewRooms] = useState({
+    const [updateTable,setUpdateTable] = useState({})
+    const [newRoom,setNewRoom] = useState({
         name: "",
         description: "",
         location: "",
@@ -25,6 +28,18 @@ const Rooms = (props) => {
       })
 
       useEffect(() => {
+        const getHostelList = async () => {
+            const hostels = await hostelService.getHostels();
+            if(hostels.status === 200){
+                console.log(hostels.data.data)
+                setHostels(hostels.data.data)
+            }
+
+        }
+        getHostelList()
+    }, [updateTable])
+
+      useEffect(() => {
           const getRoomList = async () => {
               const rooms = await roomServices.getAllRooms();
               if(rooms.status === 200){
@@ -34,92 +49,125 @@ const Rooms = (props) => {
 
           }
           getRoomList()
-      }, [])
+      }, [updateTable])
 
-    const handleButton = () => {
+    const handleModal = () => {
         setShowModal(!showModal)
     }
 
 
-    const deleteRow = () => {
+    const deleteRow = (data) => {
 
     }
 
-    const gotoEdit = () => {
-        
+    const goEdit = (data) => {
+        setNewRoom(data)
+        setShowModal(!showModal)
     }
 
     const handleInputChange = (e) => {
         let val = e.target.value;
         let key = e.target.name
-        setNewRooms(prev=>{
+        setNewRoom(prev=>{
             return{
                 ...prev,[key]:val
             }
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(newRooms)
+        try {
+            const newCreatedRoom = await roomServices.createRoom(newRoom)
+            console.log(newCreatedRoom)
+            if(newCreatedRoom.status === 200){
+                setNewRoom({
+                    hostel_id: 0,
+                    room_id: "",
+                    capacity: "",
+                    gender: "",
+                    description: "",
+                    facilities: "",
+                    tags: "",
+                    available: 0,
+                    bed_price: 0
+                  })
+                  setUpdateTable({})
+            }else{
+                console.log(newCreatedRoom)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
-
     
     return (
         <Fragment>
             {showModal?
-            <Modal closeModal={handleButton} title="Add Hostel">
+            <Modal closeModal={handleModal} title="Add Room">
                 <form onSubmit={handleSubmit}>
                     <div className="form__floating">
-                        <input type="text" name="name" className="input__control" onChange={handleInputChange} required/>
-                        <label htmlFor='name' className="input__label">Hostel Name</label>
+                        <select name="hostel_id" className="input__control" onChange={handleInputChange} value={newRoom.hostel_id} required>
+                            {
+                                hostels?.map((hotel,index)=>{
+                                    return <option key ={index} value={hotel.id}>{hotel.name}</option>
+                                })
+                            }
+                        </select>
+                        <label htmlFor='hostel_id' className="input__label">Select Hostel</label>
                     </div>
+
                     <div className="form__floating">
-                        <input type="text" name="description" className="input__control" onChange={handleInputChange} required/>
-                        <label htmlFor='description' className="input__label">Description</label>
+                        <input type="text" name="room_id" className="input__control" onChange={handleInputChange} value={newRoom.roomId} required/>
+                        <label htmlFor='room_id' className="input__label">Room Number</label>
                     </div>
-                    <fieldset>
-                        <legend>Hostel Address</legend>
-                        <div className="div__row">
-                            <div className="form__floating row__column">
-                                <input type="text" name="location" className="input__control" onChange={handleInputChange} required/>
-                                <label htmlFor='location' className="input__label">Location</label>
-                            </div>
-                            <div className="form__floating row__column">
-                                <input type="text" name="address" className="input__control" onChange={handleInputChange} required/>
-                                <label htmlFor='address' className="input__label">Digital Address</label>
-                            </div>
-                        </div>
-                        <div className="div__row">
-                            <div className="form__floating row__column">
-                                <input type="text" name="email" className="input__control" onChange={handleInputChange} required/>
-                                <label htmlFor='email' className="input__label">Email</label>
-                            </div>
-                            <div className="form__floating row__column">
-                                <input type="text" name="telephone" className="input__control" onChange={handleInputChange} required/>
-                                <label htmlFor='telephone' className="input__label">Telephone</label>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <div className="form__floating">
-                        <input type="text" name="facilities" className="input__control" onChange={handleInputChange} required/>
-                        <label htmlFor='facilities' className="input__label">Facilities</label>
-                    </div>
-                    <div className="div__row">
+
+                    <div className="form__floating div__row">
                         <div className="form__floating row__column">
-                            {/* <input type="text" name="gender" className="input__control" onChange={handleInputChange} required/> */}
-                            <select name="gender" className="input__control" onChange={handleInputChange} required>
+                            <select name="capacity" className="input__control" onChange={handleInputChange} value={newRoom.capacity} required>
+                                <option value="One">One</option>
+                                <option value="Two">Two</option>
+                                <option value="Three">Three</option>
+                                <option value="Four">Four</option>
+                                <option value="Five">Five</option>
+                                <option value="Six">Six</option>
+                                <option value="Seven">Seven</option>
+                                <option value="Eight">Eight</option>
+                            </select>
+                            <label htmlFor='capacity' className="input__label">Capacity</label>
+                        </div>
+                        <div className="form__floating row__column">
+                            <select name="gender" className="input__control" onChange={handleInputChange} value={newRoom.gender} required>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Unisex">Unisex</option>
                             </select>
                             <label htmlFor='gender' className="input__label">Gender</label>
                         </div>
+                    </div>
+
+                    <div className="form__floating">
+                        <input type="text" name="description" className="input__control" onChange={handleInputChange} value={newRoom.description} required/>
+                        <label htmlFor='description' className="input__label">Description</label>
+                    </div>
+
+                    <div className="form__floating">
+                        <input type="text" name="facilities" className="input__control" onChange={handleInputChange} value={newRoom.facilities} required/>
+                        <label htmlFor='facilities' className="input__label">Facilities</label>
+                    </div>
+
+                    <div className="form__floating div__row">
                         <div className="form__floating row__column">
-                            <input type="text" name="startPrice" className="input__control" onChange={handleInputChange} required/>
-                            <label htmlFor='startPrice' className="input__label">Start Price</label>
+                            <input type="number" name="available" className="input__control" onChange={handleInputChange} value={newRoom.available} required/>
+                            <label htmlFor='available' className="input__label">Available</label>
+                        </div>
+
+                        <div className="form__floating row__column">
+                            <input type="number" name="bedPrice" className="input__control" onChange={handleInputChange} value={newRoom.bedPrice} required/>
+                            <label htmlFor='bedPrice' className="input__label">Bed Price</label>
                         </div>
                     </div>
+
                     <div className="action__wrapper">
                         <button type="submit" className="btn__control">Save</button>
                     </div>
@@ -128,13 +176,22 @@ const Rooms = (props) => {
             : null}
             {rooms.length > 0 ?
             <Fragment>
-            <PageHeader title="Hostels" onClick={handleButton} text="Add Hostel"/>
+            <PageHeader title="Rooms" onClick={handleModal} text="Add Room"/>
             <div className="table__wrap">
                 <DataTablesComp
                 columns={Columns}
                 data={rooms}
                 deleteRow={deleteRow}
-                gotoEdit={gotoEdit}
+                targets= {[0, 1, 2, 3, 4,5]}
+                handleModal={goEdit}
+                // actions={(data, type, row, meta) => {
+                //     return `
+                //     <i class="fa fa-pen fa-sm" style="cursor:pointer"></i>
+                //     <span style="padding-right:5px;"></span>
+                //     <i class="fa fa-trash fa-sm" style="cursor:pointer;color:red"></i>
+                //     <span style="padding-right:5px;"></span>
+                //     <i class="fa fa-ban fa-sm" style="cursor:pointer"></i>`;
+                //     }}
                 />
             </div>
             </Fragment>

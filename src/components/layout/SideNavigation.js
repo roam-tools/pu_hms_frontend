@@ -12,7 +12,7 @@ const SideNavigation = (props) => {
       <ul className="nav-links">
         <li>
             <div className="nav-link-text">
-                <Link to="dashboard"><i className="fa fa-chart-line"></i> Dashboard</Link>
+                <Link to="/admin"><i className="fa fa-chart-line"></i> Dashboard</Link>
             </div>
         </li>
         <li>
