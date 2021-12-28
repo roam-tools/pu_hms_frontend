@@ -5,7 +5,7 @@ const Columns = [
     { title: "Gender", data: "gender" },
     { title: "Bed Price", data: "bedPrice" },
     { title: "Hostel Name", data: "hostel.name" },
-    // { title: "Action", data: "<button>add</button>" }
+    { title: "Actions", data: null },
   ];
 
   export default Columns

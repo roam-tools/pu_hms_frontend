@@ -1,5 +1,8 @@
 import http from '../http-common'
 
+const createRoom = async (data) =>{
+    return await http.post(`/room`,data);
+}
 
 const getAllRooms = async () =>{
     return await http.get(`/rooms`);
@@ -15,6 +18,7 @@ const bookRoom = async (data) =>{
 
 
 const roomServices = {
+    createRoom,
     getRooms,
     getAllRooms,
     bookRoom,

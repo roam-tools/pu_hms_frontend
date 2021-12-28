@@ -1,5 +1,9 @@
 import http from '../http-common'
 
+const createHostels = async (data) =>{
+    return await http.post("/hostel",data);
+}
+
 const getHostels = async () =>{
     return await http.get("/hostels");
 }
@@ -13,6 +17,7 @@ const getFeaturedHostels = async () =>{
 }
 
 const hotelService = {
+    createHostels,
     getHostels,
     getHostel,
     getFeaturedHostels

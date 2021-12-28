@@ -4,8 +4,8 @@ const Columns = [
     { title: "Address", data: "address" },
     { title: "Email", data: "email" },
     { title: "Telephone", data: "telephone" },
-    { title: "Email", data: "email" },
-    { title: "Start Price", data: "startPrice" }
+    { title: "Start Price", data: "startPrice" },
+    { title: "Actions", data: null }
   ];
 
   export default Columns
