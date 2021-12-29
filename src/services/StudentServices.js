@@ -1,23 +1,21 @@
 import http from '../http-common'
 
 
-const getStudents = async () =>{
-    return await http.get(`/user/students`);
+const getStudents = async (role="") =>{
+    let resp
+    if(role === 'admin'){
+        resp = await http.get(`/user/students`);
+    }else if(role === 'porter'){
+        resp = await http.get(`/user/students`);
+    }else{
+        resp = await http.get(`/user/students`);
+    }
+    return resp;
 }
-// const getRooms = async (id) =>{
-//     return await http.get(`/hostel/${id}/rooms`);
-// }
-// const bookRoom = async (data) =>{
-//     return await http.post(`/book`,data);
-// }
-
-
 
 
 const studentServices = {
     getStudents,
-    // getAllRooms,
-    // bookRoom,
 }
 
 export default studentServices

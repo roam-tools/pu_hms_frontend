@@ -1,21 +1,18 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import './students.css'
+import './admins.css'
 import DataTablesComp from "../../../components/datatable/DataTableComp";
 // import data from '../../../data'
 import Columns from './columns'
 import PageHeader from '../../../components/header/PageHeader'
 import Modal from '../../../components/modal/modal'
-import studentServices from '../../../services/StudentServices'
-import {useSelector} from 'react-redux'
-import {selectUser} from '../../../features/authentication'
+import userServices from '../../../services/user.services'
 
-const Students = (props) => {
 
-    const user = useSelector(selectUser)
+const Admins = (props) => {
 
     const [showModal,setShowModal] = useState(false)
-    const [students,setStudents] = useState([])
-    const [newStudents,setNewStudents] = useState({
+    const [admins,setAdmins] = useState([])
+    const [newAdmins,setNewAdmins] = useState({
         name: "",
         description: "",
         location: "",
@@ -28,15 +25,15 @@ const Students = (props) => {
       })
 
       useEffect(() => {
-          const getStudentList = async () => {
-              const students = await studentServices.getStudents(user.role);
-              if(students.status === 200){
-                  console.log(students.data.data)
-                  setStudents(students.data.data)
+          const getAdminList = async () => {
+              const admins = await userServices.getAdmins();
+              if(admins.status === 200){
+                  console.log(admins.data.data)
+                  setAdmins(admins.data.data)
               }
 
           }
-          getStudentList()
+          getAdminList()
       }, [])
 
     const handleButton = () => {
@@ -55,7 +52,7 @@ const Students = (props) => {
     const handleInputChange = (e) => {
         let val = e.target.value;
         let key = e.target.name
-        setNewStudents(prev=>{
+        setNewAdmins(prev=>{
             return{
                 ...prev,[key]:val
             }
@@ -64,14 +61,14 @@ const Students = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(newStudents)
+        console.log(newAdmins)
     }
 
     
     return (
         <Fragment>
             {showModal?
-            <Modal closeModal={handleButton} title="Add Student">
+            <Modal closeModal={handleButton} title="Add Admin">
                 <form onSubmit={handleSubmit}>
                     <div className="form__floating">
                         <input type="text" name="name" className="input__control" onChange={handleInputChange} required/>
@@ -129,24 +126,16 @@ const Students = (props) => {
                 </form>
             </Modal> 
             : null}
-            {students.length > 0 ?
+            {admins.length > 0 ?
             <Fragment>
-            <PageHeader title="Students" onClick={handleButton} />
+            <PageHeader title="Admins" onClick={handleButton} text="Add Admin"/>
             <div className="table__wrap">
                 <DataTablesComp
                 columns={Columns}
-                data={students}
+                data={admins}
                 deleteRow={deleteRow}
                 handleModal={gotoEdit}
                 targets= {[0, 1, 2, 3,4]}
-                // actions={(data, type, row, meta) => {
-                //     return `
-                //     <i class="fa fa-pen fa-sm" style="cursor:pointer"></i>
-                //     <span style="padding-right:5px;"></span>
-                //     <i class="fa fa-trash fa-sm" style="cursor:pointer;color:red"></i>
-                //     <span style="padding-right:5px;"></span>
-                //     <i class="fa fa-ban fa-sm" style="cursor:pointer"></i>`;
-                //     }}
                 />
             </div>
             </Fragment>
@@ -156,4 +145,4 @@ const Students = (props) => {
 
 };
 
-export default Students;
+export default Admins;

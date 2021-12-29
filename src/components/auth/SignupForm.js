@@ -29,7 +29,10 @@ const SignupForm = (props) => {
                     <input type="text" name="phone" className="input__control" onChange={props.handleInputChange} required/>
                     <label htmlFor='phoneNumber' className="input__label">Phone</label>
                 </div>
-                <button className="input__control bg-blue">Sign Up</button>
+                {props.error?<div className="error">
+                    {props.error}
+                </div>:null}
+                <button className="input__control bg-blue" disabled={Object.keys(props.credentials).length < 5 || props.processing}>Sign Up</button>
                 <p className="auth__question">Already have an account? <a href="/sign-in">Sign in</a></p>
             </div>
         </form>
