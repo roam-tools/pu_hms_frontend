@@ -23,6 +23,7 @@ const Booking = () => {
   const [booked, setBooked] = useState(false);
   const [bookingResponse, setBookingResponse] = useState("");
   const [roomSelected, setRoomSelected] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,14 +32,24 @@ const Booking = () => {
 
   useEffect(() => {
     const getHostel = async () => {
+      setLoading(true)
       const oneHostel = await hostelService.getHostel(hostel.id);
-      const facilityList = oneHostel.data.data[0].facilities?.split(",");
-      setFacilities(facilityList);
-      setHostelInfo(oneHostel.data.data[0]);
+      if(oneHostel.status === 200) {
+        setLoading(false)
+        const facilityList = oneHostel.data.data[0].facilities?.split(",");
+        setFacilities(facilityList);
+        setHostelInfo(oneHostel.data.data[0]);
+      }
       const rooms = await roomServices.getRooms(oneHostel.data.data[0].id);
-      setRooms(rooms.data.data);
+      if(rooms.status === 200){
+        setLoading(false)
+        setRooms(rooms.data.data);
+      }
       const featured = await hostelService.getFeaturedHostels();
-      setFeatured(featured.data.data);
+      if(featured.status === 200){
+        setLoading(false)
+        setFeatured(featured.data.data);
+      }
     };
     getHostel();
   }, [hostel.id]);
@@ -66,16 +77,16 @@ const Booking = () => {
     data.student_id = student.studentNumber;
     data.room_id = roomSelected.id;
     data.comment = "";
-    console.log(data);
+
 
     let resp;
     let respMsg;
     try {
       const bookedRoom = await roomServices.bookRoom(data);
       resp = bookedRoom.data.status;
-      console.log(resp)
+      
       respMsg = bookedRoom.data.message;
-      console.log(respMsg)
+
       if (resp === 200) {
         setProcessing(false);
         setBooked(true)
@@ -86,9 +97,7 @@ const Booking = () => {
       }
     } catch (error) {
       setProcessing(false);
-      resp = error.data.data.status;
-      respMsg = error.data.message;
-      setBookingResponse(respMsg);
+      setBookingResponse(error.response.data.message);
     }
   };
 
@@ -132,6 +141,8 @@ const Booking = () => {
       )}
       <div className="wrapper">
         <div className="container">
+
+        {!loading?<Fragment>
           <div className="booking">
             <HostelDetail
               hostelImage={hostelImage}
@@ -146,9 +157,9 @@ const Booking = () => {
           <div className="hostel-rooms">
             <h2 className="header">ROOMS AVAILABLE</h2>
             <div className="hostel-room-list">
-              {rooms?.map((room) => {
+              {rooms?.map((room,index) => {
                 return (
-                  <div className="hostel_room" key={room.roomId}>
+                  <div className="hostel_room" key={index}>
                     <HostelRoom
                       roomId={room.roomId}
                       facilities={room.facilities}
@@ -197,6 +208,11 @@ const Booking = () => {
               })}
             </div>
           </div>
+          </Fragment>:
+          <div className="loader-container">
+              <div className="loader"></div>
+          </div>
+          }
         </div>
       </div>
     </Fragment>

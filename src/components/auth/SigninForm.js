@@ -14,8 +14,11 @@ const SigninForm = (props) => {
                     <input type="password" name="password" className="input__control" onChange={props.handleInputChange} required/>
                     <label htmlFor='password' className="input__label">Password</label>
                 </div>
-                <br />
-                <button className="input__control bg-blue">Sign In</button>
+                {/* <br /> */}
+                {props.error?<div className="error">
+                    {props.error}
+                </div>:null}
+                <button className="input__control bg-blue" disabled={Object.keys(props.credentials).length < 2 || props.processing}>Sign In</button>
                 <p className="auth__question">Don't have an account? <a href="/sign-up">Sign up</a></p>
             </div>
         </form>

@@ -19,11 +19,13 @@ const Hostels = () => {
           setLoader(true)
         try {
           const hostels = await hostelService.getHostels();
-          console.log(hostels.data);
+        if (hostels.status === 200) {
           setHostels(hostels.data.data);
           setLoader(false)
+        }
+
         } catch (error) {
-          console.log(error);
+          console.log(error.response.data.message);
         }
       };
       getHostels();

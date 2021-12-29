@@ -6,17 +6,34 @@ import authenticationService from '../../services/AuthenticationService'
 
 const Signup = () => {
 
-    const [signupInfo,setSignupInfo] = useState({firstName:"",lastName:"",studentId:"",email:"",password:"",phone:""})
+    const [signupInfo,setSignupInfo] = useState({})
     const [signedUp, setSignedup] = useState(false);
+    const [processing, setProcessing] = useState(false);
+    const [error, setError] = useState("");
+
 
     const handleSubmit = async (e) =>{
         e.preventDefault()
+        setProcessing(true)
+        
         try{
-            await authenticationService.signUp(signupInfo)
-            setSignedup(!signedUp)
+            const resp = await authenticationService.signUp(signupInfo)
+            if(resp.status === 200){
+                setSignedup(!signedUp)
+                setProcessing(false)
+                setSignupInfo({})
+            }else{
+                setProcessing(false)
+                console.log("Processing.....")
+            }
 
         }catch(error){
-            console.log(error)
+            setProcessing(false)
+            setError(error.response.data.message)
+            // console.log("GET ERROR ", error.response.data.message)
+            setTimeout(() => {
+                setError("")
+            }, 5000);
         }
     }
 
@@ -30,13 +47,12 @@ const Signup = () => {
         })
     }
 
-    // console.log(signupInfo)
 
     return (
         <div className="wrapper">
             <div className="container">
                 {!signedUp&&<div className="auth-wrapper">
-                    <SignupForm handleSubmit={handleSubmit} handleInputChange={handleInputChange} />
+                    <SignupForm handleSubmit={handleSubmit} handleInputChange={handleInputChange} credentials={signupInfo} processing={processing} error={error}/>
                 </div>}
 
                 {signedUp&&

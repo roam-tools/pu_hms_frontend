@@ -2,12 +2,16 @@ import React from "react";
 import adminRoutes from "./adminRoutes";
 import "./admin-layout.css";
 import SideNavigation from "./SideNavigation";
-import { Route, Routes } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { logout } from "../../features/authentication";
+import { Route, Routes,useNavigate } from "react-router-dom";
+import { useDispatch,useSelector } from "react-redux";
+import { logout,selectUser } from "../../features/authentication";
 
-const AdminLayout = () => {
+const AdminLayout = (props) => {
   const dispatch = useDispatch();
+  const user = useSelector(selectUser)
+  const navigate = useNavigate()
+
+  console.log(user);
 
   const logoutUser = () => {
     dispatch(logout());

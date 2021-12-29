@@ -7,9 +7,13 @@ import PageHeader from '../../../components/header/PageHeader'
 import Modal from '../../../components/modal/modal'
 import roomServices from '../../../services/RoomServices'
 import hostelService from '../../../services/HotelServices'
+import {useSelector} from 'react-redux'
+import {selectUser} from '../../../features/authentication'
 
 
 const Rooms = (props) => {
+
+    const user = useSelector(selectUser)
 
     const [showModal,setShowModal] = useState(false)
     const [hostels,setHostels] = useState([])
@@ -41,7 +45,7 @@ const Rooms = (props) => {
 
       useEffect(() => {
           const getRoomList = async () => {
-              const rooms = await roomServices.getAllRooms();
+              const rooms = await roomServices.getAllRooms(user.role,user.hostel_id);
               if(rooms.status === 200){
                   console.log(rooms.data.data)
                   setRooms(rooms.data.data)

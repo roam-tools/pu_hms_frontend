@@ -4,15 +4,18 @@ import DataTablesComp from "../../../components/datatable/DataTableComp";
 import Columns from './columns'
 import PageHeader from '../../../components/header/PageHeader'
 import bookingServices from '../../../services/BookingServices';
-
+import {useSelector} from 'react-redux'
+import {selectUser} from '../../../features/authentication'
 
 const Bookings = (props) => {
 
+    const user = useSelector(selectUser)
+    
     const [bookings,setBookings] = useState([])
 
       useEffect(() => {
           const getBookings = async () => {
-              const bookingList = await bookingServices.getBookings();
+              const bookingList = await bookingServices.getBookings(user.role,user.id);
               if(bookingList.status === 200){
                   console.log(bookingList.data.data)
                   setBookings(bookingList.data.data)
