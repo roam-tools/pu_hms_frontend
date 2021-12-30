@@ -4,7 +4,6 @@ import { selectUser } from './features/authentication';
 import { useSelector } from 'react-redux';
 import DefaultLayout from './components/layout/DefaultLayout';
 import AdminLayout from './components/layout/AdminLayout';
-import Signin from './pages/signin/Signin'
 
 
 
@@ -23,18 +22,14 @@ function App(props) {
 function RequireAuth({ children }: { children: JSX.Element }) {
   let auth = useSelector(selectUser)
   let location = useLocation();
-  console.log(auth)
 
-  if (auth.role !== "porter") {
+  if (auth.role === "student") {
     return <Navigate to="/sign-in" state={{ from: location }} replace />;
-  }else{
-    return children;
   }
-  if( auth.role !== "admin"){
-    return <Navigate to="/sign-in" state={{ from: location }} replace />;
-  }else{
-    return children;
-  }
+  
+  return children;
+
+
 
 }
 

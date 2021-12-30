@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import SigninForm from '../../components/auth/SigninForm';
 import './signin.css'
 import authenticationService from '../../services/AuthenticationService'
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
-import {selectUser} from '../../features/authentication'
 import { login } from '../../features/authentication';
 
 const Signin = () => {
@@ -14,7 +13,6 @@ const Signin = () => {
     const [processing, setProcessing] = useState(false);
     const [error, setError] = useState("");
 
-    const user = useSelector(selectUser)
     const navigate = useNavigate()
 
     const handleSubmit = async (e) =>{
