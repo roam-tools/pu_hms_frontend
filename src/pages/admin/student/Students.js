@@ -37,7 +37,7 @@ const Students = (props) => {
 
           }
           getStudentList()
-      }, [])
+      }, [user.role])
 
     const handleButton = () => {
         setShowModal(!showModal)

@@ -53,7 +53,7 @@ const Rooms = (props) => {
 
           }
           getRoomList()
-      }, [updateTable])
+      }, [updateTable,user.role,user.hostel_id])
 
     const handleModal = () => {
         setShowModal(!showModal)

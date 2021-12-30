@@ -23,7 +23,7 @@ const Bookings = (props) => {
 
           }
           getBookings()
-      }, [])
+      }, [user.role,user.id])
 
 
     const deleteRow = () => {
@@ -47,14 +47,6 @@ const Bookings = (props) => {
                 deleteRow={deleteRow}
                 handleModal={gotoEdit}
                 targets= {[0, 1, 2, 3, 4,5]}
-                // actions={(data, type, row, meta) => {
-                //     return `
-                //     <i class="fa fa-pen fa-sm" style="cursor:pointer"></i>
-                //     <span style="padding-right:5px;"></span>
-                //     <i class="fa fa-trash fa-sm" style="cursor:pointer;color:red"></i>
-                //     <span style="padding-right:5px;"></span>
-                //     <i class="fa fa-ban fa-sm" style="cursor:pointer"></i>`;
-                //     }}
                 />
             </div>
             </Fragment>
