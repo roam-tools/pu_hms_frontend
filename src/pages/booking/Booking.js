@@ -198,6 +198,7 @@ const Booking = () => {
                       <div className="card" key={index}>
                         <div className="overlay">
                           <p>{feature.name}</p>
+                          <h4>{feature.description}</h4>
                           <Link
                             to="/booking"
                             onClick={() => getHostelId(feature)}
