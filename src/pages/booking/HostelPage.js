@@ -48,11 +48,12 @@ const HostelPage = () => {
                     <span>GHS {hostelInfo.startPrice}</span>
                     <br /> <small>per bed/semester</small>
                   </p>
+                  <hr></hr>
                   <br />
                   <i className="fa fa-user" aria-hidden="true"></i>{" "}
                   {hostelInfo.gender}
                   <br />
-                  <i className="fa fa-home" aria-hidden="true"></i>{" "}
+                  <i className="fa fa-door-open" aria-hidden="true"></i>{" "}
                   {hostelInfo.roomCount}
                   <br />
                   <br />
@@ -61,7 +62,7 @@ const HostelPage = () => {
                       <strong>Quick enquiry</strong>
                     </span>
                     <Link to="/hostel">
-                      <i className="fa fa-phone"></i>
+                      <i className="fa fa-phone-o"></i>
                       {hostelInfo.telephone}
                     </Link>
                   </div>
@@ -101,13 +102,11 @@ const HostelPage = () => {
               );
             })}
           </div>
-        <div>
-          <br />
-        <h1 className="rooms-available">HOSTEL MANAGER</h1>
-
+          <div>
+            <br />
+            <h1 className="rooms-available">HOSTEL MANAGER</h1>
+          </div>
         </div>
-        </div>
-
       </div>
     </div>
   );
