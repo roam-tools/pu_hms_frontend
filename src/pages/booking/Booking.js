@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import hostelImage from "../../assets/images/PUC Campus IMG_9174.JPG";
 import { createHostel, selectHostel } from "../../features/hostel.js";
 import { useDispatch, useSelector } from "react-redux";
 import hostelService from "../../services/HotelServices";
