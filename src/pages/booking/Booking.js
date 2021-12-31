@@ -149,7 +149,7 @@ const Booking = () => {
             <Fragment>
               <div className="booking">
                 <HostelDetail
-                  hostelImage={hostelImage}
+                  hostelImage={hostelInfo.image}
                   hostelName={hostelInfo.name}
                   startPrice={hostelInfo.startPrice}
                   gender={hostelInfo.gender}
@@ -207,7 +207,7 @@ const Booking = () => {
                         </div>
                         <div className="featured-hostel-card">
                           <img
-                            src={hostelImage}
+                            src={feature.image}
                             alt="hostelImage"
                             className="featured-hostel-card-image"
                           />
