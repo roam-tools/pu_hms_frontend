@@ -34,11 +34,7 @@ function RequireAuth({ children }: { children: JSX.Element }) {
   let auth = useSelector(selectUser);
   let location = useLocation();
 
-  if (
-    (!auth) ||
-    (auth.role !== "admin") ||
-    (auth.role !== "porter")
-  ) {
+  if (!auth || auth.role === "student") {
     return <Navigate to="/sign-in" state={{ from: location }} replace />;
   }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'antd/dist/antd.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './index.css';
 import './colors.css';

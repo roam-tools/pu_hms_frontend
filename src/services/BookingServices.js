@@ -10,9 +10,19 @@ const getBookings = async (role = "",porter_id="") =>{
     }
 }
 
+const confirmBooking = async (id) => {
+    return await http.patch(`/booking/${id}`)
+}
+
+const cancelBooking = async (id) => {
+    return await http.delete(`/booking/${id}`)
+}
+
 
 const bookingServices = {
     getBookings,
+    confirmBooking,
+    cancelBooking
 }
 
 export default bookingServices

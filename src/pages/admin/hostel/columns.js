@@ -5,6 +5,7 @@ const Columns = [
     { title: "Email", data: "email" },
     { title: "Telephone", data: "telephone" },
     { title: "Start Price", data: "startPrice" },
+    { title: "Created On", data: "createdOn" },
     { title: "Actions", data: null }
   ];
 

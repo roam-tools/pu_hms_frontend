@@ -24,7 +24,9 @@
     "datatables.net-dt": "^1.11.3",
     "jquery": "^3.6.0",
     "jszip": "^3.7.1",
-    "pdfmake": "^0.2.4"
+    "pdfmake": "^0.2.4",
+    "antd": "^4.17.3",
+    "react-csv": "^2.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

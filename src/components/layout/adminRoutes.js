@@ -35,11 +35,11 @@ const adminRoutes = [
   },
   {
     path: "/complaints",
-    element: <div>33333333333</div>,
+    element: "Coming soon",
   },
   {
     path: "/payments",
-    element: <div>1111111111111</div>,
+    element: "Coming soon",
   }
 ];
 

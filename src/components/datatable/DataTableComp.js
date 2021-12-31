@@ -7,20 +7,32 @@ import "datatables.net-buttons/js/buttons.flash.js";
 import "datatables.net-buttons/js/buttons.html5.js";
 import "datatables.net-buttons/js/buttons.print.js";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
+import moment from "moment";
+import { DatePicker } from "antd";
 import JSZip from "jszip";
 import "./datatable.css";
 window.JSZip = JSZip;
 const $ = require("jquery");
 $.DataTable = require("datatables.net");
+const { RangePicker } = DatePicker;
+
 
 let table = "";
 
 class DataTableComp extends Component {
+    constructor(props) {
+    super(props);
+
+    this.state = {
+      dates: [],
+      dateString: "",
+    };
+  }
   componentDidMount() {
     this.$el = $(this.el);
     this.$el.DataTable({
-      // dom: '<"data-table-wrapper"Brtip>',
-      dom: "Bfrtip",
+      dom: '<"data-table-wrapper"tip>',
+      // dom: 'Bfrtip',
       scrollX: true,
       // scrollCollapse: true,
       // paging:         false,
@@ -32,25 +44,43 @@ class DataTableComp extends Component {
       columnDefs: [
         { className: "dt-center", targets: this.props.targets },
         {
-          // Object.keys(this.props.columns).length
-          className:"dt-center",
+          targets: this.props.currencyFields,
+          render: $.fn.dataTable.render.number(",", ".", 2, ""),
+        },
+        {
+          targets:this.props.dateFields, 
+          render:function(data){
+            return moment.unix(data).format('DD-MM-YYYY hh:mm:ss');
+          }
+        },
+        {
           targets: Object.keys(this.props.columns).length - 1,
           data: null,
           sorting: false,
-
           createdCell: (td, cellData, rowData) =>
             ReactDOM.render(
-              <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
+              <div className="tbl-actions">
+                {this.props.showConfirm ? (
+                  // <button className="">Confirm</button>
+                  <div>                    
+                  <button onClick={this.props.confirmBooking} title="Click to confirm"><i className="fa fa-check fa-sm"></i></button>
+                  <span style={{ paddingRight: "15px" }}></span>
+                  <button onClick={this.props.cancelBooking} title="Click to cancel"><i className="fa fa-times fa-sm"></i></button>
+                  </div>
+                ) : null
+                }
+                {!this.props.showConfirm ?
+                <>
                 <div
                   id={rowData.id}
                   onClick={() => {
-                    this.props.handleModal(rowData);
+                    this.props.gotoEdit(rowData);
                   }}
                 >
                   {" "}
                   <i className="fa fa-pen fa-sm"></i>{" "}
                 </div>
-                <span style={{paddingRight:"15px"}}></span>
+                <span style={{ paddingRight: "15px" }}></span>
                 <div
                   id={rowData.id}
                   onClick={() => {
@@ -60,21 +90,11 @@ class DataTableComp extends Component {
                   {" "}
                   <i className="fa fa-trash fa-sm"></i>{" "}
                 </div>
-              </div>
-              ,
+                </>:
+                null}
+              </div>,
               td
             ),
-
-          // render: function (data, type, row, meta){
-          //   return `<div>
-          //       <i class="fa fa-pen fa-sm" style="cursor:pointer"></i>
-          //       <span style="padding-right:5px;"></span>
-          //       <i class="fa fa-trash fa-sm" style="cursor:pointer;color:red"></i>
-          //       <span style="padding-right:5px;"></span>
-          //       <i class="fa fa-ban fa-sm" style="cursor:pointer"></i>
-          //     </div>`
-
-          // }
         },
       ],
     });
@@ -99,8 +119,6 @@ class DataTableComp extends Component {
 
   handleSearch(e) {
     let val = e.target.value;
-    console.log(val);
-    console.log(table);
     table.search(val);
     table.draw();
   }
@@ -115,7 +133,27 @@ class DataTableComp extends Component {
   render() {
     return (
       <div className="table__wrapper">
-        {/* <input type="text" placeholder="Search" onChange={this.handleSearch}/> */}
+        <div className="filter-box">
+          <i className="fa fa-search fa-lg"></i>
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={this.handleSearch}
+            className="customer-search input__control search-input"
+          />
+          <div className="date-select">
+            <RangePicker
+              format="YYYY-MM-DD hh:mm:ss"
+              defaultValue={[moment().startOf('month'), moment().endOf('month')]}
+              showTime
+              size="small"
+              bordered={false}
+              onChange={(val, dateString) =>
+                this.props.filterDate(val, dateString)
+              }
+            />
+          </div>
+        </div>
         <table
           className="table cell-border dt-center table-striped dt-centered display"
           id="dataTable"

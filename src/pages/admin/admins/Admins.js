@@ -134,7 +134,7 @@ const Admins = (props) => {
                 columns={Columns}
                 data={admins}
                 deleteRow={deleteRow}
-                handleModal={gotoEdit}
+                gotoEdit={gotoEdit}
                 targets= {[0, 1, 2, 3,4]}
                 />
             </div>
