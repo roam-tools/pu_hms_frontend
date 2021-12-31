@@ -134,7 +134,7 @@ const Porters = (props) => {
                 columns={Columns}
                 data={porters}
                 deleteRow={deleteRow}
-                handleModal={gotoEdit}
+                gotoEdit={gotoEdit}
                 targets= {[0, 1, 2, 3,4,5]}
                 />
             </div>

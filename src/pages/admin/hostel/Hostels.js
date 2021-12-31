@@ -6,13 +6,21 @@ import Columns from './columns'
 import PageHeader from '../../../components/header/PageHeader'
 import Modal from '../../../components/modal/modal'
 import hostelService from '../../../services/HotelServices'
+import ConfirmationAlert from '../../../components/modal/ConfirmationAlert'
 
 
 const Hostels = (props) => {
 
+    const [confirmDelete,setConfirmDelete] = useState(false)
+    const [deleteRecordId,setDeleteRecordId] = useState("")
+    const [deleteProcess,setDeleteProcess] = useState(false)
+    const [action,setAction] = useState("")
+    const [loading,setLoading] = useState(false)
+    const [processing,setProcessing] = useState(false)
+    const [error,setError] = useState("")
     const [showModal,setShowModal] = useState(false)
     const [hostels,setHostels] = useState([])
-    const [updateTable,setUpdateTable] = useState({})
+    const [updateTable,setUpdateTable] = useState(false)
     const [newHostel,setNewHostel] = useState({
         name: "",
         description: "",
@@ -27,27 +35,65 @@ const Hostels = (props) => {
 
       useEffect(() => {
           const getHostelList = async () => {
-              const hostels = await hostelService.getHostels();
-              if(hostels.status === 200){
-                  console.log(hostels.data.data)
-                  setHostels(hostels.data.data)
+              let endSession
+              try {
+                setLoading(true)
+                endSession = setTimeout(() => {
+                    setLoading(false)
+                }, 10000);
+                const hostels = await hostelService.getHostels();
+                if(hostels.status === 200){
+                    clearTimeout(endSession)
+                    setHostels(hostels.data.data)
+                    setLoading(false)
+                }
+              } catch (error) {
+                clearTimeout(endSession)    
+                setLoading(false)
+                console.log(error)              
               }
-
           }
           getHostelList()
       }, [updateTable])
 
     const handleModal = () => {
+        setAction("Add")
         setShowModal(!showModal)
     }
 
+    const handleDeleteModal = () => {
+        setConfirmDelete(!confirmDelete)
+    }
+
     const goEdit = (data) => {
+        console.log(data)
+        setAction("Edit")
         setNewHostel(data)
         setShowModal(!showModal)
     }
 
-    const deleteRow = (id) => {
-        console.log(id)
+    const deleteRow = (data) => {
+        console.log(data)
+        handleDeleteModal()
+        setDeleteRecordId(data.id)
+    }
+
+    const handleConfirmDelete = async () => {
+        try {
+            setDeleteProcess(true)
+            const deleteRecord = await hostelService.deleteHostel(deleteRecordId)
+            if(deleteRecord.status === 200){
+                setDeleteProcess(false)
+                setUpdateTable(!updateTable)
+                handleDeleteModal()
+            }
+
+        } catch (error) {
+            setDeleteProcess(false)
+            setUpdateTable(!updateTable)
+            handleDeleteModal()
+            console.log(error)
+        }
     }
 
     const handleInputChange = (e) => {
@@ -63,8 +109,13 @@ const Hostels = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const newCreatedHostel = await hostelService.createHostels(newHostel)
-            console.log(newCreatedHostel)
+            setProcessing(true)
+            let newCreatedHostel 
+            if(action === "Add"){
+                newCreatedHostel = await hostelService.createHostels(newHostel)
+            }else{
+                newCreatedHostel = await hostelService.updateHostel(newHostel)
+            }
             if(newCreatedHostel.status === 200){
                 setNewHostel({
                     name: "",
@@ -75,13 +126,23 @@ const Hostels = (props) => {
                     email: "",
                     telephone: "",
                     facilities: "",
-                    startPrice: 0
+                    startPrice: ""
                   })
-                  setUpdateTable({})
-            }else{
-                console.log(newCreatedHostel)
+                  setUpdateTable(!updateTable)
+                  setError(newCreatedHostel.data.message)
+                    setProcessing(false)
+                    setError("")
+                    if(action === "Edit"){
+                        setShowModal(!showModal)
+                    }
             }
+
         } catch (error) {
+            setError(error.data.message)
+            setProcessing(false)
+            setTimeout(() => {
+                setError("")
+            }, 5000);
             console.log(error)
         }
     }
@@ -89,6 +150,14 @@ const Hostels = (props) => {
     
     return (
         <Fragment>
+            {confirmDelete ?
+            <ConfirmationAlert title="Confirm Delete">
+                <p>Are you sure you delete this record?</p>
+                <button className="btn__control btn-w" onClick={handleConfirmDelete} disabled={deleteProcess}>{deleteProcess? <div className="processingloader"></div>:"Yes, delete"}</button>
+                <button className="btn__control btn-w" onClick={handleDeleteModal} disabled={deleteProcess}>No</button>
+            </ConfirmationAlert>:
+            null
+            }
             {showModal?
             <Modal closeModal={handleModal} title="Add Hostel">
                 <form onSubmit={handleSubmit}>
@@ -101,7 +170,7 @@ const Hostels = (props) => {
                         <label htmlFor='description' className="input__label">Description</label>
                     </div>
                     <fieldset>
-                        <legend>Hostel Address</legend>
+                        {/* <legend>Hostel Address</legend> */}
                         <div className="div__row">
                             <div className="form__floating row__column">
                                 <input type="text" name="location" className="input__control" onChange={handleInputChange} value={newHostel.location} required/>
@@ -141,30 +210,33 @@ const Hostels = (props) => {
                             <label htmlFor='startPrice' className="input__label">Start Price</label>
                         </div>
                     </div>
+                    {processing ? 
+                    <div className="loader__wrapper">
+                        <div className="loader"></div>
+                    </div>:
+                    <div className="error">{error}</div>
+                    }
                     <div className="action__wrapper">
-                        <button type="submit" className="btn__control">Save</button>
+                        <button type="submit" className="btn__control btn-w-100" disabled={processing}>Save</button>
+                        <button onClick={handleModal} className="btn__control btn-w-100" disabled={processing}>Cancel</button>
                     </div>
                 </form>
             </Modal> 
             : null}
-            {hostels.length > 0 ?
+            {!loading ?
             <Fragment>
-            <PageHeader title="Hostels" onClick={handleModal} text="Add Hostel"/>
+            <PageHeader title="Manage Hostels" onClick={handleModal} text="Create Hostel"/>
             <div className="table__wrap">
                 <DataTablesComp
                 columns={Columns}
                 data={hostels}
                 deleteRow={deleteRow}
-                targets= {[0, 1, 2, 3, 4,5]}
-                handleModal={goEdit}
-                // actions={(data, type, row, meta) => {
-                //     return `
-                //     <i class="fa fa-pen fa-sm" style="cursor:pointer" onClick={this.props.handleModal}></i>
-                //     <span style="padding-right:5px;"></span>
-                //     <i class="fa fa-trash fa-sm" style="cursor:pointer;color:red"></i>
-                //     <span style="padding-right:5px;"></span>
-                //     <i class="fa fa-ban fa-sm" style="cursor:pointer"></i>`;
-                //     }}
+                targets= {[0, 1, 2, 3, 4,5,6]}
+                gotoEdit={goEdit}
+                dateFields={[6]}
+                currencyFields ={[5]}
+                // filterDate={filterByDate}
+                showDateFilter={true}
                 />
             </div>
             </Fragment>

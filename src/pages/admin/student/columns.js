@@ -4,6 +4,8 @@ const Columns = [
     { title: "Last Name", data: "surName" },
     { title: "Email", data: "emailAddress" },
     { title: "Phone", data: "phoneNumber" },
+    { title: "Registered On", data: "createdOn" },
+    { title: "Verified", data: "isVerified" },
     { title: "Actions", data: null },
   ];
 

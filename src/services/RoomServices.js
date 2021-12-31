@@ -4,6 +4,16 @@ const createRoom = async (data) =>{
     return await http.post(`/room`,data);
 }
 
+const updateRoom = async (data,id) =>{
+    let newData = data
+    delete newData.id
+    return await http.put(`/room/${id}`,newData);
+}
+
+const deleteRoom = async (id) =>{
+    return await http.put(`/room/${id}`);
+}
+
 const getAllRooms = async (role="",hostel_id = "") =>{
     if(role === 'admin'){
         return await http.get(`/rooms`);
@@ -22,10 +32,10 @@ const bookRoom = async (data) =>{
 }
 
 
-
-
 const roomServices = {
     createRoom,
+    updateRoom,
+    deleteRoom,
     getRooms,
     getAllRooms,
     bookRoom,

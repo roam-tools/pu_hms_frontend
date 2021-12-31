@@ -4,7 +4,7 @@ const Columns = [
     { title: "Student Id", data: "student.studentNumber" },
     { title: "Payment Status", data: "isPaid" },
     { title: "Confirmed", data: "isConfirmed" },
-    { title: "Date", data: "createdOn" },
+    { title: "Created On", data: "createdOn" },
     { title: "Actions", data: null }
   ];
 
