@@ -9,7 +9,7 @@ import userServices from "../../../services/user.services";
 import hostelService from "../../../services/HotelServices";
 import ConfirmationAlert from "../../../components/modal/ConfirmationAlert";
 
-const Porters = (props) => {
+const Porters = () => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [deleteRecordId, setDeleteRecordId] = useState("");
   const [deleteProcess, setDeleteProcess] = useState(false);
@@ -127,22 +127,22 @@ const Porters = (props) => {
       setProcessing(true);
       endSession = setTimeout(() => {
         setProcessing(false);
-        setError("Network error! Try again")
+        setError("Network error! Try again");
         let errorTimeout = setTimeout(() => {
-            setError("")
-            clearTimeout(errorTimeout)
-        },5000)
+          setError("");
+          clearTimeout(errorTimeout);
+        }, 5000);
       }, 10000);
-      let porters 
-      if(action === "Add"){
+      let porters;
+      if (action === "Add") {
         //   console.log("Add")
         //   return
         porters = await await userServices.createPorters(newPorters);
-      }else if(action === "Edit"){
+      } else if (action === "Edit") {
         //   console.log("Edit")
         //   return
         porters = await await userServices.updatePorters(newPorters);
-      }else{
+      } else {
         //   console.log("Assign")
         //   return
         porters = await await userServices.assignHostel(porterHostel);
@@ -151,56 +151,54 @@ const Porters = (props) => {
         clearTimeout(endSession);
         setProcessing(false);
         setNewPorters({
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-        })
-        setPorterHostel({porter_id:"",hostel_id:""})
-        setError(porters.message)
-        setUpdateTable(!updateTable)
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+        });
+        setPorterHostel({ porter_id: "", hostel_id: "" });
+        setError(porters.message);
+        setUpdateTable(!updateTable);
         let successTimeout = setTimeout(() => {
-            setError("")
-            clearTimeout(successTimeout)
+          setError("");
+          clearTimeout(successTimeout);
         }, 5000);
       }
-
     } catch (error) {
       clearTimeout(endSession);
       setUpdateTable(false);
-      setProcessing(false)
-      setError(error.response.data.message)
+      setProcessing(false);
+      setError(error.response.data.message);
       console.log(error);
     }
   };
 
   const assignHostelToPorter = (data) => {
-    setAction("Assign")
+    setAction("Assign");
     // let ht = {};
     let porter_id = data.id;
-    let hostel_id = ""
     let porter_name = data.firstName + " " + data.surName;
-    setPorterHostel({porter_id:porter_id,hostel_id:"",porter_name:porter_name});
+    setPorterHostel({
+      porter_id: porter_id,
+      hostel_id: "",
+      porter_name: porter_name,
+    });
     setShowAssignModal(!showAssignModal);
-
   };
 
-  const handleAssignModal = (e) => {
+  const handleAssignModal = () => {
     setShowAssignModal(!showAssignModal);
   };
 
   const selectHostel = (e) => {
     let val = e.target.value;
 
-    let key = e.target.name;
-
-    setPorterHostel(
-        prev=>{
-            return{
-                ...prev,hostel_id:val
-            }
-        }
-    )
+    setPorterHostel((prev) => {
+      return {
+        ...prev,
+        hostel_id: val,
+      };
+    });
   };
 
   const handleDeleteModal = () => {
@@ -269,7 +267,7 @@ const Porters = (props) => {
                 // value={porterHostel.hostel_id}
                 required
               >
-              {/* <option value="">--Select Hostel--</option> */}
+                {/* <option value="">--Select Hostel--</option> */}
                 {hostels?.map((hostel, index) => {
                   return (
                     <option key={index} value={hostel.id}>
@@ -279,16 +277,18 @@ const Porters = (props) => {
                 })}
               </select>
             </div>
-            {error ? 
-            <div className="error">{error}</div>:null
-            }
+            {error ? <div className="error">{error}</div> : null}
             <div className="action__wrapper">
               <button
                 type="submit"
                 className="btn__control btn-w-100"
                 disabled={processing}
               >
-                {processing ? <div className="processingloader"></div> : "Assign"}
+                {processing ? (
+                  <div className="processingloader"></div>
+                ) : (
+                  "Assign"
+                )}
               </button>
               <button
                 onClick={handleAssignModal}
@@ -367,9 +367,7 @@ const Porters = (props) => {
                 </div>
               </div>
             </fieldset>
-            {!processing ? 
-            <div className="error">{error}</div>:null
-            }
+            {!processing ? <div className="error">{error}</div> : null}
             <div className="action__wrapper">
               <button
                 type="submit"
