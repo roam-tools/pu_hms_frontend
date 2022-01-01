@@ -18,11 +18,16 @@ const cancelBooking = async (id) => {
     return await http.delete(`/booking/${id}`)
 }
 
+const getStudentBooking = async (student_id) => {
+    return await http.get(`/student/${student_id}/booking`)
+}
+
 
 const bookingServices = {
     getBookings,
     confirmBooking,
-    cancelBooking
+    cancelBooking,
+    getStudentBooking
 }
 
 export default bookingServices
