@@ -63,22 +63,32 @@ class DataTableComp extends Component {
                 {this.props.showConfirm ? (
                   // <button className="">Confirm</button>
                   <div>                    
-                  <button onClick={this.props.confirmBooking} title="Click to confirm"><i className="fa fa-check fa-sm"></i></button>
+                  <button onClick={()=>this.props.confirmBooking(rowData)} title="Click to confirm"><i className="fa fa-check fa-sm"></i></button>
                   <span style={{ paddingRight: "15px" }}></span>
-                  <button onClick={this.props.cancelBooking} title="Click to cancel"><i className="fa fa-times fa-sm"></i></button>
+                  <button onClick={()=>this.props.cancelBooking(rowData)} title="Click to cancel"><i className="fa fa-times fa-sm"></i></button>
                   </div>
                 ) : null
                 }
                 {!this.props.showConfirm ?
                 <>
+                {this.props.assignHostel ? <div
+                  id={rowData.id}
+                  onClick={() => {
+                    this.props.assignHostelToPorter(rowData);
+                  }}
+                >
+                  
+                  <i className="fa fa-home fa-sm"></i>
+                  <span style={{ paddingRight: "15px" }}></span>
+                </div>:null}
                 <div
                   id={rowData.id}
                   onClick={() => {
                     this.props.gotoEdit(rowData);
                   }}
                 >
-                  {" "}
-                  <i className="fa fa-pen fa-sm"></i>{" "}
+                  
+                  <i className="fa fa-pen fa-sm"></i>
                 </div>
                 <span style={{ paddingRight: "15px" }}></span>
                 <div
@@ -87,8 +97,8 @@ class DataTableComp extends Component {
                     this.props.deleteRow(rowData);
                   }}
                 >
-                  {" "}
-                  <i className="fa fa-trash fa-sm"></i>{" "}
+                  
+                  <i className="fa fa-trash fa-sm"></i>
                 </div>
                 </>:
                 null}

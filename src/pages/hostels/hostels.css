@@ -17,7 +17,7 @@
 .header-image h1{
     width: 50%;
     font-size:50px;
-    color:#ffffff;
+    color:#ffffff!important;
     text-align: center;
     opacity: 1px;
     animation-name: animate;
@@ -47,6 +47,7 @@
     .header-image h1{
         width: 100%;
         font-size:30px;
+        color:#ffffff!important;
     }
     .hostels{
         margin-top:105%;

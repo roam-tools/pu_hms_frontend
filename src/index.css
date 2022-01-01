@@ -66,6 +66,7 @@ body,html {
 .buttonStyle{
   padding: 10px 25px;
   margin: 15px 15px;
+  color: #000000;
 }
 button{
   cursor:pointer;
@@ -185,6 +186,10 @@ fieldset{
 .btn-w-100:last-child{
   border-left: 0;
 } */
+
+h1,h2,h3{
+  color: #fff!important;
+}
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
