@@ -40,20 +40,20 @@ const Navbar = () => {
               className={showMenu ? "active" : "inActive"}
               onClick={toggleMenu2}
             >
-              <Link to="/">HOME</Link>
-              <Link to="hostels">HOSTELS</Link>
+              {/* <Link to="/">HOME</Link> */}
+              <Link to="hostels">accommodations</Link>
               {!loggedIn ? (
                 <Fragment>
-                  <Link to="sign-up">SIGN UP</Link>
+                  <Link to="sign-up">sign up</Link>
                   <Link to="/sign-in" className="logout">
-                    LOGIN
+                    login
                   </Link>
                 </Fragment>
               ) : (
                 <Fragment>
-                  <Link to="/profile">PROFILE</Link>
+                  <Link to="/profile">my account</Link>
                   <Link to="/sign-in" className="logout" onClick={logoutUser}>
-                    LOGOUT
+                    logout
                   </Link>
                 </Fragment>
               )}

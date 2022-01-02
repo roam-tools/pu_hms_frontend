@@ -1,117 +1,124 @@
-nav{
-    width:100%;
-    height: 90px;
-    background-color: #fff;
-    z-index: 9999;
+nav {
+  width: 100%;
+  height: 90px;
+  background-color: #fff;
+  z-index: 9999;
 }
-.nav-wrapper{
-    position: fixed;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width:100%;
-    height:90px;
-    background-color: #fff;
-    border-bottom: 5px solid #000080;
-    z-index: 9999;
+.nav-wrapper {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90px;
+  background-color: #fff;
+  border-bottom: 5px solid #000080;
+  z-index: 9999;
 }
-.navbar{
-    display:flex;
-    flex-direction:row;
-    width:80%;
-    height: 90px;
-    z-index: 9999;
+.navbar {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: 90px;
+  z-index: 9999;
 }
-.nav-actions{
-    height: 90px;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: auto;
+.nav-actions {
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
 }
-.nav-actions a{
-    text-decoration: none;
-    color: #000;
-    font-size: 18px;
-    margin-right:30px;
+.nav-actions a {
+  text-decoration: none;
+  color: #000080;
+  font-size: 18px;
+  margin-right: 30px;
 }
-.nav-actions:last-child{
-    margin-right: -30px;
+
+.nav-actions a:hover {
+  /* text-decoration: underline; */
+  color: #000080;
+  font-size: 20px;
 }
-.brand-image{
-    cursor: pointer;
-    margin-top:5px;
-    height:80px;
-    width:160px
+
+.nav-actions:last-child {
+  margin-right: -30px;
 }
-.logout{
-    border: 4px solid #000080;
-    padding: 6px 15px;
-    border-radius: 5px;
-    background-color: #000080;
-    color: #fff!important;
+.brand-image {
+  cursor: pointer;
+  margin-top: 5px;
+  height: 80px;
+  width: 160px;
 }
-.logout:hover{
-    color: #F5B041!important;
+.logout {
+  border: 4px solid #000080;
+  padding: 6px 15px;
+  border-radius: 5px;
+  background-color: #000080;
+  color: #fff !important;
 }
-.nav-actions .fa-bars{
-    display:none;
+.logout:hover {
+  color: #f5b041 !important;
+}
+.nav-actions .fa-bars {
+  display: none;
 }
 @media (max-width: 767px) {
-    .navbar{
-        width:100%;
-    }
-    .brand-image{
-        cursor: pointer;
-        margin-top:15px;
-        height:60px;
-        width:140px
-    }
-    .nav-actions{
-        margin-left: auto;
-        margin-right: 0;
-    }
-    .nav-actions:last-child{
-        margin-right: 20px;
-    }
-    .nav-actions .inActive{
-        display:none;
-    }
-    .active{
-        position:absolute;
-        top: 90px;
-        left: 0;
-        display: block;
-        background: #fff;
-        width: 100%;
-        height: auto;
-        border-bottom: 4px solid #000080;
-        z-index: 9999;
-    }
-    .active a{
-        display: block;
-        font-size: 24px;
-        padding: 15px;
-        text-align: center;
-        border-bottom: 1px solid #eee;
-        margin-right: 0px!important;
-    }
-    .active a:last-child{
-        border-bottom:0;
-    }
-    .nav-actions .fa-bars{
-        display:inline;
-    }
-    .logout{
-        border: 0;
-        padding: 0;
-        border-radius: 0px;
-        background-color: #fff;
-        color: #000!important;
-    }
-    .logout:hover{
-        color: #000!important;
-    }
+  .navbar {
+    width: 100%;
+  }
+  .brand-image {
+    cursor: pointer;
+    margin-top: 15px;
+    height: 60px;
+    width: 140px;
+  }
+  .nav-actions {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .nav-actions:last-child {
+    margin-right: 20px;
+  }
+  .nav-actions .inActive {
+    display: none;
+  }
+  .active {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    display: block;
+    background: #fff;
+    width: 100%;
+    height: auto;
+    border-bottom: 4px solid #000080;
+    z-index: 9999;
+  }
+  .active a {
+    display: block;
+    font-size: 24px;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    margin-right: 0px !important;
+  }
+  .active a:last-child {
+    border-bottom: 0;
+  }
+  .nav-actions .fa-bars {
+    display: inline;
+  }
+  .logout {
+    border: 0;
+    padding: 0;
+    border-radius: 0px;
+    background-color: #fff;
+    color: #000 !important;
+  }
+  .logout:hover {
+    color: #000 !important;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {

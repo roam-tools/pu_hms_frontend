@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { selectUser } from "../../features/authentication";
 import "./profile.css";
 import bookingServices from "../../services/BookingServices";
@@ -63,12 +64,17 @@ const Profile = () => {
                     <p>Room Number: {studentBooking.room.roomId}</p>
                     {/* <p>Payment Status: {studentBooking.isBooked}</p> */}
                     <p>Amount: GHS{studentBooking.room.bedPrice}</p>
+                    <div>
+                      <button className="buttonStyle">Cancel</button>
+                      <button className="buttonStyle">Pay Now</button>
+                    </div>
                   </Fragment>
-                ) : null}
-              </div>
-              <div>
-                <button className="buttonStyle">Cancel</button>
-                <button className="buttonStyle">Pay Now</button>
+                ) : (
+                  <Fragment>
+                    <p>You have not booked for any accommodation</p>
+                    <Link to="/hostels">Find Accommodation</Link>
+                  </Fragment>
+                )}
               </div>
             </div>
           </div>
