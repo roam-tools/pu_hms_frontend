@@ -1,67 +1,86 @@
 .profile-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .profile-container .user-profile {
-    width: 50%;
-    height: auto;
-    border: 1px solid #ccc;
+  width: 50%;
+  height: auto;
+  border: 1px solid #ccc;
 }
-.profile-container .user-profile .user-profile-header{
-    padding:20px 0 20px 15px;
-    font-size:18px;
-    border-bottom: 1px solid #ccc;
-    text-align: center;
+.profile-container .user-profile .user-profile-header {
+  padding: 20px 0 20px 15px;
+  font-size: 18px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
 }
 
-.profile-container .user-profile .user-profile-body h2{
-    color: #ffffff!important;
+.profile-container .user-profile .user-profile-header h2 {
+  color: #000080 !important;
 }
-.profile-container .user-profile .user-profile-body{
-    background-color: #000080;
-    color: #fff!important;
-    text-align:center;
-    padding:15px 0;
+
+.profile-container .user-profile .user-profile-body h2 {
+  color: #ffffff !important;
 }
-.profile-container .user-profile .user-profile-body .profileImage{
-    border-radius: 100%;
-    border: 1px solid #ccc;
+.profile-container .user-profile .user-profile-body {
+  background-color: #000080;
+  color: #fff !important;
+  text-align: center;
+  padding: 15px 0;
+}
+.profile-container .user-profile .user-profile-body .profileImage {
+  border-radius: 100%;
+  border: 1px solid #ccc;
 }
 
 .profile-container .user-bookings {
-    width: 50%;
-    height: auto;
-    border: 1px solid #ccc;
-    margin-top:20px;
-    padding: 20px;
-    text-align: center;
-    font-size: 18px;
-    color: #ffffff!important;
-    background-color: #000080;
-}
-.profile-container .user-bookings h3{
-    color: #ffffff!important;
+  width: 50%;
+  height: auto;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+  color: #ffffff !important;
+  background-color: #000080;
 }
 
-.profile-container .user-bookings .user-bookings-header{
-    padding: 15px 0 15px 15px;
-    border-bottom: 1px solid #ccc;
-    font-size:18px;
-    text-align:center;
+.profile-container .user-bookings a {
+  margin: 0.5%;
+  text-decoration: none;
+  color: rgb(12, 24, 90);
+  font-size: 12px;
+  font-weight: bolder;
+  padding: 15px 20px;
+  background-color: #f5b041;
+  border-radius: 10px;
+  animation-name: animate;
+  animation-duration: 4s;
+}
+
+.profile-container .user-bookings h3 {
+  color: #ffffff !important;
+}
+
+.profile-container .user-bookings .user-bookings-header {
+  padding: 15px 0 15px 15px;
+  border-bottom: 1px solid #ccc;
+  font-size: 18px;
+  text-align: center;
 }
 
 @media (max-width: 767px) {
-    .profile-container {
-        margin-top: 0px;
-    }
-    
-    .profile-container .user-profile, .profile-container .user-bookings {
-        width: 100%;
-    }
+  .profile-container {
+    margin-top: 0px;
+  }
+
+  .profile-container .user-profile,
+  .profile-container .user-bookings {
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {

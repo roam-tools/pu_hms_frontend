@@ -108,8 +108,11 @@ const Booking = () => {
       {bookNow && (
         <Alert>
           <p>Are you sure you want to book for this hostel?</p>
-          <h2>{hostelInfo.name}</h2>
-          <h3>{roomSelected.roomId}</h3>
+          <div>
+            <h2 className="booking-details">{hostelInfo.name}</h2>
+            <h3 className="booking-details">{roomSelected.roomId}</h3>
+            <h3 className="booking-details">GHS {roomSelected.bedPrice}</h3>
+          </div>
           <div className="modal-actions">
             {processing ? (
               <div className="loader"></div>
