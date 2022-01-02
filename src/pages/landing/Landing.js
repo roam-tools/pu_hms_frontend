@@ -8,13 +8,12 @@ const Landing = () => {
     <Fragment>
       <div className="overlay">
         <div className="hero-text">
-          <h1>PENTECOST UNIVERSITY HOSTEL</h1>
+          <h1>PENTECOST UNIVERSITY HOSTELS</h1>
           <p>
-            We are offering over a 100 hostel facilities, 2000 rooms in an all
-            round safe, serene, and hygienic environment for a sound mind.
+            Find halls and hostels in and out of campus anytime from anywhere.
           </p>
         </div>
-        <Link to="/hostels">View All Hostels</Link>
+        <Link to="/hostels">Find Accommodation</Link>
       </div>
       <div className="landing">
         <img src={hero} alt="" className="hero-image" />

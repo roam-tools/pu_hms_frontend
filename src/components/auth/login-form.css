@@ -1,18 +1,22 @@
-.login{
-    width: 40%;
-    animation-name: animate;
-    animation-duration: 4s;
+.login {
+  width: 40%;
+  animation-name: animate;
+  animation-duration: 4s;
 }
-.login-form__header{
-    text-align:center;
-    margin-bottom:20px;
-    font-size: 30px;
+.login-form__header {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 30px;
 }
+.login-form h1 {
+  color: rgb(7, 7, 92) !important;
+}
+
 @media (max-width: 767px) {
-    .login{
-        width: 100%;
-        padding: 20px;
-    }
+  .login {
+    width: 100%;
+    padding: 20px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
