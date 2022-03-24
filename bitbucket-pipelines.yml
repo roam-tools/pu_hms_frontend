@@ -30,26 +30,35 @@ pipelines:
           artifacts:
             - build/**
       - step:
-          name: Deploy to S3
-          deployment: staging
+          name: Create artifact
           script:
-            - pipe: atlassian/aws-s3-deploy:0.2.4
+            - git archive --format=tar.gz master -o application.tar.gz
+          artifacts:
+            - application.tar.gz
+      - step:
+          name: Deploy
+          deployment: Staging
+          caches:
+            - node
+          script:
+            - pipe: atlassian/heroku-deploy:1.1.4
               variables:
-                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
-                S3_BUCKET: $STAGING_BUCKET_NAME
-                ACL: "public-read"
-                LOCAL_PATH: "build"
+                HEROKU_API_KEY: $HEROKU_API_KEY
+                HEROKU_APP_NAME: $HEROKU_APP_NAME
+                ZIP_FILE: "application.tar.gz"
+                WAIT: 'false'
       # - step:
-      #     name: Invalidate Cloudfront Cache
+      #     name: Deploy to S3
+      #     deployment: staging
       #     script:
-      #       - pipe: atlassian/aws-cloudfront-invalidate:0.1.1
+      #       - pipe: atlassian/aws-s3-deploy:0.2.4
       #         variables:
       #           AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
       #           AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
       #           AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
-      #           DISTRIBUTION_ID: $STAGING_DISTRIBUTION_ID
+      #           S3_BUCKET: $STAGING_BUCKET_NAME
+      #           ACL: "public-read"
+      #           LOCAL_PATH: "build"
     production:
       - step:
           name: Build
