@@ -1,0 +1,10 @@
+.hostel-manager-profile{
+    width: 100%;
+    padding: 30px 0;
+    background: #eee;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

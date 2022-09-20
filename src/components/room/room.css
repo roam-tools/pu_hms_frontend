@@ -1,0 +1,49 @@
+.room{
+    min-height: 250px;
+    background: #0A223D;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 0 3px 0;
+}
+.room .title{
+    color: #fff;
+    margin: 0 0 20px 0;
+    font-size: 24px;
+}
+
+.room-detail-item{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 5px 0;
+}
+.room-detail-item p{
+    margin: 0;
+    font-size: 12px;
+}
+.room-detail-item i{
+    margin-right: 10px;
+}
+.room-detail-item p, .room-detail-item i{
+    align-self: center;
+    color: #fff;
+}
+.room-detail-item-pricing{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+}
+.room-detail-item-pricing h3{
+    font-size: 18px;
+}
+.room-detail-item-pricing h3, .room-detail-item-pricing p{
+    margin: 0;
+    color: #fff;
+}
+.view-btn{
+    width: 100%;
+    align-self: center;
+    margin-left: auto;
+    margin-top: 15px;
+}
