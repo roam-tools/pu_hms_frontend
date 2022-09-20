@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { UserOutlined, CalendarOutlined } from '@ant-design/icons'
 import http from '../../api';
 import moment from 'moment';
+import { useSetError } from '../../context/ErrorContext';
 
 const { Search } = Input
 
@@ -48,10 +49,13 @@ const pageSize = 20
 
 export const KeyList = () => {
 
+    const setError = useSetError()
+
     const [fetch, setFetch] = useState(false)
     const [visible, setVisible] = useState(false)
     const [filtering, setFiltering] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [loading2, setLoading2] = useState(false)
     const [roomKeys, setRoomKeys] = useState([])
     const [room, setRoom] = useState({})
     const [filtered, setFiltered] = useState([])
@@ -65,7 +69,7 @@ export const KeyList = () => {
     useEffect(() => {
         const getStudents = async () => {
             try {
-                const response = await http.get('key/get/rooms-state', { retry: 100, retryDelay: 3000 })
+                const response = await http.get('key/rooms-state', { retry: 100, retryDelay: 3000 })
                 setLoading(false)
                 // console.log(response.data)
                 setRoomKeys(response.data.rooms)
@@ -105,13 +109,20 @@ export const KeyList = () => {
     const handleRoomStatusChange = async () =>{
         const state = room.event.toString().toLowerCase() === "opened" ? "CLOSED" :"OPENED";
         try {
-            await http.post('key/set/room-state',{room:room.id,state,student})
+            setLoading2(true)
+            await http.post('key/room-state',{room:room.id,state,student})
+            setLoading2(false)
             setFetch(!fetch)
             setVisible(false)
             setStudent("")
             setRoom({})
         } catch (error) {
             console.log(error)
+            setLoading2(false)
+            setRoom({})
+            setStudent("")
+            setVisible(false)
+            setError(error.message)
         }
     }
 
@@ -233,9 +244,10 @@ export const KeyList = () => {
                 footer={
                     <div style={{textAlign:"center"}}>
                         <Space>
-                            <Button onClick={handleRoomStatusChange} size='large' type='primary' ghost style={{width:120, fontWeight:"bold"}}>SAVE</Button>
+                            <Button loading={loading2} onClick={handleRoomStatusChange} size='large' type='primary' ghost style={{width:120, fontWeight:"bold"}} disabled={!student}>SAVE</Button>
                             <Button size='large' type='danger' style={{width:120, fontWeight:"bold"}} onClick={()=>{
                                 setRoom({})
+                                setStudent("")
                                 setVisible(false)
                             }}>CANCEL</Button>
                         </Space>
@@ -254,7 +266,7 @@ export const KeyList = () => {
                 </div>
                 <ul style={{listStyle:"none", padding:0, marginTop:10}}>
                     <li style={{padding:"10px 0", fontWeight:"bold"}}>This key request is been made by:</li>
-                    <Radio.Group onChange={(e)=>handleStudentCheck(e.target.value)}>
+                    <Radio.Group onChange={(e)=>handleStudentCheck(e.target.value)} value={student}>
                     {
                         room?.students?.map((student, index)=>(
                             <li key={index} style={{padding:"7px 0"}}><Radio value={student.id}>{student.first_name +" "+ student.last_name}</Radio></li>

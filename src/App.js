@@ -18,6 +18,7 @@ import { Students } from './container/admin/Students';
 import { AdminRooms } from './container/admin/Rooms';
 import { Bookings } from './container/admin/Bookings';
 import { KeyList } from './container/admin/KeyList';
+import { KeyLogs } from './container/admin/KeyLogs';
 
 export const App = () => {
   return (
@@ -62,6 +63,7 @@ export const App = () => {
             </RequireAdminAuth>
           }>
             <Route index element={"<AdminDashboard />"} />
+            <Route path="logs" element={<KeyLogs />} />
             <Route path="keys" element={<KeyList />} />
             <Route path="students" element={<Students />} />
             <Route path="rooms" element={<AdminRooms />} />

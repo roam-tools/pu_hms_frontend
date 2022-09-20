@@ -22,7 +22,7 @@ export const Rooms = () => {
         const getRooms = async () => {
             try {
                 const response = await http.get('rooms', { retry: 100, retryDelay: 3000 })
-                console.log(response.data)
+                // console.log(response.data)
                 setLoading(false)
                 setRooms(response.data)
                 setTotalPages(response.data.length / pageSize)

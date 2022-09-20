@@ -2,14 +2,15 @@ import {
     BookOutlined,
     KeyOutlined,
     TeamOutlined,
-    UserOutlined,
+    ToolOutlined,
     HomeOutlined,
 } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
-import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Layout, Menu, Modal } from 'antd';
+import React, { Fragment, useEffect, useState } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import './admin-layout.css'
 import logo from '../../assets/images/puclogo2.png'
+import { useError, useSetError } from '../../context/ErrorContext';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -23,69 +24,113 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-    getItem(<Link to="/admin/keys">Keys</Link>, '1', <KeyOutlined />),
-    getItem(<Link to='/admin/students'>Students</Link>, '2', <TeamOutlined />),
-    getItem(<Link to='/admin/rooms'>Rooms</Link>, '4', <HomeOutlined />),
-    getItem(<Link to='/admin/bookings'>Bookings</Link>, '5', <BookOutlined />),
-    getItem('Profile', 'sub1', <UserOutlined />, [
-        getItem(<Link to='update/profile'>Update Profile</Link>, '6'),
-        getItem(<Link to="/admin/change/password">Change Password</Link>, '7'),
-        getItem(<Link to='/admin/logout'>Logout</Link>, '8'),
+    getItem(<Link to="/admin/keys">Key Management</Link>, '/admin/keys', <KeyOutlined />),
+    getItem(<Link to='/admin/students'>Students</Link>, '/admin/students', <TeamOutlined />),
+    getItem(<Link to='/admin/rooms'>Rooms</Link>, '/admin/rooms', <HomeOutlined />),
+    getItem(<Link to='/admin/bookings'>Bookings</Link>, '/admin/bookings', <BookOutlined />),
+    getItem('Settings', 'sub1', <ToolOutlined />, [
+        getItem(<Link to='/admin/profile'>Profile</Link>, 'admin/profile'),
+        // getItem(<Link to="/admin/change/password">Change Password</Link>, '/admin/change/password'),
+        getItem(<Link to="/admin/logs">Key logs</Link>, '/admin/logs'),
+        getItem(<Link to='/admin/logout'>Logout</Link>, '/admin/logout'),
     ])
 ];
 
+// const rootSubmenuKeys = ['/admin/keys', '/admin//students', '/admin/rooms', '/admin/bookings', '/admin/profile', '/admin/change/password', '/admin/logs'];
+const rootSubmenuKeys = ['sub1', '/admin/keys', '/admin//students', '/admin/rooms', '/admin/bookings', '/admin/profile', '/admin/change/password', '/admin/logs'];
+
 export const AdminLayout = () => {
-    
-    const [collapsed, setCollapsed] = useState(true);
+    const error = useError()
+    const setError = useSetError()
+
+    const { pathname } = useLocation()
+
+    const [collapsed, setCollapsed] = useState(false);
+    const [openKeys, setOpenKeys] = useState([]);
+
+    const errorFunc = () => {
+        Modal.error({
+          title: 'Error',
+          content: 'An error has occured',
+          onOk(){
+            setError("")
+          }
+        });
+      };
+
+    useEffect(()=>{
+        if(error){
+            errorFunc()
+        }
+    },[error])
+
+    const onOpenChange = (keys) => {
+        const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+
+        if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+            setOpenKeys(keys);
+        } else {
+            setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+        }
+    };
 
     return (
-        <Layout
-            style={{
-                minHeight: '100vh'
-            }}
-        >
-            <Sider
-                theme='light'
-                collapsible 
-                collapsed={collapsed}
-                onCollapse={(value) => setCollapsed(value)}
+        <Fragment>
+            <Layout
                 style={{
-                    overflow: 'auto',
-                    height: '100vh',
-                    position: 'fixed',
-                    left: 0,
-                    top: 0,
-                    bottom: 0,
+                    minHeight: '100vh'
                 }}
             >
-                <div className="logo">
-                    <img src={logo} alt="logo" width={80} />
-                </div>
-                {!collapsed &&
-                    <div className='side-title'>
-                        Navigation
-                    </div>}
-                <Menu theme="light" defaultSelectedKeys={['1']} mode="inline" items={items} />
-            </Sider>
-            <Layout className="site-layout">
-                <Content
+                <Sider
+                    theme='light'
+                    collapsible
+                    collapsed={collapsed}
+                    onCollapse={(value) => setCollapsed(value)}
                     style={{
-                        width: collapsed ? 'calc(100% - 115px)' : 'calc(100% - 230px)',
-                        marginLeft: collapsed ? 100 : 215,
-                        marginTop: 20,
-                        padding: 0,
+                        overflow: 'auto',
+                        height: '100vh',
+                        position: 'fixed',
+                        left: 0,
+                        top: 0,
+                        bottom: 0,
                     }}
                 >
-                    <Outlet />
-                </Content>
-                {/* <Footer
-                    style={{
-                        textAlign: 'center',
-                    }}
-                >
-                    Ant Design ©2018 Created by Ant UED
-                </Footer> */}
+                    <div className="logo">
+                        <img src={logo} alt="logo" width={80} />
+                    </div>
+                    {!collapsed &&
+                        <div className='side-title'>
+                            Navigation
+                        </div>}
+                    <Menu
+                        theme="light"
+                        mode="inline"
+                        items={items}
+                        defaultSelectedKeys={pathname}
+                        openKeys={openKeys}
+                        onOpenChange={onOpenChange}
+                    />
+                </Sider>
+                <Layout className="site-layout">
+                    <Content
+                        style={{
+                            width: collapsed ? 'calc(100% - 115px)' : 'calc(100% - 230px)',
+                            marginLeft: collapsed ? 100 : 215,
+                            marginTop: 20,
+                            padding: 0,
+                        }}
+                    >
+                        <Outlet />
+                    </Content>
+                    {/* <Footer
+                        style={{
+                            textAlign: 'center',
+                        }}
+                    >
+                        Ant Design ©2018 Created by Ant UED
+                    </Footer> */}
+                </Layout>
             </Layout>
-        </Layout>
+        </Fragment>
     );
 };

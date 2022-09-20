@@ -73,7 +73,7 @@ export const Bookings = () => {
             try {
                 const response = await http.get('admin/hostel/booking', { retry: 100, retryDelay: 3000 })
                 setLoading(false)
-                console.log(response.data.bookings)
+                // console.log(response.data.bookings)
                 setBooking(response.data.bookings)
             } catch (error) {
                 console.log(error)

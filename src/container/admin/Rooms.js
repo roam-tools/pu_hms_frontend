@@ -58,7 +58,7 @@ export const AdminRooms = () => {
             try {
                 const response = await http.get('admin/hostel/rooms', { retry:100, retryDelay: 3000 })
                 setLoading(false)
-                console.log(response.data.rooms)
+                // console.log(response.data.rooms)
                 setRooms(response.data.rooms)
             } catch (error) {
                 console.log(error)                

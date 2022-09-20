@@ -1,4 +1,4 @@
-import { Avatar, Input, PageHeader, Space, Table, Tag } from 'antd';
+import { Input, PageHeader, Space, Table } from 'antd';
 import moment from 'moment';
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -6,57 +6,61 @@ import http from '../../api';
 
 const { Search } = Input
 
+
 const columns = [
     {
-        title: 'Photo',
-        dataIndex: 'image',
-        key: 'image',
-        render: (_, record) => <div>{<Avatar src={record.image} />}</div>,
+        title: 'Hostel',
+        dataIndex: 'hostel',
+        key: 'hostel',
         align:"center"
     },
     {
-        title: 'Student Id',
-        dataIndex: 'student_id',
-        key: 'student_id',
+        title: 'Room',
+        dataIndex: 'room',
+        key: 'room',
+        align:"center"
     },
     {
-        title: 'Full Name',
-        dataIndex: 'name',
-        key: 'name',
-        render: (_, record) => <div>{record.first_name +" "+ record.last_name}</div>,
+        title: 'State',
+        dataIndex: 'state',
+        key: 'state',
+        align:"center"
     },
     {
-        title: 'Phone Number',
-        dataIndex: 'phone_number',
-        key: 'phone_number',
+        title: 'Manager',
+        dataIndex: 'manager',
+        key: 'manager',
+        align:"center"
     },
     {
-        title: 'Email Address',
-        dataIndex: 'email_address',
-        key: 'email_address',
+        title: 'Student',
+        dataIndex: 'student',
+        key: 'student',
+        align:"center"
     },
     {
-        title: 'Last Login',
-        dataIndex: 'last_login',
-        key: 'last_login',
-        render:(text)=><div>{text ? moment(text).format("DD-MM-YYYY hh-mm-s a") : "Never"}</div>
+        title: 'Time',
+        dataIndex: 'time',
+        key: 'time',
+        align:"center",
+        render:(text)=><div>{ moment(text).format("DD-MM-YYYY hh:mm:s a") }</div>
     },
 ];
 
-export const Students = () => {
+export const KeyLogs = () => {
 
     const [ filtering, setFiltering ] = useState(false)
     const [ loading, setLoading ] = useState(true)
-    const [ students, setStudents ] = useState([])
+    const [ keyLogs, setKeyLogs ] = useState([])
     const [ filtered, setFiltered ] = useState([])
 
     useEffect(()=>{
         const getStudents = async () =>{
             try {
-                const response = await http.get('admin/hostel/students', { retry:100, retryDelay: 3000 })
+                const response = await http.get('key/logs', { retry:100, retryDelay: 3000 })
                 setLoading(false)
-                // console.log(response.data.students)
-                setStudents(response.data.students)
+                console.log(response.data.keylogs)
+                setKeyLogs(response.data.keylogs)
             } catch (error) {
                 console.log(error)                
             }
@@ -66,8 +70,8 @@ export const Students = () => {
 
     const handleSearch = (value) =>{
         setFiltering(true)
-        setFiltered(students.filter(student=>{
-            return Object.values(student).toString().toLowerCase().includes(value.toString().toLowerCase())
+        setFiltered(keyLogs.filter(room=>{
+            return Object.values(room).toString().toLowerCase().includes(value.toString().toLowerCase())
         }))
 
         if(!value){
@@ -78,8 +82,8 @@ export const Students = () => {
     return (
         <Fragment>
             <PageHeader
-                title="Students"
-                subTitle="Student list"
+                title="Key Logs"
+                subTitle="Key log list"
                 extra={[
                     <Space key="1">
                         <Search placeholder="Search" onChange={(e)=>handleSearch(e.target.value)} />
@@ -93,7 +97,7 @@ export const Students = () => {
             />
             <Table
                 columns={columns}
-                dataSource={!filtering ? students : filtered}
+                dataSource={!filtering ? keyLogs : filtered}
                 rowKey="id"
                 loading={loading}
                 bordered
