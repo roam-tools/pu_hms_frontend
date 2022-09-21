@@ -1,213 +1,57 @@
-body,html {
-  height: 100%;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*{
+* {
   box-sizing: border-box;
 }
-.nav-bg{
-  background-color: transparent;
-}
-.wrapper{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-}
-.container{
-  width: 80%;
-  height: 100%;
-  margin-bottom: 50px;
-}
-.auth-wrapper{
-  width:100%;
-  height:100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-}
-.form__floating{
-  position:relative;
-  padding: 9px 0;
-}
-.input__control{
-  width: 100%;
-  height: 50px;
-  outline: none;
-  border: none;
-  border: 1px solid #ccc;
-  padding: 0px 15px;
-  font-size:18px;
-  background-color:#ffffff;
-}
-.input__label{
-  position: absolute;
-  top:0;
-  left:15px;
-  background-color:#fff;
-  color: #4F4F4F;;
-}
-.bg-blue{
-  background-color: #F5B041;
-}
-.auth__question{
-  text-align:center;
-  margin-top:50px
-}
-.btn-color{
-  color: #ffffff;
-}
-.buttonStyle{
-  padding: 10px 25px;
-  margin: 15px 15px;
-  color: #000000;
-}
-button{
-  cursor:pointer;
-}
-button:disabled{
-  background-color: #eee;
-  color: #000;
-  cursor: default;
-}
-.loader__wrapper{
-  width:100%;
-  display: flex;
-  justify-content:center;
-  align-items: center;
-}
-.loader {
-  border: 2px solid #f3f3f3; 
-  border-top: 1px solid #3498db; 
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 2s linear infinite;
-}
-.processingloader {
-  display: inline-block;
-  border: 1px solid #000; 
-  border-top: 1px solid #3498db; 
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  animation: spin 2s linear infinite;
-}
-.modal-actions{
-  width: 100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items: center;
-}
-.modal-actions button{
-  width: 100%;
-  padding: 15px;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* background-color: #e7e5fd; */
 }
 
-.div__row{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.row__column{
-  width: 49%;
-}
-fieldset{
-  margin:10px 0 15px 0;
-}
-.btn__control{
-  padding: 10px 50px;
-  text-align:center
-}
-.action__wrapper{
-  display:flex;
-  flex-direction:row;
-  justify-content: flex-end;
-  align-items: flex-end;
+img {
+  -webkit-user-drag: none;
 }
 
-.error{
-  text-align:center;
-  margin: 10px;
-  color: red;
-  font-weight:bold;
+.app-login-link,
+.app-back-link {
+  font-size: 18px;
 }
 
-.filter-box{
-  position:relative;
+.app-back-link {
+  margin-top: 15px;
 }
 
-.filter-box .date-select{
-  position:absolute;
-  background-color: #fff;
-  border-left: 1px solid #eee;
-  top: 2px;
-  right:5px;
-  width:350px;
-  padding: 10px 0;
-  /* height:40px; */
-}
-.filter-box .fa-search{
-  position: absolute;
-  top:20px;
-  left:20px;
+.ant-modal-content,
+.ant-modal-header {
+  border-radius: 10px;
 }
 
-.filter-box .search-input{
-  padding: 15px 50px;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.btn-w{
-  width: 50% !important;
-}
-.btn-w-100{
-  width: 100% !important;
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
-.tbl-actions{
-  display:flex;
-  flex-direction:row;
-  justify-content:center;
-}
-.tbl-actions i{
-  cursor: pointer;
-}
-/* .btn-w-100:first-child{
-  border-right: 0;
-}
-.btn-w-100:last-child{
-  border-left: 0;
-} */
-
-h1,h2,h3{
-  color: #fff!important;
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
 }
 
-@keyframes animate {
-  0%   {opacity: 0; }
-  100%  {opacity:1;}
+::-webkit-scrollbar-thumb {
+  background: #0A223D;
+  border-radius: 10px;
 }
 
-@media (max-width: 767px) {
-  .container{
-    width: 100%;
-    height: 100%;
-  }
-
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
+.ant-table .ant-table-container .ant-table-content table thead.ant-table-thead{
+  text-transform: uppercase;
 }

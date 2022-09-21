@@ -1,0 +1,12 @@
+.m-view2{
+    display: none;
+}
+@media screen and (max-width: 768px) {
+    .m-view{
+        display: none;
+    }
+
+    .m-view2{
+        display: block;
+    }
+}
