@@ -4,6 +4,9 @@ import {
     TeamOutlined,
     ToolOutlined,
     HomeOutlined,
+    MessageOutlined,
+    PoweroffOutlined,
+    PieChartOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Modal } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
@@ -24,19 +27,21 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
+    getItem(<Link to="/admin">Dashboard</Link>, '/admin', <PieChartOutlined />),
     getItem(<Link to="/admin/keys">Key Management</Link>, '/admin/keys', <KeyOutlined />),
     getItem(<Link to='/admin/students'>Students</Link>, '/admin/students', <TeamOutlined />),
     getItem(<Link to='/admin/rooms'>Rooms</Link>, '/admin/rooms', <HomeOutlined />),
     getItem(<Link to='/admin/bookings'>Bookings</Link>, '/admin/bookings', <BookOutlined />),
+    getItem(<Link to='/admin/complaints'>Complaints</Link>, '/admin/complaints', <MessageOutlined />),
     getItem('Settings', 'sub1', <ToolOutlined />, [
         getItem(<Link to='/admin/profile'>Profile</Link>, 'admin/profile'),
-        // getItem(<Link to="/admin/change/password">Change Password</Link>, '/admin/change/password'),
         getItem(<Link to="/admin/logs">Key logs</Link>, '/admin/logs'),
         getItem(<Link to='/admin/logout'>Logout</Link>, '/admin/logout'),
-    ])
+    ]),
+    getItem(<Link to='/admin/logout'>Logout</Link>, '/logout', <PoweroffOutlined />),
+
 ];
 
-// const rootSubmenuKeys = ['/admin/keys', '/admin//students', '/admin/rooms', '/admin/bookings', '/admin/profile', '/admin/change/password', '/admin/logs'];
 const rootSubmenuKeys = ['sub1', '/admin/keys', '/admin//students', '/admin/rooms', '/admin/bookings', '/admin/profile', '/admin/change/password', '/admin/logs'];
 
 export const AdminLayout = () => {
@@ -50,19 +55,19 @@ export const AdminLayout = () => {
 
     const errorFunc = () => {
         Modal.error({
-          title: 'Error',
-          content: 'An error has occured',
-          onOk(){
-            setError("")
-          }
+            title: 'Error',
+            content: 'An error has occured',
+            onOk() {
+                setError("")
+            }
         });
-      };
+    };
 
-    useEffect(()=>{
-        if(error){
+    useEffect(() => {
+        if (error) {
             errorFunc()
         }
-    },[error])
+    }, [error])
 
     const onOpenChange = (keys) => {
         const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
@@ -78,7 +83,8 @@ export const AdminLayout = () => {
         <Fragment>
             <Layout
                 style={{
-                    minHeight: '100vh'
+                    minHeight: '100vh',
+                    overflow: "hidden"
                 }}
             >
                 <Sider
@@ -87,7 +93,7 @@ export const AdminLayout = () => {
                     collapsed={collapsed}
                     onCollapse={(value) => setCollapsed(value)}
                     style={{
-                        overflow: 'auto',
+                        overflowY: 'auto',
                         height: '100vh',
                         position: 'fixed',
                         left: 0,
