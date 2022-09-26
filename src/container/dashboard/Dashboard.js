@@ -90,9 +90,13 @@ export const Dashboard = () => {
   }
 
   const props = {
-    action: `${process.env.BASE_URL_DEV}/photo`,
+    action: `${process.env.REACT_APP_BASE_URL}photo`,
+    headers: {
+      Authorization:  "Bearer " + JSON.parse(localStorage.getItem('userToken')),
+    },
     onChange: handleChange,
     multiple: false,
+    showUploadList:false
   };
 
   return (

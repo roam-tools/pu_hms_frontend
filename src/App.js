@@ -76,9 +76,15 @@ export const App = () => {
             </RequireAdminAuth>
           } />
 
-          <Route path="/logout" element={
+          <Route path="admin/logout" element={
             <RequireAuth>
-              <Logout />
+              <Logout role="admin" />
+            </RequireAuth>
+          } />
+
+          <Route path="student/logout" element={
+            <RequireAuth>
+              <Logout role="student" />
             </RequireAuth>
           } />
 

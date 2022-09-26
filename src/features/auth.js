@@ -21,7 +21,8 @@ const authSlice = createSlice({
             })
             .addCase(login.fulfilled, (state, action) => {
                 state.status = "succeeded"
-                if (action.role === "student") {
+                console.log(action.payload.role)
+                if (action.payload.role === "student") {
                     state.student = action.payload
                 } else {
                     state.admin = action.payload

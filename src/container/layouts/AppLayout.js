@@ -63,8 +63,8 @@ export const AppLayout = () => {
                     </Space>}
 
                     {auth && <Space size="large" className='nav-menu-right'>
-                        <NavLink to="/student/dashboard" className="signu-btn">My dashboard</NavLink>
-                        <NavLink to="/logout" className="login-btn">Logout</NavLink>
+                        <NavLink to="/student/dashboard" className="signu-btn">Profile</NavLink>
+                        <NavLink to="/student/logout" className="login-btn">Logout</NavLink>
                     </Space>}
 
                     <div className='hamburger'>
@@ -124,7 +124,7 @@ export const AppLayout = () => {
                 <ul className='drawer-links'>
                     <li><NavLink to="/hostels"><i className='fa fa-house'></i> Hostels</NavLink></li>
                     <li><NavLink to="/rooms"><i className='fa fa-door-open'></i> Rooms</NavLink></li>
-                    <li><NavLink to="student/dashboard"><i className='fa fa-user-plus'></i> My dashboard</NavLink></li>
+                    <li><NavLink to="student/dashboard"><i className='fa fa-user-plus'></i> Profile</NavLink></li>
                     <li><NavLink to="/logout"><i className='fa fa-right-to-bracket'></i> Logout</NavLink></li>
                 </ul>}
             </Drawer>

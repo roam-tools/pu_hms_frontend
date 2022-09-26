@@ -30,7 +30,7 @@ export const Room = ({ data }) => {
 
     const getRoomDetails = async (id) => {
         if (!auth) {
-            navigate('/student/login')
+            navigate('/student/auth/login')
         }
         try {
             setLoading(true)
