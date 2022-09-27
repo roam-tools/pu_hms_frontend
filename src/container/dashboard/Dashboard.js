@@ -120,7 +120,8 @@ export const Dashboard = () => {
                 <Button onClick={() => { setModalTitle("Change Password"); setIsModalVisible(true) }} key="2" icon={<i className='bi bi-lock'> </i>} disabled={profileLoading}> CHANGE PASSWORD</Button>,
                 <Upload key="3" {...props}>
                   <Button icon={<i className='bi bi-image'> </i>} disabled={profileLoading}> CHANGE AVATAR</Button>
-                </Upload>
+                </Upload>,
+                <Button onClick={() => { setModalTitle("Change Password"); setIsModalVisible(true) }} key="2" icon={<i className='bi bi-chat'> </i>} disabled={profileLoading}>LODGE COMPLAIN</Button>,
               ]}
             />
             {
