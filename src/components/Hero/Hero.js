@@ -1,6 +1,6 @@
 import React from 'react'
 import Slider from "react-slick";
-import hero from '../../assets/images/puc-campus-1.jpg'
+import hero from '../../assets/images/puc-campus.jpg'
 import hero2 from '../../assets/images/puc-campus-2.jpg'
 import './hero.css'
 
@@ -23,11 +23,11 @@ export const Hero = () => {
         <div className='d-none d-sm-block d-md-block position-relative'>
             <Slider {...settings}>
                 <div>
-                    <img src={hero} alt="hero" height={600} width="100%" style={{ objectFit: "cover" }} />
+                    <img src={hero} alt="hero" width="100%" style={{ height:"calc(800px - 60px)", objectFit: "cover" }} />
                 </div>
-                <div>
-                    <img src={hero2} alt="hero" height={600} width="100%" style={{ objectFit: "cover" }} />
-                </div>
+                {/* <div>
+                    <img src={hero2} alt="hero" width="100%" style={{ height:"calc(800px - 60px)", objectFit: "cover" }} />
+                </div> */}
             </Slider>
         </div>
     )

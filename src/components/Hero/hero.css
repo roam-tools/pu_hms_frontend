@@ -1,5 +1,5 @@
 .slider-container{
-    height: 300px;
+    height: calc(800px - 60px);
     overflow: hidden;
 }
 .overlay{
