@@ -22,12 +22,11 @@ export const Hero = () => {
     return (
         <div className='d-none d-sm-block d-md-block position-relative'>
             <Slider {...settings}>
-                {/* <div className='overlay'></div> */}
                 <div>
-                    <img src={hero} alt="hero" height={300} width="100%" style={{ objectFit: "cover" }} />
+                    <img src={hero} alt="hero" height={600} width="100%" style={{ objectFit: "cover" }} />
                 </div>
                 <div>
-                    <img src={hero2} alt="hero" height={300} width="100%" style={{ objectFit: "cover" }} />
+                    <img src={hero2} alt="hero" height={600} width="100%" style={{ objectFit: "cover" }} />
                 </div>
             </Slider>
         </div>

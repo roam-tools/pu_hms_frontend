@@ -10,8 +10,10 @@ export const Home = () => {
   return (
     <Fragment>
       <Hero />
-      <HostelList pHeader={true} />
-      <Widget />
+      <div className='container'>
+        <HostelList pHeader={true} />
+        <Widget />
+      </div>
     </Fragment>
   )
 }

@@ -1,7 +1,7 @@
 import { Alert, Drawer, Layout, Space } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, Link } from 'react-router-dom';
 import logo from '../../assets/images/puclogo.jpg'
 import { useError, useSetError } from '../../context/ErrorContext';
 import { selectStudent } from '../../features/auth';
@@ -12,7 +12,7 @@ const { Header, Content, Footer } = Layout;
 const roam = ' ROAM Labs'
 
 export const AppLayout = () => {
-    
+
     const error = useError()
     const setError = useSetError()
 
@@ -48,7 +48,9 @@ export const AppLayout = () => {
             >
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start" }}>
                     <div style={{ alignSelf: "center" }}>
-                        <img src={logo} alt="logo" height={40} />
+                        <Link to="/">
+                            <img src={logo} alt="logo" height={40} />
+                        </Link>
                     </div>
                     <ul className='nav-menu'>
                         <li><NavLink to="/hostels">Hostels</NavLink></li>
@@ -113,20 +115,20 @@ export const AppLayout = () => {
                     <i onClick={() => setVisible(false)} key="1" className='fa fa-close fa-xl'></i>
                 }
             >
-                {!auth && 
-                <ul className='drawer-links'>
-                    <li><NavLink to="/hostels"><i className='fa fa-house'></i> Hostels</NavLink></li>
-                    <li><NavLink to="/rooms"><i className='fa fa-door-open'></i> Rooms</NavLink></li>
-                    <li><NavLink to="student/signup"><i className='fa fa-user-plus'></i> Sign up</NavLink></li>
-                    <li><NavLink to={"student/auth/login"}><i className='fa fa-right-to-bracket'></i> Login</NavLink></li>
-                </ul>}
-                {auth && 
-                <ul className='drawer-links'>
-                    <li><NavLink to="/hostels"><i className='fa fa-house'></i> Hostels</NavLink></li>
-                    <li><NavLink to="/rooms"><i className='fa fa-door-open'></i> Rooms</NavLink></li>
-                    <li><NavLink to="student/dashboard"><i className='fa fa-user-plus'></i> Profile</NavLink></li>
-                    <li><NavLink to="/logout"><i className='fa fa-right-to-bracket'></i> Logout</NavLink></li>
-                </ul>}
+                {!auth &&
+                    <ul className='drawer-links'>
+                        <li><NavLink to="/hostels"><i className='fa fa-house'></i> Hostels</NavLink></li>
+                        <li><NavLink to="/rooms"><i className='fa fa-door-open'></i> Rooms</NavLink></li>
+                        <li><NavLink to="student/signup"><i className='fa fa-user-plus'></i> Sign up</NavLink></li>
+                        <li><NavLink to={"student/auth/login"}><i className='fa fa-right-to-bracket'></i> Login</NavLink></li>
+                    </ul>}
+                {auth &&
+                    <ul className='drawer-links'>
+                        <li><NavLink to="/hostels"><i className='fa fa-house'></i> Hostels</NavLink></li>
+                        <li><NavLink to="/rooms"><i className='fa fa-door-open'></i> Rooms</NavLink></li>
+                        <li><NavLink to="student/dashboard"><i className='fa fa-user-plus'></i> Profile</NavLink></li>
+                        <li><NavLink to="/logout"><i className='fa fa-right-to-bracket'></i> Logout</NavLink></li>
+                    </ul>}
             </Drawer>
         </Layout>
     )
