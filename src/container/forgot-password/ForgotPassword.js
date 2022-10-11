@@ -14,8 +14,8 @@ export const ForgotPassword = ({ role = "student"}) => {
                 response = await http.post('student/password/request', values)
                 navigate('/admin/auth/login',{state:{status:"reset"}})
             }else{
-                response = await http.post('student/password/request', values)
-                navigate('/student/auth/login',{state:{status:"reset"}})
+                response = await http.post('admin/password/request', values)
+                navigate('/admin/auth/login',{state:{status:"reset"}})
             }
         } catch (error) {
             console.log(error)
