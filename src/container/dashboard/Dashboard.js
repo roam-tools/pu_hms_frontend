@@ -106,7 +106,7 @@ export const Dashboard = () => {
         <Fragment>
           <div className='hostel'>
             <PageHeader
-              avatar={{ src: myBooking.profile.image || hostelImg, size: "80" }}
+              avatar={{ src: myBooking.profile?.image ? myBooking.profile?.image : hostelImg, size: "80" }}
               className="d-none d-lg-block d-md-block"
               title={myBooking.profile?.first_name + " " + myBooking.profile?.last_name}
               subTitle={myBooking.profile.student_id}
