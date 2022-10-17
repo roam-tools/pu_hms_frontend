@@ -6,7 +6,7 @@ import { useSetError } from '../../context/ErrorContext'
 import { login, resetStatus } from '../../features/auth'
 import './login.css'
 
-export const Login = ({ role = "student" }) => {
+export const AdminLogin = ({ role = "student" }) => {
     const setError = useSetError()
 
     const { state } = useLocation()

@@ -1,8 +1,11 @@
-import { Button, Card, Col, Form, Input, Row } from 'antd'
+import { Button, Card, Col, Form, Input, Row, Select } from 'antd'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import http from '../../api'
 import { useSetError } from '../../context/ErrorContext'
 import './signup.css'
+
+const { Option } = Select
 
 export const Signup = () => {
     const setSignupError = useSetError()
@@ -23,9 +26,9 @@ export const Signup = () => {
     }
     return (
         <div className='signup-container'>
-            <Card title="" style={{ width: 500, borderRadius:10, border:"1px solid #ccc"  }} >
-                <h3 style={{textAlign:"center"}}>SIGNUP</h3>
-                <p style={{textAlign:"center"}}>Your signup enables you to login for a better experience.</p>
+            <Card title="" style={{ width: 500, borderRadius: 10, border: "1px solid #ccc" }} >
+                <h3 style={{ textAlign: "center" }}>SIGNUP</h3>
+                <p style={{ textAlign: "center" }}>Your signup enables you to login for a better experience.</p>
                 <Form
                     name="signup-form"
                     layout='vertical'
@@ -62,6 +65,21 @@ export const Signup = () => {
                             </Form.Item>
                         </Col>
                     </Row>
+                    <Form.Item
+                        label=""
+                        name="gender"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your gender!',
+                            },
+                        ]}
+                    >
+                        <Select placeholder="Gender">
+                            <Option value="MALE">Male</Option>
+                            <Option value="FEMALE">Female</Option>
+                        </Select>
+                    </Form.Item>
                     <Form.Item
                         label=""
                         name="student_id"
@@ -108,6 +126,9 @@ export const Signup = () => {
                         <Button type="primary" htmlType="submit" className='w-100'>
                             SIGNU UP
                         </Button>
+                    </Form.Item>
+                    <Form.Item style={{ textAlign: "center" }}>
+                        Have an account already? <Link to='/student/auth/login'>Log in</Link>
                     </Form.Item>
                 </Form>
             </Card>

@@ -119,14 +119,14 @@ export const AppLayout = () => {
                     <ul className='drawer-links'>
                         <li><NavLink to="/hostels"><i className='fa fa-house'></i> Hostels</NavLink></li>
                         <li><NavLink to="/rooms"><i className='fa fa-door-open'></i> Rooms</NavLink></li>
-                        <li><NavLink to="student/signup"><i className='fa fa-user-plus'></i> Sign up</NavLink></li>
-                        <li><NavLink to={"student/auth/login"}><i className='fa fa-right-to-bracket'></i> Login</NavLink></li>
+                        <li><NavLink to="/student/auth/signup"><i className='fa fa-user-plus'></i> Sign up</NavLink></li>
+                        <li><NavLink to={"/student/auth/login"}><i className='fa fa-right-to-bracket'></i> Login</NavLink></li>
                     </ul>}
                 {auth &&
                     <ul className='drawer-links'>
                         <li><NavLink to="/hostels"><i className='fa fa-house'></i> Hostels</NavLink></li>
                         <li><NavLink to="/rooms"><i className='fa fa-door-open'></i> Rooms</NavLink></li>
-                        <li><NavLink to="student/dashboard"><i className='fa fa-user-plus'></i> Profile</NavLink></li>
+                        <li><NavLink to="/student/dashboard"><i className='fa fa-user-plus'></i> Profile</NavLink></li>
                         <li><NavLink to="/logout"><i className='fa fa-right-to-bracket'></i> Logout</NavLink></li>
                     </ul>}
             </Drawer>

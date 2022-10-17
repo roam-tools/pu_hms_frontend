@@ -1,4 +1,4 @@
-import { Card, Col, Image, Row, Button, Avatar, Pagination, Select, Space, PageHeader, Modal, Form, Input, Upload, Empty, Alert } from 'antd'
+import { Card, Col, Row, Button, Avatar, Space, PageHeader, Modal, Form, Input, Upload, Empty } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import React, { Fragment, useEffect, useState } from 'react'
 import './dashboard.css'
@@ -7,18 +7,15 @@ import http from '../../api';
 import { useSetError } from '../../context/ErrorContext';
 import { Widget } from '../../components/widget/Widget'
 import { NavLink } from 'react-router-dom'
-import moment from 'moment'
+// import moment from 'moment'
 import Countdown from "react-countdown";
 import ProgressiveImage from 'react-progressive-graceful-image'
 
 import placeholder from '../../assets/images/placeholder.gif'
 
 
-const { Option } = Select
-
-
-let newDate = new Date();
-let newStamp = newDate.getTime();
+// let newDate = new Date();
+// let newStamp = newDate.getTime();
 
 let formatCurrency = new Intl.NumberFormat(undefined, {
   style: 'currency',
@@ -32,7 +29,7 @@ export const Dashboard = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
   const [modalTitle, setModalTitle] = useState("")
-  const [expireCounter, setExpireCounter] = useState(0)
+  // const [expireCounter, setExpireCounter] = useState(0)
   const [myBooking, setMyBooking] = useState({})
   const [profileLoading, setProfileLoading] = useState(true)
 
@@ -54,23 +51,23 @@ export const Dashboard = () => {
     getProfile()
   }, [setError])
 
-  const expireCounterFunc = (startStamp) => {    
-    console.log(moment(startStamp).unix())
-    newDate = new Date();
-    newStamp = newDate.getTime();
-    var diff = Math.round((newStamp - moment(startStamp).unix()) / 1000);
+  // const expireCounterFunc = (startStamp) => {    
+  //   console.log(moment(startStamp).unix())
+  //   newDate = new Date();
+  //   newStamp = newDate.getTime();
+  //   var diff = Math.round((newStamp - moment(startStamp).unix()) / 1000);
 
-    var d = Math.floor(diff / (24 * 60 * 60));
-    diff = diff - (d * 24 * 60 * 60);
-    var h = Math.floor(diff / (60 * 60));
-    diff = diff - (h * 60 * 60);
-    var m = Math.floor(diff / (60));
-    diff = diff - (m * 60);
-    var s = diff;
+  //   var d = Math.floor(diff / (24 * 60 * 60));
+  //   diff = diff - (d * 24 * 60 * 60);
+  //   var h = Math.floor(diff / (60 * 60));
+  //   diff = diff - (h * 60 * 60);
+  //   var m = Math.floor(diff / (60));
+  //   diff = diff - (m * 60);
+  //   var s = diff;
 
-    setExpireCounter(d + " day(s), " + h + " hour(s), " + m + " minute(s), " + s + " second(s) working")
+  //   setExpireCounter(d + " day(s), " + h + " hour(s), " + m + " minute(s), " + s + " second(s) working")
 
-  }
+  // }
 
   const onCreate = async (values) => {
     try {
@@ -106,7 +103,7 @@ export const Dashboard = () => {
         <Fragment>
           <div className='hostel'>
             <PageHeader
-              avatar={{ src: myBooking.profile.image || hostelImg, size: "80" }}
+              avatar={{ src: myBooking.profile?.image ? myBooking.profile?.image : hostelImg, size: "80" }}
               className="d-none d-lg-block d-md-block"
               title={myBooking.profile?.first_name + " " + myBooking.profile?.last_name}
               subTitle={myBooking.profile.student_id}
