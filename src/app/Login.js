@@ -6,8 +6,8 @@ import http from "../api";
 import { setStudent } from "../slices/login";
 
 export const Login = () => {
-  const { state } = useLocation();
-  console.log(state);
+  // const { state } = useLocation();
+  // console.log(state);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
