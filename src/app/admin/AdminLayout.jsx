@@ -78,14 +78,14 @@ const rootSubmenuKeys = [
 ];
 
 export const AdminLayout = () => {
-//   const error = useError();
-//   const setError = useSetError();
+  //   const error = useError();
+  //   const setError = useSetError();
 
   const { pathname } = useLocation();
 
   const [collapsed, setCollapsed] = useState(false);
   const [openKeys, setOpenKeys] = useState([]);
-  const [ error, setError ] = useState("")
+  const [error, setError] = useState("");
 
   const errorFunc = () => {
     Modal.error({
@@ -136,7 +136,11 @@ export const AdminLayout = () => {
           }}
         >
           <div className="logo">
-            <img src="../../../public/dist/images/puclogo2.png" alt="logo" width={80} />
+            <img
+              src="../../../public/dist/images/puclogo2.png"
+              alt="logo"
+              width={80}
+            />
           </div>
           {!collapsed && <div className="side-title">Navigation</div>}
           <Menu

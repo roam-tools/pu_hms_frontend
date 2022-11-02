@@ -9,7 +9,11 @@ import {
 } from "react-router-dom";
 import { AdminLayout } from "./app/admin/AdminLayout";
 import { AdminLogin } from "./app/admin/AdminLogin";
+import { Bookings } from "./app/admin/Bookings";
 import { KeyList } from "./app/admin/KeyList";
+import { KeyLogs } from "./app/admin/KeyLogs";
+import { AdminRooms } from "./app/admin/Rooms";
+import { Students } from "./app/admin/Students";
 import { Booking } from "./app/Booking";
 import { ForgotPassword } from "./app/ForgotPassword";
 import { Home } from "./app/Home";
@@ -64,14 +68,18 @@ export const App = () => {
             </RequireAdmin>
           }
         >
+          <Route path="/admin/students" element={<Students />} />
           <Route path="/admin/keys" element={<KeyList />} />
+          <Route path="/admin/bookings" element={<Bookings />} />
+          <Route path="/admin/logs" element={<KeyLogs />} />
+          <Route path="/admin/rooms" element={<AdminRooms />} />
         </Route>
         <Route
           path="/admin/login"
           element={
-            <LoginAuth>
+            <AdminLoginAuth>
               <AdminLogin />
-            </LoginAuth>
+            </AdminLoginAuth>
           }
         />
       </Routes>
@@ -108,6 +116,18 @@ function LoginAuth({ children }) {
 
   if (student.isLogin) {
     return <Navigate to="/" state={{ from: location }} replace />;
+  }
+
+  return children;
+}
+
+function AdminLoginAuth({ children }) {
+  let { manager } = useSelector((state) => state.login);
+
+  let location = useLocation();
+
+  if (manager.isLogin) {
+    return <Navigate to="/admin" state={{ from: location }} replace />;
   }
 
   return children;
