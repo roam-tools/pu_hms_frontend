@@ -21,7 +21,7 @@ export const AdminLogin = () => {
       sessionStorage.setItem("adminToken", JSON.stringify(response.data.token));
       dispatch(setManager(response.data.profile));
       setLoading(false);
-      navigate('/admin/keys');
+      navigate("/admin/keys");
     } catch (error) {
       setError(error.message);
       console.log(error);
@@ -88,6 +88,7 @@ export const AdminLogin = () => {
             </Form.Item>
             <Form.Item>
               <Button
+                loading={loading}
                 size="large"
                 block
                 type="primary"
