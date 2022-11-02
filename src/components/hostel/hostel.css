@@ -1,47 +1,156 @@
-.hostel {
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 15px;
+.puc-hostel {
+  position: relative;
+  min-height: 250px;
 }
 
-.hostel-image {
-    border-radius: 10px;
-    object-fit: cover;
+.puc-hostel img {
+  height: 250px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.puc-hostel-image {
+  object-fit: cover;
 }
 
 .overlay {
-    position: absolute;
-    display: block;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: black;
-    opacity: 0.2;
+  position: fixed;
+  /* top: 0; */
+  bottom: 0;
+  height: 80px;
+  width: 100%;
+  background: linear-gradient(0deg, rgba(6, 6, 6, 0.4), rgba(6, 6, 6, 0.4));
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-.overlay:hover {
-    opacity: 0.6;
+.puc-hostel-info h4,
+.puc-hostel-info h6 {
+  color: #fff;
+  text-align: center;
+  margin-top: 7px;
 }
 
-.hostel-info {
-    position: absolute;
-    bottom: 15px;
-    left: 20px;
+.hostel-detail {
+  height: 400px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 20px;
+  /* margin-top: 40px; */
 }
 
-.hostel-name,
-.hostel-location {
-    color: white;
-    margin: 0;
+.hostel-name{
+    margin: 15px 0;
+    text-align: center;
 }
-.hostel-name {
-    font-size: 20px;
+
+.hostel-detail .h-card {
+  position: relative;
+  background-color: #04276c;
+  color: #fff;
+  padding: 15px;
 }
-.hostel-location {
-    font-size: 12px;
+
+.hostel-detail img {
+  height: 400px;
+  width: 100%;
+}
+
+.hostel-detail .h-card .quick-enquiry-btn {
+  /* position: absolute;
+  bottom: 0; */
+  margin: auto;
+}
+
+.hostel-detail .h-card h4,
+.hostel-detail .h-card h5,
+.hostel-detail .h-card p {
+  color: #fff;
+  margin: 0;
+}
+
+.hostel-detail .h-card .facilities{
+    height: 90px;
+    background: #fff;
+    font-size: 16px;
+    color: #000;
+    padding: 10px;
+    text-align: center;
+}
+
+.manager {
+  position: relative !important;
+  height: 350px;
+  margin: 40px 0;
+  color: #fff;
+}
+.manager img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+.m-overlay {
+  height: 350px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  z-index: 1;
+}
+.manager .manager-detail {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.manager .avatar {
+  text-align: center;
+}
+
+.manager h3,
+.manager h4,
+.manager p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #fff;
+}
+.manager h3 {
+  margin-bottom: 30px;
+}
+.manager p {
+  margin-bottom: 20px;
+}
+.manager .fa-phone {
+  margin-right: 15px;
+}
+.manager .manager-call-btn {
+  min-height: 50px;
+  min-width: 200px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .hostel-detail {
+    height: auto;
+    grid-template-columns: 1fr;
+    column-gap: 0px;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  .hostel-detail .h-card {
+    height: 400px;
+    margin-top: 20px;
+  }
+  .m-mb {
+    padding-left: 20px !important;
+    padding-right: 5px !important;
+  }
 }

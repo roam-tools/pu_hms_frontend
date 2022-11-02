@@ -40,7 +40,7 @@ http.interceptors.response.use(undefined, (err) => {
 
 http.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('userToken')
+    const token = sessionStorage.getItem('userToken')
     
     if (token) {
       config.headers["Authorization"] = "Bearer " + JSON.parse(token);

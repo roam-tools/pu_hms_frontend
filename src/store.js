@@ -4,21 +4,21 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage/session'
 import storageSession from 'redux-persist/lib/storage/session'
-import auth from './features/auth';
+import login from './slices/login';
 
-const authPersistConfig = {
-  key: 'auth',
+const loginPersistConfig = {
+  key: 'login',
   storage: storageSession
 };
 
 const persistConfig = {
   key: 'root',
-  whitelist: ['auth', 'hostel'],
+  whitelist: ['login', 'hostel'],
   storage: storage,
 };
 
 const rootReducer = combineReducers({
-  auth: persistReducer(authPersistConfig, auth)
+  login: persistReducer(loginPersistConfig, login)
 });
 
 const persistReducers = persistReducer(persistConfig, rootReducer);

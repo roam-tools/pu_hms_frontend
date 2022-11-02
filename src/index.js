@@ -7,14 +7,12 @@ import 'antd/dist/antd.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import './index.css';
 import { Provider } from "react-redux";
 import store from './store.js';
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import { App } from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-// import reportWebVitals from './reportWebVitals';
 
 let persistore = persistStore(store);
 
@@ -29,4 +27,3 @@ root.render(
 
 serviceWorkerRegistration.unregister();
 
-// reportWebVitals();
