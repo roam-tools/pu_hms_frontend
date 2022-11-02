@@ -1,38 +1,43 @@
 .puc-hero {
-    position: relative;
-    height: 500px;
-    width: 100vw;
-    background-image: linear-gradient(0deg, rgba(6, 6, 6, 0.60), rgba(6, 6, 6, 0.60)), url("../../../public/dist/images/puc-campus.jpg");
-    background-repeat: no-repeat, repeat center top;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
+  position: relative;
+  height: 500px;
+  width: 100vw;
+  background-image: linear-gradient(
+      0deg,
+      rgba(6, 6, 6, 0.6),
+      rgba(6, 6, 6, 0.6)
+    ),
+    url("../../../public/dist/images/puc-campus.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
 }
 
 .puc-hero-content {
-    position: absolute;
-    top: 10%;
-    -webkit-transform: translate(-50%, -50%);  
-    transform: translate(-50%, -50%);  
-    text-align: center;
+  position: absolute;
+  top: 10%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .puc-hero-content p {
-    color: #fff;
-    margin: 0;
-    font-size: 70px;
+  color: #fff;
+  margin: 0;
+  font-size: 70px;
 }
 
 @media screen and (max-width: 768px) {
-    .puc-hero {
-        height: 400px;
-    }
+  .puc-hero {
+    height: 400px;
+  }
 
-    .puc-hero-content p {
-        font-size: 30px;
-    }
+  .puc-hero-content p {
+    font-size: 30px;
+  }
 
-    .puc-hero-content {
-        top: 20%;
-    }
+  .puc-hero-content {
+    top: 20%;
+  }
 }
