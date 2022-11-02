@@ -1,15 +1,5 @@
 .puc-hero {
   position: relative;
-  height: 500px;
-  width: 100vw;
-  background-image: linear-gradient(
-      0deg,
-      rgba(6, 6, 6, 0.6),
-      rgba(6, 6, 6, 0.6)
-    ),
-    url("../../../public/dist/images/puc-campus.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
   display: flex;
   flex-direction: column;
 }
