@@ -1,0 +1,61 @@
+.puc-navbar {
+    position: relative;
+    width: 100%;
+    min-height: 64px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px;
+}
+
+.brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: #fff;
+}
+
+.brand span {
+    align-self: center;
+    font-size: 24px;
+    margin-left: 15px;
+}
+
+.puc-bg-white span{
+    color: #000;
+}
+
+.puc-navbar.puc-bg-white{
+    border-bottom: 1px solid #ccc;
+}
+
+.brand:hover {
+    color: #fff;
+}
+
+.bars,
+.avarter-sm {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .bars, .avarter-sm {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 5px;
+        cursor: pointer;
+    }
+
+    .puc-navbar-links {
+        display: none;
+    }
+
+    .brand span {
+        display: none;
+    }
+    .avarter {
+        margin-right: 15px;
+    }
+}
