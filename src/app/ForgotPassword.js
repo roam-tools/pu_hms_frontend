@@ -13,7 +13,7 @@ export const ForgotPassword = () => {
     setError("");
     try {
       setLoading(true);
-      const response = await http.post("student/password/request", values);
+      await http.post("student/password/request", values);
       navigate("/login");
       setLoading(false);
     } catch (error) {

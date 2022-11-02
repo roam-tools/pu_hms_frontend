@@ -17,7 +17,7 @@ export const AvailableRoom = ({ data }) => {
   const { student } = useSelector((state) => state.login);
   const [roomsData, setRoomsData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [bookingStatus, setBookingStatus] = useState(false);
+  const [, setBookingStatus] = useState(false);
   const [updateList, setUpdateList] = useState(false);
 
   useEffect(() => {}, [updateList]);
@@ -49,6 +49,7 @@ export const AvailableRoom = ({ data }) => {
       }
     };
     getRooms();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getRoomsAvailable = async (roomId) => {
@@ -86,9 +87,9 @@ export const AvailableRoom = ({ data }) => {
 
   const handleBooking = async (values) => {
     try {
-      setBookingStatus(true)
+      setBookingStatus(true);
       const response = await http.post("booking/book", values);
-      setBookingStatus(false)
+      setBookingStatus(false);
       console.log(response.data);
     } catch (error) {
       console.log(error);

@@ -7,6 +7,9 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
+import { AdminLayout } from "./app/admin/AdminLayout";
+import { AdminLogin } from "./app/admin/AdminLogin";
+import { KeyList } from "./app/admin/KeyList";
 import { Booking } from "./app/Booking";
 import { ForgotPassword } from "./app/ForgotPassword";
 import { Home } from "./app/Home";
@@ -52,6 +55,25 @@ export const App = () => {
             </LoginAuth>
           }
         />
+
+        <Route
+          path="/admin"
+          element={
+            <RequireAdmin>
+              <AdminLayout />
+            </RequireAdmin>
+          }
+        >
+          <Route path="/admin/keys" element={<KeyList />} />
+        </Route>
+        <Route
+          path="/admin/login"
+          element={
+            <LoginAuth>
+              <AdminLogin />
+            </LoginAuth>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
@@ -63,6 +85,17 @@ function RequireStudent({ children }) {
 
   if (!student.isLogin) {
     return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return children;
+}
+
+function RequireAdmin({ children }) {
+  let { manager } = useSelector((state) => state.login);
+  let location = useLocation();
+
+  if (!manager.isLogin) {
+    return <Navigate to="/admin/login" state={{ from: location }} replace />;
   }
 
   return children;
