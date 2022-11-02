@@ -1,13 +1,11 @@
 import { Card, Form, Input, Button, Alert } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import http from "../api";
 import { setStudent } from "../slices/login";
 
 export const Login = () => {
-  // const { state } = useLocation();
-  // console.log(state);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
