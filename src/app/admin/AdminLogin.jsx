@@ -21,7 +21,7 @@ export const AdminLogin = () => {
       sessionStorage.setItem("adminToken", JSON.stringify(response.data.token));
       dispatch(setManager(response.data.profile));
       setLoading(false);
-      navigate(-1);
+      navigate('/admin/keys');
     } catch (error) {
       setError(error.message);
       console.log(error);
