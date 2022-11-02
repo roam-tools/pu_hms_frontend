@@ -23,6 +23,7 @@ export const AdminLogin = () => {
       setLoading(false);
       navigate("/admin/keys");
     } catch (error) {
+      setLoading(false);
       setError(error.message);
       console.log(error);
     }
