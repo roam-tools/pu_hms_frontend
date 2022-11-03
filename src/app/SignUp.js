@@ -1,4 +1,4 @@
-import { Card, Col, Form, Input, Row, Select, Button, Alert, Tooltip } from "antd";
+import { Card, Col, Form, Input, Row, Select, Button, Alert } from "antd";
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import http from "../api";
@@ -128,15 +128,14 @@ export const SignUp = () => {
               },
             ]}
           >
-            <Tooltip title="Telephone number format 2332000001">
+            {/* <Tooltip title="Telephone number format 2332000001"> */}
               <Input
                 type="number"
                 placeholder="2332000001"
                 className="w-100"
                 controls={false}
               />
-            </Tooltip>
-            {/* <span>Format: 2332300000</span> */}
+            {/* </Tooltip> */}
           </Form.Item>
           <Form.Item
             label=""
