@@ -93,10 +93,10 @@ export const AvailableRoom = ({ data }) => {
     try {
       setBookingStatus(true);
       await http.post("booking/book", values);
-      setBookingStatus(false);
       navigate("/profile");
     } catch (error) {
       console.log(error);
+      setBookingStatus(false);
       setError(error.message);
     }
   };
