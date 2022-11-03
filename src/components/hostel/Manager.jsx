@@ -3,6 +3,7 @@ import React from "react";
 import "./hostel.css";
 
 export const Manager = ({ data }) => {
+  console.log(data)
   return (
     <Card className="manager intro-y" bodyStyle={{ padding: 0 }}>
       <div className="m-overlay"></div>
