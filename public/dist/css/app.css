@@ -1,0 +1,121 @@
+@import "./animation.css";
+@import "./button.css";
+@import "./bg.css";
+@import "./spacing.css";
+@import "./puc-text.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* padding-bottom: 20px; */
+  overflow-x: hidden;
+  background-color: #cecece;
+}
+
+.puc-hero {
+  height: 500px;
+  width: 100vw;
+  background-image: linear-gradient(
+      0deg,
+      rgba(6, 6, 6, 0.6),
+      rgba(6, 6, 6, 0.6)
+    ),
+    url("../images/puc-campus.jpg");
+    background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.signup,
+.login,
+.forgot-password {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/dist/images/puc-campus.jpg");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+}
+
+.profile-details {
+  min-height: 400px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 10px;
+  /* margin-top: 40px; */
+}
+
+.booking-info {
+  background-color: #04276c !important;
+  color: #fff !important;
+}
+
+.my-room-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.my-room-info p {
+  margin: 0;
+  margin-left: 20px;
+}
+
+.my-room-info i,
+.my-room-info p {
+  align-self: center;
+}
+
+.room-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.room-name,
+.room-bed-detail,
+.room-hostel-name {
+  color: #fff;
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #04276c;
+  border-radius: 10px;
+}
+
+.ant-table .ant-table-container .ant-table-content table thead.ant-table-thead {
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+  .profile-details {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+    margin-top: 0;
+  }
+
+  .booking-info {
+    min-height: 350px;
+    margin-top: 40px;
+  }
+}
