@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import http from '../api'
 import { Footer } from '../components/footer/Footer'
-import { Hero } from '../components/hero/Hero'
+import { Hero } from '../components/heros/Hero'
 import { HostelLIst } from '../components/hostels/HostelLIst'
 import Spinner from '../components/spinner/Spinner'
 
