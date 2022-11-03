@@ -1,11 +1,12 @@
 import { Card, Col, Form, Input, Row, Select, Button, Alert } from "antd";
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import http from "../api";
 
 const { Option } = Select;
 
 export const SignUp = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -19,6 +20,7 @@ export const SignUp = () => {
         phone_number: `+${values.phone_number}`,
       });
       setLoading(false);
+      navigate("/login");
     } catch (error) {
       setLoading(false);
       setError(error.message);
@@ -129,12 +131,12 @@ export const SignUp = () => {
             ]}
           >
             {/* <Tooltip title="Telephone number format 2332000001"> */}
-              <Input
-                type="number"
-                placeholder="2332000001"
-                className="w-100"
-                controls={false}
-              />
+            <Input
+              type="number"
+              placeholder="2332000001"
+              className="w-100"
+              controls={false}
+            />
             {/* </Tooltip> */}
           </Form.Item>
           <Form.Item
