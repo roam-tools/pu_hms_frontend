@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { AdminLayout } from "./app/admin/AdminLayout";
 import { AdminLogin } from "./app/admin/AdminLogin";
+import { AdminProfile } from "./app/admin/AdminProfile";
 import { Bookings } from "./app/admin/Bookings";
 import { KeyList } from "./app/admin/KeyList";
 import { KeyLogs } from "./app/admin/KeyLogs";
@@ -64,7 +65,7 @@ export const App = () => {
           path="/admin"
           element={
             <RequireAdmin>
-              <AdminLayout />
+            <AdminLayout />
             </RequireAdmin>
           }
         >
@@ -73,6 +74,7 @@ export const App = () => {
           <Route path="/admin/bookings" element={<Bookings />} />
           <Route path="/admin/logs" element={<KeyLogs />} />
           <Route path="/admin/rooms" element={<AdminRooms />} />
+          <Route path="/admin/profile" element={<AdminProfile />} />
         </Route>
         <Route
           path="/admin/login"

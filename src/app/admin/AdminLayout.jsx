@@ -57,10 +57,18 @@ const items = [
   getItem("Settings", "sub1", <ToolOutlined />, [
     getItem(<Link to="/admin/profile">Profile</Link>, "admin/profile"),
     getItem(<Link to="/admin/logs">Key logs</Link>, "/admin/logs"),
-    getItem(<Link to="/admin/logout">Logout</Link>, "/admin/logout"),
   ]),
   getItem(
-    <Link to="/admin/logout">Logout</Link>,
+    <span
+      onClick={() => {
+        sessionStorage.clear();
+        localStorage.clear();
+        window.location.reload();
+        // dispatch(removeManager());
+      }}
+    >
+      Logout
+    </span>,
     "/logout",
     <PoweroffOutlined />
   ),
@@ -80,6 +88,7 @@ const rootSubmenuKeys = [
 export const AdminLayout = () => {
   //   const error = useError();
   //   const setError = useSetError();
+
 
   const { pathname } = useLocation();
 
@@ -113,6 +122,12 @@ export const AdminLayout = () => {
     }
   };
 
+  // function logout() {
+  //   sessionStorage.clear();
+  //   localStorage.clear();
+  //   dispatch(removeManager());
+  // };
+
   return (
     <Fragment>
       <Layout
@@ -136,11 +151,7 @@ export const AdminLayout = () => {
           }}
         >
           <div className="logo">
-            <img
-              src="../../../public/dist/images/puclogo2.png"
-              alt="logo"
-              width={80}
-            />
+            <img src="./puclogo2.png" alt="logo" width={80} />
           </div>
           {!collapsed && <div className="side-title">Navigation</div>}
           <Menu
