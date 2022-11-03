@@ -135,7 +135,7 @@ export const Profile = () => {
               <p>{profileInfo?.profile?.email_address}</p>
             </Card>
             <Card className="booking-info intro-y">
-              {Object.keys(profileInfo).length < 0 ? (
+              {Object.keys(profileInfo).length > 0 ? (
                 <Empty
                   imageStyle={{
                     height: "100%",
