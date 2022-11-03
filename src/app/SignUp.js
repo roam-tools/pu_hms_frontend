@@ -19,8 +19,8 @@ export const SignUp = () => {
         ...values,
         phone_number: `+${values.phone_number}`,
       });
-      setLoading(false);
       navigate("/login");
+      // setLoading(false);
     } catch (error) {
       setLoading(false);
       setError(error.message);
