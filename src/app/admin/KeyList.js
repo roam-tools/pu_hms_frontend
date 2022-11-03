@@ -12,7 +12,7 @@ import {
 } from "antd";
 import React, { Fragment, useEffect, useState } from "react";
 import { UserOutlined, CalendarOutlined } from "@ant-design/icons";
-import http from "../../api";
+import http from "../../api2";
 import moment from "moment";
 
 const { Search } = Input;

@@ -27,6 +27,7 @@ export const Booking = () => {
           retry: 100,
           retryDelay: 3000,
         });
+
         const { hostel, manager, facilities, rooms } = response.data;
         setHostel({ hostel, manager, facilities, rooms });
         setHostels(response2.data);
@@ -51,9 +52,12 @@ export const Booking = () => {
             <Navbar className="container puc-navbar px-0" />
           </div>
           <div className="container p-0">
-            <HostelDetail data={hostel.hostel} facilities={hostel.facilities} />
-            <AvailableRoom data={hostel.rooms} />
-            <Manager data={hostel.hostel} />
+            <HostelDetail
+              data={hostel?.hostel}
+              facilities={hostel?.facilities}
+            />
+            <AvailableRoom data={hostel?.rooms} />
+            <Manager data={hostel?.manager} hostel={hostel?.hostel} />
           </div>
           <HostelVerticalScrol hostels={hostels} title="Other Hostels" />
           <Footer />

@@ -1,6 +1,6 @@
 import { Avatar, Input, PageHeader, Space, Table } from "antd";
 import React, { Fragment, useEffect, useState } from "react";
-import http from "../../api";
+import http from "../../api2";
 
 const { Search } = Input;
 

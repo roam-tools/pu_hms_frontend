@@ -1,7 +1,7 @@
 import { Input, PageHeader, Space, Table } from "antd";
 import moment from "moment";
 import React, { Fragment, useEffect, useState } from "react";
-import http from "../../api";
+import http from "../../api2";
 
 const { Search } = Input;
 

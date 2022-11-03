@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import http from "../../api";
+import http from "../../api2";
 import { setManager } from "../../slices/login";
 import "./admin-login.css";
 
