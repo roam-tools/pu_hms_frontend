@@ -20,8 +20,9 @@ export const AvailableRoom = ({ data }) => {
   const { student } = useSelector((state) => state.login);
   const [roomsData, setRoomsData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [, setBookingStatus] = useState(false);
+  const [bookingStatus, setBookingStatus] = useState(false);
   const [updateList, setUpdateList] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {}, [updateList]);
 
@@ -96,6 +97,7 @@ export const AvailableRoom = ({ data }) => {
       navigate("/profile");
     } catch (error) {
       console.log(error);
+      setError(error.message);
     }
   };
 
@@ -180,6 +182,7 @@ export const AvailableRoom = ({ data }) => {
                     </div>
 
                     <Button
+                      loading={bookingStatus}
                       onClick={() =>
                         handleBooking({
                           room: room.room.id,
