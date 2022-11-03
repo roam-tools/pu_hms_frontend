@@ -153,19 +153,17 @@ export const Profile = () => {
                 </Empty>
               ) : (
                 <Fragment>
-                  <div className="p-overlay"></div>
-                  {/* <img src="" alt="hostel" /> */}
                   <div className="booking-room-detail">
                     <div>
                       <h2 className="room-hostel-name">
-                        {profileInfo.profile?.hostel?.name || "HOSTEL"}
+                        {profileInfo.profile?.hostel}
                       </h2>
                       <h4 className="room-name">
-                        {profileInfo.room?.room_id || "ROOM"}
+                        {profileInfo.profile?.room || "ROOM"}
                       </h4>
                       <h6 className="room-bed-detail">
-                        {profileInfo.bed?.bed_id || "BED A"}{" "}
-                        {profileInfo.bed?.bed_type || "TOP"}
+                        {profileInfo.profile?.bed}{" "}
+                        {profileInfo.profile?.bed}
                       </h6>
                     </div>
                     <div className="room-group" style={{ marginTop: 34 }}>
@@ -176,21 +174,21 @@ export const Profile = () => {
                       <div className="my-room-info">
                         <i className="fa fa-door-open fa-lg"></i>
                         <p>
-                          {profileInfo.room?.remaining || 0} /{" "}
-                          {profileInfo.room?.capacity || 0} beds remaining
+                          {profileInfo.room?.remaining} /{" "}
+                          {profileInfo.room?.capacity} beds remaining
                         </p>
                       </div>
                       <div className="my-room-info">
                         <i className="fa fa-credit-card fa-lg"></i>
                         <p>
                           {formatCurrency.format(
-                            profileInfo.room?.bed_price || 0
+                            profileInfo.room?.bed_price
                           )}
                         </p>
                       </div>
                       <div className="my-room-info">
                         <i className="fa fa-star fa-lg"></i>
-                        <p>{profileInfo.booking?.payment_status || "PAID"}</p>
+                        <p>{profileInfo.booking?.payment_status}</p>
                       </div>
                     </div>
                   </div>

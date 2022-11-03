@@ -57,6 +57,7 @@ export const Navbar = (props) => {
               <button
                 onClick={logout}
                 className="intro-x puc-btn puc-btn-danger"
+                style={{color:"white"}}
               >
                 Log Out
               </button>
