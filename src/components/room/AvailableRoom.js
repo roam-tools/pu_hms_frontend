@@ -2,6 +2,7 @@ import { Alert, Button, Card, Pagination, Select, Space } from "antd";
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import http from "../../api";
 import Spinner from "../spinner/Spinner";
 import "./room.css";
@@ -11,6 +12,8 @@ const { Option } = Select;
 const pageSize = 8;
 
 export const AvailableRoom = ({ data }) => {
+  const navigate = useNavigate();
+
   const [currentPage, setCurrentPage] = useState(1);
   const [minIndex, setMinIndex] = useState(0);
   const [maxIndex, setMaxIndex] = useState(pageSize);
@@ -88,9 +91,9 @@ export const AvailableRoom = ({ data }) => {
   const handleBooking = async (values) => {
     try {
       setBookingStatus(true);
-      const response = await http.post("booking/book", values);
+      await http.post("booking/book", values);
       setBookingStatus(false);
-      console.log(response.data);
+      navigate("/profile");
     } catch (error) {
       console.log(error);
     }
