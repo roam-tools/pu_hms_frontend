@@ -1,4 +1,4 @@
-import { Alert, Button, Card, Pagination, Select, Space } from "antd";
+import { Alert, Button, Card, message, Pagination, Select, Space } from "antd";
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -98,6 +98,11 @@ export const AvailableRoom = ({ data }) => {
       console.log(error);
       setBookingStatus(false);
       setError(error.message);
+      if (error.message.includes("401")) {
+        message.info("You already have a booking.");
+      } else {
+        message.error(error.message);
+      }
     }
   };
 
@@ -180,7 +185,6 @@ export const AvailableRoom = ({ data }) => {
                         ))}
                       </Select>
                     </div>
-
                     <Button
                       loading={bookingStatus}
                       onClick={() =>
