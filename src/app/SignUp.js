@@ -1,14 +1,4 @@
-import {
-  Card,
-  Col,
-  Form,
-  Input,
-  Row,
-  Select,
-  Button,
-  Alert,
-  InputNumber,
-} from "antd";
+import { Card, Col, Form, Input, Row, Select, Button, Alert, Tooltip } from "antd";
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import http from "../api";
@@ -20,14 +10,18 @@ export const SignUp = () => {
   const [error, setError] = useState("");
 
   const handleSignup = async (values) => {
+    console.log(values);
     setError("");
     try {
       setLoading(true);
-      await http.post("student/signup", values);
+      await http.post("student/signup", {
+        ...values,
+        phone_number: `+${values.phone_number}`,
+      });
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      setError("We could not process your request! Please try again.");
+      setError(error.message);
       console.log(error.message);
     }
   };
@@ -132,20 +126,17 @@ export const SignUp = () => {
                 required: true,
                 message: "Please input your phone_number!",
               },
-              {
-                pattern: /\d/g.length === 10,
-                message: "Please enter a valid phone number",
-              },
             ]}
           >
-            <InputNumber
-              type="number"
-              // prefix="+233"
-              placeholder="Telephone"
-              className="w-100"
-              controls={false}
-            />
-            <span>Format: 2332300000</span>
+            <Tooltip title="Telephone number format 2332000001">
+              <Input
+                type="number"
+                placeholder="2332000001"
+                className="w-100"
+                controls={false}
+              />
+            </Tooltip>
+            {/* <span>Format: 2332300000</span> */}
           </Form.Item>
           <Form.Item
             label=""
