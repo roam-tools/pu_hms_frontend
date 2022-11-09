@@ -73,7 +73,7 @@ export const Profile = () => {
   };
 
   const handleChange = (info) => {
-    
+
   };
 
   const props = {
@@ -129,11 +129,12 @@ export const Profile = () => {
                     setVisible(true);
                   }}
                   className="profile-action-btn"
+                  block
                 >
                   Change Password
                 </Button>
-                <Upload {...props}>
-                  <Button className="profile-action-btn">Change Avatar</Button>
+                <Upload {...props} block>
+                  <Button className="profile-action-btn" block>Change Avatar</Button>
                 </Upload>
               </div>
             </div>
@@ -170,6 +171,7 @@ export const Profile = () => {
 
                 {profileInfo?.booking?.payment_status === "COMPLETED" && (
                   <div className="booking-successful">
+
                     <div>
                       <span className="my-booking-title">My Room</span>
                       <h4 className="booking-successful-room-name">
@@ -183,6 +185,8 @@ export const Profile = () => {
                         {profileInfo.booking?.bed_type}{" "}
                       </h5>
                     </div>
+
+
                     <div className="booking-success-room">
                       <Space>
                         <i className="fa fa-user"></i>{" "}
@@ -208,25 +212,37 @@ export const Profile = () => {
                         <span>{profileInfo.booking?.payment_status}</span>
                       </Space>
                     </div>
+                  </div>
+                )}
+              </div>
+
+              <hr></hr>
+
+              <div className="booking-content">
+              {profileInfo?.booking?.payment_status === "COMPLETED" && (
+                  <div className="booking-successful-alt">
                     <div className="room-mates-row">
                       {profileInfo?.room?.mates?.map((mate, index) => (
                         <Fragment key={index}>
-                          <div>
-                            <i className="fa fa-user"></i>
+                          <Space><div>
                             <span>
-                              {mate.first_name} {mate.last_name}
+                            <i className="fa fa-user-circle"> </i> {mate.first_name} {mate.last_name} [{mate.student_id}]
                             </span>
                           </div>
+                          </Space>
+                          <Space>
                           <div>
                             <a href={"tel:" + mate.phone_number}>
                               <Button
                                 className="mate-call-btn"
                                 icon={<i className="fa fa-phone"></i>}
                               >
-                                {/* {mate.phone_number} */}
+                                {mate.phone_number}
                               </Button>
                             </a>
                           </div>
+                          </Space>
+                          
                         </Fragment>
                       ))}
                     </div>

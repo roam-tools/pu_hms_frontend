@@ -9,11 +9,8 @@ export const Hero = () => {
         <Navbar className="puc-navbar puc-bg-transparent" />
       </div>
       <div className="intro-y puc-hero-content">
-        <p>
-          Pentecost University Hostel
-          <br />
-          Portal
-        </p>
+        <h1>Pentecost University</h1>
+        <p>Acommodation Portal</p>
       </div>
     </div>
   );

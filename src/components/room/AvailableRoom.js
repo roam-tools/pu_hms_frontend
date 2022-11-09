@@ -161,13 +161,14 @@ export const AvailableRoom = ({ data }) => {
                     <br />
                     <Space>
                       <i className="fa fa-bed"></i>
-                      <span>{room.room.capacity}</span>
+                      <span>{room.room.remaining} out of {room.room.capacity} beds available</span>
                     </Space>
                     <br />
                     <br />
 
-                    <p>Price per bed/semester</p>
-                    <h3>{formatCurrency.format(room?.room?.bed_price || 0)}</h3>
+                    <p>Price for a bed/semester</p>
+                    <hr></hr>
+                    <h3>{formatCurrency.format( room?.room?.bed_price || 0)}</h3>
                     <br />
                     <div id="pbed" style={{ position: "relative" }}>
                       <Select
@@ -178,7 +179,7 @@ export const AvailableRoom = ({ data }) => {
                         style={{ width: "100%", marginBottom: 15 }}
                         onChange={(value) => handleChange(room.room.id, value)}
                         value={room.room.value}
-                        placeholder="Select bed"
+                        placeholder="Select a bed"
                       >
                         {room?.room?.beds?.map((item, index) => (
                           <Option
@@ -186,7 +187,7 @@ export const AvailableRoom = ({ data }) => {
                             value={item.id}
                             disabled={!item.is_available}
                           >
-                            {item.bed_id} {item.bed_type}
+                            {item.bed_id} : {item.bed_type}
                           </Option>
                         ))}
                       </Select>

@@ -14,7 +14,7 @@ export const HostelVerticalScrol = ({ hostels, title }) => {
 
   return (
     <div className="container p-0">
-      <h1 className="intro-y puc-hostels-header">{title || "Featured"}</h1>
+      <h1 className="intro-y puc-hostels-header">{title || "University Halls"}</h1>
 
       <div onMouseLeave={dragStop} className="puc-hostels-vertical">
         <ScrollMenu

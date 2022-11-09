@@ -10,12 +10,20 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+  float: left
+}
+
+.puc-hero-content h1 {
+  font-size: 90px;
+  font-weight: bolder;
+  color: #fff;
 }
 
 .puc-hero-content p {
   color: #fff;
   margin: 0;
-  font-size: 70px;
+  font-size: 60px;
+  
 }
 
 @media screen and (max-width: 768px) {
@@ -25,6 +33,11 @@
 
   .puc-hero-content p {
     font-size: 30px;
+  }
+
+  .puc-hero-content h1 {
+    font-size: 50px;
+    color: #fff;
   }
 
   .puc-hero-content {

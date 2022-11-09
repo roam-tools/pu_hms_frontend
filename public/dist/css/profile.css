@@ -110,6 +110,11 @@
   row-gap: 20px;
 }
 
+.booking-successful-alt {
+  display: grid;
+  row-gap: 20px;
+}
+
 .booking-successful-room-name,
 .booking-successful-hostel,
 .booking-successful-bed,
@@ -121,7 +126,7 @@
 .room-mates-row {
   width: 100%;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 10fr 2fr;
   row-gap: 10px;
 }
 

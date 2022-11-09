@@ -151,7 +151,7 @@ export const AdminLayout = () => {
           }}
         >
           <div className="logo">
-            <img src="./puclogo2.png" alt="logo" width={80} />
+            <img src="./public/dist/images/puclogo.png" alt="logo" />
           </div>
           {!collapsed && <div className="side-title">Navigation</div>}
           <Menu
