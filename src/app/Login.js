@@ -6,7 +6,6 @@ import http from "../api";
 import { setStudent } from "../slices/login";
 
 export const Login = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -53,7 +52,11 @@ export const Login = () => {
           minHeight: 350,
         }}
         actions={[
-          <NavLink to="/admin/login" className="ad-login">Admin</NavLink>
+          <div className="ad-login">
+            <NavLink to="/admin/login">
+              Admin
+            </NavLink>
+          </div>,
         ]}
       >
         <Form
