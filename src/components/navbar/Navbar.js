@@ -53,7 +53,7 @@ export const Navbar = (props) => {
                 onClick={logout}
                 className="intro-x"
                 style={{
-                  color: "white",
+                  color: "inherit",
                   marginRight: 15,
                   fontSize: 18,
                   paddingTop: 15,
