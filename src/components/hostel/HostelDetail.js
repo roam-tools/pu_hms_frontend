@@ -3,6 +3,11 @@ import React, { Fragment } from "react";
 import "./hostel.css";
 import ProgressiveImage from "react-progressive-graceful-image";
 
+let formatCurrency = new Intl.NumberFormat(undefined, {
+  style: "currency",
+  currency: "GHS",
+});
+
 export const HostelDetail = ({ data, facilities }) => {
   return (
     <Fragment>
@@ -33,7 +38,7 @@ export const HostelDetail = ({ data, facilities }) => {
           <br />
 
           <p>Price starts at:</p>
-          <h5>GHS 0.00</h5>
+          <h5>{formatCurrency.format(data?.bed_price || 0)}</h5>
           <p>per bed/semester</p>
 
           <br />

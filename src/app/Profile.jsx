@@ -72,7 +72,9 @@ export const Profile = () => {
     }
   };
 
-  const handleChange = (info) => {};
+  const handleChange = (info) => {
+    
+  };
 
   const props = {
     name: 'image',

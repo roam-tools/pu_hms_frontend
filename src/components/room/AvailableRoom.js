@@ -9,6 +9,12 @@ import "./room.css";
 
 const { Option } = Select;
 
+
+let formatCurrency = new Intl.NumberFormat(undefined, {
+  style: "currency",
+  currency: "GHS",
+});
+
 const pageSize = 8;
 
 export const AvailableRoom = ({ data }) => {
@@ -160,8 +166,8 @@ export const AvailableRoom = ({ data }) => {
                     <br />
                     <br />
 
-                    <p>Price per bed/per semester</p>
-                    <h3>{room?.room?.bed_price || 0.0}</h3>
+                    <p>Price per bed/semester</p>
+                    <h3>{formatCurrency.format(room?.room?.bed_price || 0)}</h3>
                     <br />
                     <div id="pbed" style={{ position: "relative" }}>
                       <Select
