@@ -17,24 +17,34 @@ const columns = [
     title: "Student Id",
     dataIndex: "student_id",
     key: "student_id",
+    sorter: (a, b) => a.student_id.length - b.student_id.length,
+    sortDirections: ["descend"],
   },
   {
-    title: "Full Name",
-    dataIndex: "name",
-    key: "name",
-    render: (_, record) => (
-      <div>{record.first_name + " " + record.last_name}</div>
-    ),
+    title: "First Name",
+    dataIndex: "first_name",
+    sorter: (a, b) => a.first_name.length - b.first_name.length,
+    sortDirections: ["descend"],
+  },
+  {
+    title: "Last Name",
+    dataIndex: "last_name",
+    sorter: (a, b) => a.last_name.length - b.last_name.length,
+    sortDirections: ["descend"],
   },
   {
     title: "Phone Number",
     dataIndex: "phone_number",
     key: "phone_number",
+    sorter: (a, b) => a.phone_number.length - b.phone_number.length,
+    sortDirections: ["descend"],
   },
   {
     title: "Email Address",
     dataIndex: "email_address",
     key: "email_address",
+    sorter: (a, b) => a.email_address.length - b.email_address.length,
+    sortDirections: ["descend"],
   },
   {
     title: "Last Login",
@@ -43,16 +53,18 @@ const columns = [
     render: (text) => (
       <div>{text ? moment(text).format("DD-MM-YYYY hh-mm-s a") : "Never"}</div>
     ),
+    sorter: (a, b) => a.last_login.length - b.last_login.length,
+    sortDirections: ["descend"],
   },
   {
-    title:"Actions",
-    render:(_, record)=>(
+    title: "Actions",
+    render: (_, record) => (
       <Space size="large">
         <Button icon={<i className="fa fa-envelope"></i>}></Button>
         <Button icon={<i className="fa fa-sms"></i>}></Button>
       </Space>
-    )
-  }
+    ),
+  },
 ];
 
 export const Students = () => {

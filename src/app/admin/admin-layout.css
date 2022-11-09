@@ -1,8 +1,12 @@
 .logo{
-    height: 64px;
-    text-align: center;
+    /* height: 64px; */
+    text-align: left;
     background: #fff;
-    /* border-bottom: 1px solid #ccc; */
+}
+
+.logo h4{
+    margin: 0;
+    padding: 15px 10px;
 }
 
 .side-title{

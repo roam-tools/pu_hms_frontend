@@ -2,7 +2,7 @@ import { Alert, Button, Form, Input } from "antd";
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import http from "../../api2";
 import { setManager } from "../../slices/login";
 import "./admin-login.css";
@@ -24,7 +24,7 @@ export const AdminLogin = () => {
       navigate("/admin/keys");
     } catch (error) {
       setLoading(false);
-      setError(error.message);
+      setError(error.response.data.message);
       console.log(error);
     }
   };
@@ -36,13 +36,22 @@ export const AdminLogin = () => {
           style={{
             background: "#04276c",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             fontSize: 30,
             color: "white",
           }}
         >
-          ADMIN LOGIN
+          <NavLink to="/">
+            <img
+              src="/dist/images/logo2.png"
+              alt="logo"
+              width={150}
+              className="intro-y"
+            />
+          </NavLink>
+          HOSTEL MANAGER
         </div>
         <div
           style={{
@@ -53,7 +62,13 @@ export const AdminLogin = () => {
           }}
         >
           <div>
-            {error && <Alert message={error} style={{ textAlign: "center" }} />}
+            {error && (
+              <Alert
+                type="error"
+                message={error}
+                style={{ textAlign: "center" }}
+              />
+            )}
           </div>
           <Form
             name="admin-login"

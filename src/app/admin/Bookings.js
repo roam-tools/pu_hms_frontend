@@ -60,6 +60,8 @@ const columns = [
     dataIndex: "payment_status",
     key: "payment_status",
     align: "center",
+    sorter: (a, b) => a.payment_status.length - b.payment_status.length,
+    sortDirections: ["descend"],
   },
 ];
 

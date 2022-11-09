@@ -55,7 +55,7 @@ const items = [
     <MessageOutlined />
   ),
   getItem("Settings", "sub1", <ToolOutlined />, [
-    getItem(<Link to="/admin/profile">Profile</Link>, "admin/profile"),
+    // getItem(<Link to="/admin/profile">Profile</Link>, "admin/profile"),
     getItem(<Link to="/admin/logs">Key logs</Link>, "/admin/logs"),
   ]),
   getItem(
@@ -151,7 +151,7 @@ export const AdminLayout = () => {
           }}
         >
           <div className="logo">
-            <img src="./public/dist/images/puclogo.png" alt="logo" />
+            <h4>PENTVARS</h4>
           </div>
           {!collapsed && <div className="side-title">Navigation</div>}
           <Menu

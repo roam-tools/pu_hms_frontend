@@ -24,7 +24,7 @@ export const Login = () => {
       navigate(-1);
     } catch (error) {
       setLoading(false);
-      setError("We could not process your request! Please try again.");
+      setError(error.response.data.message);
       console.log(error.message);
     }
   };
@@ -52,6 +52,9 @@ export const Login = () => {
           borderRadius: "10px",
           minHeight: 350,
         }}
+        actions={[
+          <NavLink to="/admin/login">Admin</NavLink>
+        ]}
       >
         <Form
           name="signup-form"
