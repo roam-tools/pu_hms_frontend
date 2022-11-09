@@ -36,13 +36,28 @@ export const Navbar = (props) => {
           <span className="intro-x">Pentecost University</span>
         </NavLink>
         {student.isLogin ? (
-          <NavLink to="/profile">
-            <Avatar
-              size={45}
-              src={student?.image}
-              className="intro-x avarter-sm"
-            />
-          </NavLink>
+          <div className="islogin-wrap">
+            <span
+              onClick={logout}
+              className="intro-x"
+              style={{
+                color: "inherit",
+                marginRight: 30,
+                fontSize: 18,
+                paddingTop: 15,
+                cursor: "pointer",
+              }}
+            >
+              Logout
+            </span>
+            <NavLink to="/profile">
+              <Avatar
+                size={45}
+                src={student?.image}
+                className="intro-x avarter-sm"
+              />
+            </NavLink>
+          </div>
         ) : (
           <i className="intro-x fa fa-bars bars fa-3x" onClick={openMenu}></i>
         )}

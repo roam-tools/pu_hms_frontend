@@ -39,6 +39,11 @@
     display: none;
 }
 
+.islogin-wrap{
+    display: flex;
+    flex-direction: row;
+}
+
 @media screen and (max-width: 768px) {
     .bars, .avarter-sm {
         display: block;
