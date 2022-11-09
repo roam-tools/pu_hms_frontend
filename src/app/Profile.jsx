@@ -397,7 +397,7 @@ export const Profile = () => {
           )}
           {modalTitle.toLocaleLowerCase() === "complaint" && (
             <Form.Item
-              name="complaint"
+              name="message"
               rules={[
                 {
                   required: true,
