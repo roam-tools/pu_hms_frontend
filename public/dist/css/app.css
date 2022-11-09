@@ -107,6 +107,34 @@ img {
   text-transform: uppercase;
 }
 
+.statistics{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 15px;
+  margin-bottom: 30px;
+}
+
+.statistics .stat-card{
+  height: 150px;
+  border: 1px solid #cecece;
+}
+
+.statistics .stat-card .stat-card-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+  border-bottom: 1px solid #cecece;
+  margin-bottom: 15px;
+  padding: 0 0 15px 0;
+}
+
+.statistics .stat-card .stat-card-body{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 @media screen and (max-width: 768px) {
   .profile-details {
     grid-template-columns: 1fr;

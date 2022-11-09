@@ -12,6 +12,7 @@ import { AdminLogin } from "./app/admin/AdminLogin";
 import { AdminProfile } from "./app/admin/AdminProfile";
 import { Bookings } from "./app/admin/Bookings";
 import { Complaints } from "./app/admin/Complaints";
+import { Dashboard } from "./app/admin/Dashboard";
 import { KeyList } from "./app/admin/KeyList";
 import { KeyLogs } from "./app/admin/KeyLogs";
 import { AdminRooms } from "./app/admin/Rooms";
@@ -70,6 +71,7 @@ export const App = () => {
             </RequireAdmin>
           }
         >
+          <Route index element={<Dashboard />} />
           <Route path="/admin/students" element={<Students />} />
           <Route path="/admin/keys" element={<KeyList />} />
           <Route path="/admin/bookings" element={<Bookings />} />
