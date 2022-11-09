@@ -36,11 +36,13 @@ export const Navbar = (props) => {
           <span className="intro-x">Pentecost University</span>
         </NavLink>
         {student.isLogin ? (
-          <Avatar
-            size={45}
-            src="/dist/images/puc-campus-1.jpg"
-            className="intro-x avarter-sm"
-          />
+          <NavLink to="/profile">
+            <Avatar
+              size={45}
+              src="/dist/images/puc-campus-1.jpg"
+              className="intro-x avarter-sm"
+            />
+          </NavLink>
         ) : (
           <i className="intro-x fa fa-bars bars fa-3x" onClick={openMenu}></i>
         )}
@@ -57,7 +59,7 @@ export const Navbar = (props) => {
               <button
                 onClick={logout}
                 className="intro-x puc-btn puc-btn-danger"
-                style={{color:"white"}}
+                style={{ color: "white" }}
               >
                 Log Out
               </button>
