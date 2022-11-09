@@ -1,0 +1,142 @@
+.profile-container {
+  padding-top: 30px;
+  background-color: #d6eeff !important;
+  flex-grow: 1;
+}
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  min-height: 302px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: white;
+}
+.profile-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+
+.booking-card {
+  color: #ffffff;
+  background-color: #0a223d;
+  width: 450px;
+  min-height: 302px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-content {
+  padding: 20px;
+}
+
+.booking-actions {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 15px;
+}
+
+.profile-action-btn {
+  background-color: #0a223d !important;
+  color: #fff !important;
+  height: 40px !important;
+  border-radius: 10px !important;
+}
+
+.booking-btn {
+  height: 50px !important;
+  background-color: #c58200 !important;
+  border: 1px solid #c58200 !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+}
+
+.my-booking-title {
+  text-decoration: underline;
+}
+
+.empty-booking {
+  color: #fff;
+  margin-top: 20px;
+}
+
+.cancel-btn {
+  background: #ec1f46 !important;
+  border: 1px solid #ec1f46 !important;
+  color: #fff !important;
+  height: 50px !important;
+  border-radius: 10px !important;
+}
+
+.pay-btn {
+  background: #0c7e02 !important;
+  border: 1px solid #0c7e02 !important;
+  color: #fff !important;
+  height: 50px !important;
+  border-radius: 10px !important;
+}
+
+.booking-available-room,
+.booking-available-hostel,
+.booking-available-bed,
+.booking-available-expiration {
+  margin: 0;
+  color: #fff !important;
+}
+
+.booking-available-bed {
+  margin-top: 15px;
+}
+
+.booking-available-expiration {
+  margin-top: 15px;
+}
+
+.booking-successful {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 20px;
+}
+
+.booking-successful-room-name,
+.booking-successful-hostel,
+.booking-successful-bed,
+.booking-successful-room {
+  margin: 0;
+  color: #fff !important;
+}
+
+.room-mates-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  row-gap: 10px;
+}
+
+.mate-call-btn {
+  background-color: green;
+  border: 1px solid green;
+  /* margin-left: 100px; */
+}
+
+@media screen and (max-width: 768px) {
+  .profile-card,
+  .booking-card {
+    width: 90%;
+  }
+  .profile-actions {
+    grid-template-columns: 1fr;
+  }
+}

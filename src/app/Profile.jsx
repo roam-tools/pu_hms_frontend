@@ -1,26 +1,28 @@
 import {
   Avatar,
-  Button,
-  Card,
   Col,
-  Empty,
   Form,
   Modal,
   Row,
   Input,
   Upload,
+  Button,
+  Space,
 } from "antd";
-import React, { Fragment, useEffect } from "react";
-import { useState } from "react";
+import moment from "moment";
+import React, { Fragment, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import http from "../api";
 import { Navbar } from "../components/navbar/Navbar";
 import Spinner from "../components/spinner/Spinner";
+// import profileData from "./profileData.json";
 
 let formatCurrency = new Intl.NumberFormat(undefined, {
   style: "currency",
   currency: "GHS",
 });
+
+const { TextArea } = Input;
 
 export const Profile = () => {
   const [form] = Form.useForm();
@@ -37,12 +39,10 @@ export const Profile = () => {
           retry: 50,
           retryDelay: 3000,
         });
-        console.log("profile info>>>>>>>>", response.data);
         setProfileInfo(response.data);
         setLoading(false);
       } catch (error) {
         console.log(error);
-        // setError(error.message);
       }
     };
     getProfile();
@@ -52,9 +52,20 @@ export const Profile = () => {
     try {
       if (modalTitle.toLowerCase() === "update profile") {
         await http.patch("student/update", values);
-      } else {
+      } else if (modalTitle.toLowerCase() === "change password") {
         await http.post("student/password/change", values);
+      } else {
+        await http.post("student/complaint", values);
       }
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const cancelBooking = async () => {
+    try {
+      await http.get("booking/cancel");
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -66,7 +77,8 @@ export const Profile = () => {
   const props = {
     action: `${process.env.REACT_APP_BASE_URL}photo`,
     headers: {
-      Authorization: "Bearer " + JSON.parse(localStorage.getItem("userToken")),
+      Authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("userToken")),
     },
     onChange: handleChange,
     multiple: false,
@@ -78,150 +90,191 @@ export const Profile = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <Fragment>
+        <div
+          style={{ height: "100vh", display: "flex", flexDirection: "column" }}
+        >
           <div
             className="puc-bg-white m-mb p-0"
             style={{ borderBottom: "1px solid #ccc" }}
           >
             <Navbar className="container puc-navbar px-0" />
           </div>
-          <h3 style={{ margin: "20px 0", textAlign: "center" }}>PROFILE</h3>
-          <div className="container profile-details p-0">
-            <Card
-              title={profileInfo?.profile?.student_id || "Student Id"}
-              className="intro-y"
-              actions={[
-                <div
+          <div className="profile-container">
+            <div className="intro-y profile-card">
+              <h2>{profileInfo.profile?.student_id}</h2>
+              <Avatar src={profileInfo.profile?.image} size={100} />
+              <h4>
+                {profileInfo.profile?.first_name}{" "}
+                {profileInfo.profile?.last_name}
+              </h4>
+              <p>{profileInfo.profile?.email_address}</p>
+              <br />
+              <div className="profile-actions">
+                <Button
                   onClick={() => {
-                    setModalTitle("Update Profile");
+                    setModalTitle("update profile");
                     setVisible(true);
                   }}
-                  style={{ display: "grid", gridTemplateColumns: "1fr" }}
+                  className="profile-action-btn"
+                  block
                 >
-                  <div>
-                    <i className="fa fa-edit"></i>
-                  </div>
-                  <div>Profile</div>
-                </div>,
-                <div
+                  Update Profile
+                </Button>
+                <Button
                   onClick={() => {
                     setModalTitle("change password");
                     setVisible(true);
                   }}
-                  style={{ display: "grid", gridTemplateColumns: "1fr" }}
+                  className="profile-action-btn"
                 >
-                  <div>
-                    <i className="fa fa-lock"></i>
-                  </div>
-                  <div>Password</div>
-                </div>,
+                  Change Password
+                </Button>
                 <Upload {...props}>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr" }}>
-                    <div>
-                      <i className="fa fa-image"></i>
-                    </div>
-                    <div>Avatar</div>
+                  <Button className="profile-action-btn">Change Avatar</Button>
+                </Upload>
+              </div>
+            </div>
+            <div className="intro-y booking-card">
+              <div className="booking-content">
+                {!profileInfo?.hasOwnProperty("booking") && (
+                  <div className="no-booking-available">
+                    <span className="my-booking-title">My booking</span>
+                    <h3 className="empty-booking">No booking available</h3>
                   </div>
-                </Upload>,
-              ]}
-              style={{ textAlign: "center", height: "auto" }}
-              bodyStyle={{ height: "340px" }}
-            >
-              <Avatar src={profileInfo.profile?.image} size={100} />
-              <h4>
-                {profileInfo?.profile?.first_name}{" "}
-                {profileInfo?.profile?.last_name}
-              </h4>
-              <p>{profileInfo?.profile?.email_address}</p>
-            </Card>
-            <Card className="booking-info intro-y">
-              {Object.keys(profileInfo).length <= 0 ? (
-                <Empty
-                  imageStyle={{
-                    height: "100%",
-                  }}
-                  description={
-                    <p>
-                      You have no bookings yet. <br />
-                      Our booking process is made easy.
+                )}
+
+                {profileInfo?.booking?.payment_status === "PENDING" && (
+                  <div className="booking-available">
+                    <span className="my-booking-title">My booking</span>
+                    <h4 className="booking-available-room">
+                      {profileInfo.booking?.room}
+                    </h4>
+                    <p className="booking-available-hostel">
+                      {profileInfo.booking?.hostel}
                     </p>
-                  }
-                >
-                  <Button type="primary">
-                    <NavLink to="/">BOOK NOW</NavLink>
-                  </Button>
-                </Empty>
-              ) : (
-                <Fragment>
-                  <div className="booking-room-detail">
+                    <h3 className="booking-available-bed">
+                      {profileInfo.booking?.bed_id}{" "}
+                      {profileInfo.booking?.bed_type}{" "}
+                    </h3>
+                    <br />
+                    <span className="booking-available-expiration">
+                      Expires at: {moment(profileInfo.booking?.expires_at).format("DD-MM-YYYY hh:mm:s A")}
+                    </span>
+                    <br />
+                    <br />
+                  </div>
+                )}
+
+                {profileInfo?.booking?.payment_status === "COMPLETED" && (
+                  <div className="booking-successful">
                     <div>
-                      <h2 className="room-hostel-name">
-                        {profileInfo.profile?.hostel}
-                      </h2>
-                      <h4 className="room-name">
-                        {profileInfo.profile?.room || "ROOM"}
+                      <span className="my-booking-title">My Room</span>
+                      <h4 className="booking-successful-room-name">
+                        {profileInfo.booking?.room}
                       </h4>
-                      <h6 className="room-bed-detail">
-                        {profileInfo.profile?.bed}{" "}
-                        {profileInfo.profile?.bed}
-                      </h6>
+                      <p className="booking-successful-hostel">
+                        {profileInfo.booking?.hostel}
+                      </p>
+                      <h5 className="booking-successful-bed">
+                        {profileInfo.booking?.bed_id}{" "}
+                        {profileInfo.booking?.bed_type}{" "}
+                      </h5>
                     </div>
-                    <div className="room-group" style={{ marginTop: 34 }}>
-                      <div className="my-room-info">
-                        <i className="fa fa-bed fa-lg"></i>
-                        <p>{profileInfo.room?.capacity} in a room</p>
-                      </div>
-                      <div className="my-room-info">
-                        <i className="fa fa-door-open fa-lg"></i>
-                        <p>
-                          {profileInfo.room?.remaining} /{" "}
-                          {profileInfo.room?.capacity} beds remaining
-                        </p>
-                      </div>
-                      <div className="my-room-info">
-                        <i className="fa fa-credit-card fa-lg"></i>
-                        <p>
+                    <div className="booking-success-room">
+                      <Space>
+                        <i className="fa fa-user"></i>{" "}
+                        <span>{profileInfo.room?.capacity} IN ROOM</span>
+                      </Space>
+                      <Space>
+                        <i className="fa fa-bed"></i>{" "}
+                        <span>
+                          {profileInfo.room?.remaining} BEDS AVAILABLE/
+                          {profileInfo.room?.capacity}
+                        </span>
+                      </Space>
+                      <Space>
+                        <i className="fa fa-credit-card"></i>{" "}
+                        <span>
                           {formatCurrency.format(
-                            profileInfo.room?.bed_price
+                            profileInfo.room?.bed_price || 0
                           )}
-                        </p>
-                      </div>
-                      <div className="my-room-info">
-                        <i className="fa fa-star fa-lg"></i>
-                        <p>{profileInfo.booking?.payment_status}</p>
-                      </div>
+                        </span>
+                      </Space>
+                      <Space>
+                        <i className="fa fa-star"></i>{" "}
+                        <span>{profileInfo.booking?.payment_status}</span>
+                      </Space>
+                    </div>
+                    <div className="room-mates-row">
+                      {profileInfo?.room?.mates?.map((mate, index) => (
+                        <Fragment key={index}>
+                          <div>
+                            <i className="fa fa-user"></i>
+                            <span>
+                              {mate.first_name} {mate.last_name}
+                            </span>
+                          </div>
+                          <div>
+                            <a href={"tel:" + mate.phone_number}>
+                              <Button
+                                className="mate-call-btn"
+                                icon={<i className="fa fa-phone"></i>}
+                              >
+                                {/* {mate.phone_number} */}
+                              </Button>
+                            </a>
+                          </div>
+                        </Fragment>
+                      ))}
                     </div>
                   </div>
-                  <div className="room-mate">
-                    <p
-                      style={{
-                        margin: 0,
-                        marginTop: 20,
-                        color: "white",
-                      }}
-                    >
-                      ROOM MATES
-                    </p>
-                    {profileInfo.room?.mates.map((mate, index) => (
-                      <div key={index} className="room-room-info">
-                        <i className="fa fa-user fa-lg"></i>
-                        <p className="room-mate-name">
-                          {mate.first_name} {mate.last_name}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </Fragment>
-              )}
-            </Card>
+                )}
+              </div>
+
+              <div className="booking-actions">
+                {!profileInfo?.hasOwnProperty("booking") && (
+                  <NavLink to="/">
+                    <Button block size="large" className="booking-btn">
+                      Book A Room
+                    </Button>
+                  </NavLink>
+                )}
+                {profileInfo.booking?.payment_status === "PENDING" && (
+                  <Button
+                    className="cancel-btn"
+                    onClick={cancelBooking}
+                    disabled
+                  >
+                    Cancel
+                  </Button>
+                )}
+                {profileInfo?.hasOwnProperty("room") && (
+                  <Button
+                    onClick={() => {
+                      setModalTitle("complaint");
+                      setVisible(true);
+                    }}
+                    block
+                    size="large"
+                    className="booking-btn"
+                  >
+                    Make Complaint
+                  </Button>
+                )}
+              </div>
+            </div>
+            <br />
+            <br />
+            <br />
           </div>
-        </Fragment>
+        </div>
       )}
       <Modal
         title={modalTitle.toUpperCase()}
         visible={visible}
         onCancel={() => setVisible(false)}
         okText="Submit"
+        centered={true}
         onOk={() => {
           form
             .validateFields()
@@ -248,7 +301,6 @@ export const Profile = () => {
             <>
               <Form.Item
                 name="old_password"
-                // label="Current Password"
                 rules={[
                   {
                     required: true,
@@ -260,7 +312,6 @@ export const Profile = () => {
               </Form.Item>
               <Form.Item
                 name="new_password"
-                // label="New Password"
                 rules={[
                   {
                     required: true,
@@ -284,7 +335,6 @@ export const Profile = () => {
                 <Col xs={24} sm={24} lg={12}>
                   <Form.Item
                     name="first_name"
-                    // label="First Name"
                     rules={[
                       {
                         required: true,
@@ -298,7 +348,6 @@ export const Profile = () => {
                 <Col xs={24} sm={24} lg={12}>
                   <Form.Item
                     name="last_name"
-                    // label="Last Name"
                     rules={[
                       {
                         required: true,
@@ -320,7 +369,6 @@ export const Profile = () => {
                 <Col xs={24} sm={24} lg={12}>
                   <Form.Item
                     name="phone_number"
-                    // label="Phone Number"
                     rules={[
                       {
                         required: true,
@@ -334,7 +382,6 @@ export const Profile = () => {
                 <Col xs={24} sm={24} lg={12}>
                   <Form.Item
                     name="email_address"
-                    // label="Email Address"
                     rules={[
                       {
                         required: true,
@@ -347,6 +394,19 @@ export const Profile = () => {
                 </Col>
               </Row>
             </Fragment>
+          )}
+          {modalTitle.toLocaleLowerCase() === "complaint" && (
+            <Form.Item
+              name="complaint"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your complaint!",
+                },
+              ]}
+            >
+              <TextArea rows={4} />
+            </Form.Item>
           )}
         </Form>
       </Modal>

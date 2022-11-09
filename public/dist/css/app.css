@@ -3,7 +3,7 @@
 @import "./bg.css";
 @import "./spacing.css";
 @import "./puc-text.css";
-
+@import './profile.css';
 * {
   box-sizing: border-box;
 }
