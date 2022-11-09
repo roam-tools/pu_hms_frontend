@@ -24,7 +24,7 @@ export const SignUp = () => {
     } catch (error) {
       setLoading(false);
       setError(error.message);
-      console.log(error.message);
+      console.log(error.response.data.message);
     }
   };
 
