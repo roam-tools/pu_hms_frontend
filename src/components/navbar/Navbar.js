@@ -39,7 +39,7 @@ export const Navbar = (props) => {
           <NavLink to="/profile">
             <Avatar
               size={45}
-              src="/dist/images/puc-campus-1.jpg"
+              src={student?.image}
               className="intro-x avarter-sm"
             />
           </NavLink>
@@ -49,20 +49,26 @@ export const Navbar = (props) => {
         <div className="puc-navbar-links">
           {student.isLogin ? (
             <>
+              <span
+                onClick={logout}
+                className="intro-x"
+                style={{
+                  color: "white",
+                  marginRight: 15,
+                  fontSize: 18,
+                  paddingTop: 15,
+                  cursor: "pointer",
+                }}
+              >
+                Logout
+              </span>
               <NavLink to="/profile" style={{ marginRight: "15px" }}>
                 <Avatar
                   size={50}
-                  src="/dist/images/puc-campus-1.jpg"
+                  src={student?.image}
                   className="intro-x avarter"
                 />
               </NavLink>
-              <button
-                onClick={logout}
-                className="intro-x puc-btn puc-btn-danger"
-                style={{ color: "white" }}
-              >
-                Log Out
-              </button>
             </>
           ) : (
             <>

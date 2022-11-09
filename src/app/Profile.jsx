@@ -75,6 +75,7 @@ export const Profile = () => {
   const handleChange = (info) => {};
 
   const props = {
+    name: 'image',
     action: `${process.env.REACT_APP_BASE_URL}photo`,
     headers: {
       Authorization:
@@ -183,13 +184,13 @@ export const Profile = () => {
                     <div className="booking-success-room">
                       <Space>
                         <i className="fa fa-user"></i>{" "}
-                        <span>{profileInfo.room?.capacity} IN ROOM</span>
+                        <span>{profileInfo.room?.capacity} IN A ROOM</span>
                       </Space>
                       <Space>
                         <i className="fa fa-bed"></i>{" "}
                         <span>
-                          {profileInfo.room?.remaining} BEDS AVAILABLE/
-                          {profileInfo.room?.capacity}
+                          {profileInfo.room?.remaining}/{profileInfo.room?.capacity} BEDS AVAILABLE
+                          
                         </span>
                       </Space>
                       <Space>

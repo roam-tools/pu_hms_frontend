@@ -11,6 +11,7 @@ import { AdminLayout } from "./app/admin/AdminLayout";
 import { AdminLogin } from "./app/admin/AdminLogin";
 import { AdminProfile } from "./app/admin/AdminProfile";
 import { Bookings } from "./app/admin/Bookings";
+import { Complaints } from "./app/admin/Complaints";
 import { KeyList } from "./app/admin/KeyList";
 import { KeyLogs } from "./app/admin/KeyLogs";
 import { AdminRooms } from "./app/admin/Rooms";
@@ -72,6 +73,7 @@ export const App = () => {
           <Route path="/admin/students" element={<Students />} />
           <Route path="/admin/keys" element={<KeyList />} />
           <Route path="/admin/bookings" element={<Bookings />} />
+          <Route path="/admin/complaints" element={<Complaints />} />
           <Route path="/admin/logs" element={<KeyLogs />} />
           <Route path="/admin/rooms" element={<AdminRooms />} />
           <Route path="/admin/profile" element={<AdminProfile />} />
