@@ -40,8 +40,7 @@
 }
 
 .islogin-wrap{
-    display: flex;
-    flex-direction: row;
+    display: none
 }
 
 @media screen and (max-width: 768px) {
@@ -62,5 +61,10 @@
     }
     .avarter {
         margin-right: 15px;
+    }
+
+    .islogin-wrap{
+        display: flex;
+        flex-direction: row;
     }
 }
