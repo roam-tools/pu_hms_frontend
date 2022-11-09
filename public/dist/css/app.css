@@ -118,4 +118,8 @@ img {
     min-height: 350px;
     margin-top: 40px;
   }
+
+  .ad-login{
+    display: none;
+  }
 }

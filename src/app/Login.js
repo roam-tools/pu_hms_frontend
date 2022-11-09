@@ -53,7 +53,7 @@ export const Login = () => {
           minHeight: 350,
         }}
         actions={[
-          <NavLink to="/admin/login">Admin</NavLink>
+          <NavLink to="/admin/login" className="ad-login">Admin</NavLink>
         ]}
       >
         <Form

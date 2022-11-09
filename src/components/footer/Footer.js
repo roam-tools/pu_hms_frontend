@@ -7,8 +7,8 @@ export const Footer = () => {
     <footer>
       2021 Pentecost University. All Rights Reserved<br />
       Powered By: ROAM Labs
-      <br />
-      <NavLink to="/admin/login">Admin</NavLink>
+      {/* <br /> */}
+      {/* <NavLink to="/admin/login">Admin</NavLink> */}
     </footer>
   )
 }
