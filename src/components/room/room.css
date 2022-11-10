@@ -28,6 +28,17 @@
   color: white;
 }
 
+.room-booking-btn {
+  background-color: #ffd137;
+  height: 50px;
+  border-radius: 10px;
+  color: #000;
+  font-size: 24px;
+  font-weight: bold;
+  border: 1px solid #ffd137;
+
+}
+
 @media screen and (max-width: 768px) {
   .room-list {
     grid-template-columns: 1fr;

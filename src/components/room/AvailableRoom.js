@@ -199,6 +199,7 @@ export const AvailableRoom = ({ data }) => {
                       }
                       block
                       disabled={!room?.room?.selected}
+                      className="room-booking-btn"
                     >
                       BOOK
                     </Button>
