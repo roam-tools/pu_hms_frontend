@@ -11,7 +11,7 @@ import {
 } from "antd";
 import moment from "moment";
 import React, { Fragment, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import http from "../api";
 import { Navbar } from "../components/navbar/Navbar";
 import Spinner from "../components/spinner/Spinner";
@@ -25,6 +25,7 @@ let formatCurrency = new Intl.NumberFormat(undefined, {
 const { TextArea } = Input;
 
 export const Profile = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [profileInfo, setProfileInfo] = useState({});
@@ -64,20 +65,26 @@ export const Profile = () => {
   };
 
   const cancelBooking = async () => {
-    try {
-      await http.get("booking/cancel");
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    }
+    Modal.confirm({
+      title: "Comfirm Booking",
+      content: <p>Are you sure you want to cancel this booking!</p>,
+      okText: "Yes",
+      cancelText: "No",
+      async onOk() {
+        try {
+          await http.get("booking/cancel");
+          window.location.reload();
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    });
   };
 
-  const handleChange = (info) => {
-
-  };
+  const handleChange = (info) => {};
 
   const props = {
-    name: 'image',
+    name: "image",
     action: `${process.env.REACT_APP_BASE_URL}photo`,
     headers: {
       Authorization:
@@ -104,6 +111,13 @@ export const Profile = () => {
           </div>
           <div className="profile-container">
             <div className="intro-y profile-card">
+              <div
+                onClick={() => navigate(-1)}
+                style={{ marginBottom: 20, cursor: "pointer" }}
+              >
+                {/* <i className="fa fa-arrow-left"></i> */}
+                Go Back
+              </div>
               <h2>{profileInfo.profile?.student_id}</h2>
               <Avatar src={profileInfo.profile?.image} size={100} />
               <h4>
@@ -134,7 +148,9 @@ export const Profile = () => {
                   Change Password
                 </Button>
                 <Upload {...props} block>
-                  <Button className="profile-action-btn" block>Change Avatar</Button>
+                  <Button className="profile-action-btn" block>
+                    Change Avatar
+                  </Button>
                 </Upload>
               </div>
             </div>
@@ -162,7 +178,10 @@ export const Profile = () => {
                     </h3>
                     <br />
                     <span className="booking-available-expiration">
-                      Expires at: {moment(profileInfo.booking?.expires_at).format("DD-MM-YYYY hh:mm:s A")}
+                      Expires at:{" "}
+                      {moment(profileInfo.booking?.expires_at).format(
+                        "DD-MM-YYYY hh:mm:s A"
+                      )}
                     </span>
                     <br />
                     <br />
@@ -171,7 +190,6 @@ export const Profile = () => {
 
                 {profileInfo?.booking?.payment_status === "COMPLETED" && (
                   <div className="booking-successful">
-
                     <div>
                       <span className="my-booking-title">My Room</span>
                       <h4 className="booking-successful-room-name">
@@ -186,7 +204,6 @@ export const Profile = () => {
                       </h5>
                     </div>
 
-
                     <div className="booking-success-room">
                       <Space>
                         <i className="fa fa-user"></i>{" "}
@@ -195,8 +212,8 @@ export const Profile = () => {
                       <Space>
                         <i className="fa fa-bed"></i>{" "}
                         <span>
-                          {profileInfo.room?.remaining}/{profileInfo.room?.capacity} BEDS AVAILABLE
-                          
+                          {profileInfo.room?.remaining}/
+                          {profileInfo.room?.capacity} BEDS AVAILABLE
                         </span>
                       </Space>
                       <Space>
@@ -219,30 +236,32 @@ export const Profile = () => {
               <hr></hr>
 
               <div className="booking-content">
-              {profileInfo?.booking?.payment_status === "COMPLETED" && (
+                {profileInfo?.booking?.payment_status === "COMPLETED" && (
                   <div className="booking-successful-alt">
                     <div className="room-mates-row">
                       {profileInfo?.room?.mates?.map((mate, index) => (
                         <Fragment key={index}>
-                          <Space><div>
-                            <span>
-                            <i className="fa fa-user-circle"> </i> {mate.first_name} {mate.last_name} [{mate.student_id}]
-                            </span>
-                          </div>
+                          <Space>
+                            <div>
+                              <span>
+                                <i className="fa fa-user-circle"> </i>{" "}
+                                {mate.first_name} {mate.last_name} [
+                                {mate.student_id}]
+                              </span>
+                            </div>
                           </Space>
                           <Space>
-                          <div>
-                            <a href={"tel:" + mate.phone_number}>
-                              <Button
-                                className="mate-call-btn"
-                                icon={<i className="fa fa-phone"></i>}
-                              >
-                                {mate.phone_number}
-                              </Button>
-                            </a>
-                          </div>
+                            <div>
+                              <a href={"tel:" + mate.phone_number}>
+                                <Button
+                                  className="mate-call-btn"
+                                  icon={<i className="fa fa-phone"></i>}
+                                >
+                                  {mate.phone_number}
+                                </Button>
+                              </a>
+                            </div>
                           </Space>
-                          
                         </Fragment>
                       ))}
                     </div>
@@ -264,7 +283,7 @@ export const Profile = () => {
                     onClick={cancelBooking}
                     // disabled
                   >
-                    Cancel
+                    CANCEL BOOKING
                   </Button>
                 )}
                 {profileInfo?.hasOwnProperty("room") && (

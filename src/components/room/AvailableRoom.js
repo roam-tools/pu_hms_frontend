@@ -118,6 +118,8 @@ export const AvailableRoom = ({ data }) => {
     Modal.confirm({
       title: "Comfirm Booking",
       content: <p>Are you sure you want to book this room?</p>,
+      okText:"Yes, book",
+      cancelText:"No, cancel",
       async onOk() {
         try {
           setBookingStatus(true);
