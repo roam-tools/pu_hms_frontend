@@ -137,7 +137,7 @@ export const SignUp = () => {
             {/* <Tooltip title="Telephone number format 2332000001"> */}
             <Input
               type="number"
-              placeholder="2332000001"
+              placeholder="233XXXXXXXXX"
               className="w-100"
               controls={false}
             />
