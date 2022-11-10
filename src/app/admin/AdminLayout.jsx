@@ -153,7 +153,7 @@ export const AdminLayout = () => {
           <div className="logo">
             <h4>PENTVARS</h4>
           </div>
-          {!collapsed && <div className="side-title">Navigation</div>}
+          {/* {!collapsed && <div className="side-title">Navigation</div>} */}
           <Menu
             theme="light"
             mode="inline"
