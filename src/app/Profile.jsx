@@ -262,7 +262,7 @@ export const Profile = () => {
                   <Button
                     className="cancel-btn"
                     onClick={cancelBooking}
-                    disabled
+                    // disabled
                   >
                     Cancel
                   </Button>
