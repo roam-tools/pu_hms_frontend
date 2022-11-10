@@ -11,7 +11,6 @@ export const SignUp = () => {
   const [error, setError] = useState("");
 
   const handleSignup = async (values) => {
-    console.log(values);
     setError("");
     try {
       setLoading(true);
@@ -20,11 +19,16 @@ export const SignUp = () => {
         phone_number: `+${values.phone_number}`,
       });
       navigate("/login");
-      // setLoading(false);
     } catch (error) {
       setLoading(false);
-      setError(error.message);
-      console.log(error.response.data.message);
+      if (error.message.includes("400")) {
+        setError(
+          error.response.data.phone_number || error.response.data.email_address
+        );
+      } else if (error.message.includes("409")) {
+        setError(error.response.data.message);
+      }
+      // console.log(error);
     }
   };
 
@@ -156,7 +160,6 @@ export const SignUp = () => {
             <Alert
               message={error}
               type="error"
-              showIcon
               style={{ margin: "10px 0", textAlign: "center" }}
             />
           )}
