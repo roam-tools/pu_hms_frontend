@@ -23,7 +23,11 @@ export const Login = () => {
       navigate(-1);
     } catch (error) {
       setLoading(false);
-      setError(error.response.data.message);
+      if (error.message.includes("404")) {
+        setError("Invalid email address!");
+      } else {
+        setError(error.response.data.message);
+      }
       console.log(error.message);
     }
   };
@@ -53,9 +57,7 @@ export const Login = () => {
         }}
         actions={[
           <div className="ad-login">
-            <NavLink to="/admin/login">
-              Admin
-            </NavLink>
+            <NavLink to="/admin/login">Admin</NavLink>
           </div>,
         ]}
       >

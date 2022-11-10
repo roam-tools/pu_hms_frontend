@@ -1,4 +1,13 @@
-import { Alert, Button, Card, message, Pagination, Select, Space } from "antd";
+import {
+  Alert,
+  Button,
+  Card,
+  message,
+  Pagination,
+  Select,
+  Space,
+  Modal,
+} from "antd";
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -9,11 +18,21 @@ import "./room.css";
 
 const { Option } = Select;
 
-
 let formatCurrency = new Intl.NumberFormat(undefined, {
   style: "currency",
   currency: "GHS",
 });
+
+// const config = {
+//   title: 'Use Hook!',
+//   content: (
+//     <>
+//       <ReachableContext.Consumer>{(name) => `Reachable: ${name}!`}</ReachableContext.Consumer>
+//       <br />
+//       <UnreachableContext.Consumer>{(name) => `Unreachable: ${name}!`}</UnreachableContext.Consumer>
+//     </>
+//   ),
+// };
 
 const pageSize = 8;
 
@@ -96,16 +115,22 @@ export const AvailableRoom = ({ data }) => {
   };
 
   const handleBooking = async (values) => {
-    try {
-      setBookingStatus(true);
-      await http.post("booking/book", values);
-      navigate("/profile");
-    } catch (error) {
-      console.log(error);
-      setBookingStatus(false);
-      setError(error.message);
-        message.info(error.response.data.message);
-    }
+    Modal.confirm({
+      title: "Comfirm Booking",
+      content: <p>Are you sure you want to book this room?</p>,
+      async onOk() {
+        try {
+          setBookingStatus(true);
+          await http.post("booking/book", values);
+          navigate("/profile");
+        } catch (error) {
+          console.log(error);
+          setBookingStatus(false);
+          setError(error.message);
+          message.info(error.response.data.message);
+        }
+      },
+    });
   };
 
   const handlePageChange = (page) => {
@@ -157,14 +182,17 @@ export const AvailableRoom = ({ data }) => {
                     <br />
                     <Space>
                       <i className="fa fa-bed"></i>
-                      <span>{room.room.remaining} out of {room.room.capacity} beds available</span>
+                      <span>
+                        {room.room.remaining} out of {room.room.capacity} beds
+                        available
+                      </span>
                     </Space>
                     <br />
                     <br />
 
                     <p>Price for a bed/semester</p>
                     <hr></hr>
-                    <h3>{formatCurrency.format( room?.room?.bed_price || 0)}</h3>
+                    <h3>{formatCurrency.format(room?.room?.bed_price || 0)}</h3>
                     <br />
                     <div id="pbed" style={{ position: "relative" }}>
                       <Select
@@ -191,6 +219,7 @@ export const AvailableRoom = ({ data }) => {
                     <Button
                       loading={bookingStatus}
                       onClick={() =>
+                        // modal.warning(config);
                         handleBooking({
                           room: room.room.id,
                           hostel: room.room.hostel,
